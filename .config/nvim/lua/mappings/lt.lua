@@ -3,6 +3,7 @@ local b = require("utils.buffer")
 
 local types = {
     "type_identifier",
+    "property_identifier",
     "identifier",
 }
 
