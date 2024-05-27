@@ -7,7 +7,7 @@ local types = {
 }
 
 expr("i", "<", function()
-    local type = b.get_current_node_type()
+    local type = b.get_node_type_left()
     if vim.tbl_contains(types, type) then return "<><left>" end
     return "<"
 end)

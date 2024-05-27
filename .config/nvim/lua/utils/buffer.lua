@@ -17,7 +17,7 @@ M.format_and_save = function()
     vim.cmd("w")
 end
 
-M.get_current_node_type = function()
+M.get_node_type_left = function()
     local _, node = pcall(function()
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
         return vim.treesitter.get_node({ pos = { row - 1, col - 1 } }):type()
@@ -25,8 +25,17 @@ M.get_current_node_type = function()
     return node or ""
 end
 
+M.get_node_type_right = function()
+    local _, node = pcall(function()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return vim.treesitter.get_node({ pos = { row - 1, col } }):type()
+    end)
+    return node or ""
+end
+
 M.is_inside_string = function()
-    return string.find(M.get_current_node_type(), "string")
+    return string.find(M.get_node_type_left(), "string")
+        and string.find(M.get_node_type_right(), "string")
 end
 
 M.is_special = function()
