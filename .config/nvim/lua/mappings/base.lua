@@ -25,6 +25,9 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
+-- Prevent yanking on paste
+map("v", "p", "P")
+
 -- Yank until end of line
 map("n", "Y", "y$")
 
