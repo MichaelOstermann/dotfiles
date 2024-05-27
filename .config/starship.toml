@@ -1,0 +1,31 @@
+format = """
+$directory\
+${custom.git_status_simplified}\
+$fill\
+$time\
+$line_break\
+$character"""
+
+add_newline = true
+
+[fill]
+symbol = ' '
+
+[directory]
+style = "bright-white bold"
+
+[time]
+disabled = false
+format = '[$time]($style) '
+time_format = '%a %d.%m %H:%M'
+style = 'white'
+
+[character]
+success_symbol = "[](bright-white)"
+error_symbol = "[](bright-red)"
+
+[custom.git_status_simplified]
+when = 'test -n "$(git status --porcelain -u)"'
+shell = ["bash", "--norc", "--noprofile"]
+style = 'yellow'
+format = '[*]($style)'
