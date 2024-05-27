@@ -19,7 +19,7 @@ local M = {
 }
 
 local fetch_status = batch(function()
-    return system("git", { "status", "--porcelain" })
+    return system("git", { "status", "--porcelain", "-u" })
 end)
 
 local fetch_dirty = batch(function()
