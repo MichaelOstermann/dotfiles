@@ -16,6 +16,7 @@ map("n", leader("h"), vim.lsp.buf.hover, desc("Hover"))
 map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
+map("n", leader("t"), fterm.open, desc("Terminal"))
 map("n", leader("y"), function() vim.fn.setreg('+', vim.fn.expand('%:p:.')) end, desc("Copy Path"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
 
@@ -51,10 +52,6 @@ map("n", leader("fr"), function() require("telescope.builtin").lsp_references(t_
 map("n", leader("gs"), git.stage, desc("Stage"))
 map("n", leader("gc"), git.stage, desc("Commit"))
 map("n", leader("ga"), git.amend, desc("Amend"))
-
--- Terminal
-map("n", leader("tt"), fterm.open, desc("Open"))
-map("n", leader("tc"), fterm.close, desc("Close"))
 
 -- Diagnostics
 map("n", leader("dr"), diagnostics.reset, desc("Restart"))

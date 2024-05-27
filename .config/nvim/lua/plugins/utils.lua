@@ -18,7 +18,6 @@ return {
                     { mode = "n", keys = "<Leader>w", desc = "+windows" },
                     { mode = "n", keys = "<Leader>f", desc = "+find" },
                     { mode = "n", keys = "<Leader>g", desc = "+git" },
-                    { mode = "n", keys = "<Leader>t", desc = "+term" },
                     { mode = "n", keys = "<Leader>w+", postkeys = "<Leader>w" },
                     { mode = "n", keys = "<Leader>w-", postkeys = "<Leader>w" },
                     { mode = "n", keys = "<Leader>e", desc = "+explorer" },
