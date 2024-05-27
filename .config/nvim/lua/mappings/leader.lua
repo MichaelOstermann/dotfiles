@@ -50,7 +50,7 @@ map("n", leader("fr"), function() require("telescope.builtin").lsp_references(t_
 
 -- Git
 map("n", leader("gs"), git.stage, desc("Stage"))
-map("n", leader("gc"), git.stage, desc("Commit"))
+map("n", leader("gc"), git.commit, desc("Commit"))
 map("n", leader("ga"), git.amend, desc("Amend"))
 
 -- Diagnostics
