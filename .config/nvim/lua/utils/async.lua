@@ -67,4 +67,6 @@ M.error = function(message, use_output)
     end
 end
 
+M.print_error = M.error("", true)
+
 return M

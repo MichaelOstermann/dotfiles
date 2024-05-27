@@ -8,7 +8,7 @@ local batch = async.batch
 local system = async.system
 local prompt = async.prompt
 local success = async.success
-local error = async.error
+local print_error = async.print_error
 
 local M = {
     state = {
@@ -68,12 +68,12 @@ M.stage = function(path)
 
     return system("git", { "add", path })
         :thenCall(success("Staged: " .. relPath))
-        :catch(error)
+        :catch(print_error)
         :thenCall(M.refresh)
 end
 
 M.commit = function()
-    prompt("Commit: ", "")
+    return prompt("Commit: ", "")
         :thenCall(function(message)
             if message == "" then return end
 
@@ -81,7 +81,7 @@ M.commit = function()
                 :thenCall(success("Committed: " .. message))
                 :thenCall(M.refresh)
         end)
-        :catch(error)
+        :catch(print_error)
 end
 
 M.amend = function()
@@ -95,7 +95,7 @@ M.amend = function()
                 :thenCall(success("Amended: " .. message))
                 :thenCall(M.refresh)
         end)
-        :catch(error)
+        :catch(print_error)
 end
 
 return M
