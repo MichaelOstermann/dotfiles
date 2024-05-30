@@ -13,20 +13,16 @@ local brackets = {
     {"{", "}"},
 }
 
-local function should_skip()
-    return b.is_inside_string() or b.is_special()
-end
-
 local function insert_pair(left, right)
     return function()
-        if should_skip() then return left end
+        if b.is_special() then return left end
         return left .. right .. "<left>"
     end
 end
 
 local function skip_pair(right)
     return function()
-        if should_skip() then return right end
+        if b.is_special() then return right end
         if b.has_surrounding_chars("", right) then return "<right>" end
         return right
     end

@@ -33,11 +33,6 @@ M.get_node_type_right = function()
     return node or ""
 end
 
-M.is_inside_string = function()
-    return string.find(M.get_node_type_left(), "string")
-        and string.find(M.get_node_type_right(), "string")
-end
-
 M.is_special = function()
     return vim.tbl_contains(filetypes.special_filetypes, vim.bo.filetype)
         or vim.tbl_contains(filetypes.special_buftypes, vim.bo.buftype)
