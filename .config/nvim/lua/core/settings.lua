@@ -26,7 +26,6 @@ vim.opt.laststatus = 3
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.title = true
-vim.filetype.add({ extension = { mdx = 'mdx' } })
 vim.opt.titlestring = "nvim(%{substitute(substitute(getcwd(), $HOME, '~', ''), '\\~/Development/', '', '')})"
 vim.opt.fillchars = {
     vert = "▎",
@@ -38,3 +37,11 @@ vim.opt.fillchars = {
     foldsep = '│',
     foldclose = '▸',
 }
+
+vim.filetype.add({
+    extension = { mdx = 'mdx' },
+    pattern = {
+        ["tsconfig*.json"] = "jsonc",
+        [".*/%.vscode/.*%.json"] = 'jsonc',
+    },
+})
