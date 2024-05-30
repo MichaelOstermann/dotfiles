@@ -20,11 +20,15 @@ vim.api.nvim_create_autocmd("VimResized", {
     end,
 })
 
--- Close terminals with q
+-- Close terminals with q and refresh statusbars/nvimtree/gitsigns, in case I did things
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "FTerm",
     callback = function(event)
-        vim.keymap.set("n", "q", require("FTerm").close, { buffer = event.buf })
+        vim.keymap.set("n", "q", function()
+            require("FTerm").close()
+            git.refresh()
+        end, { buffer = event.buf })
+    end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }, {
@@ -62,9 +66,6 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", { callback = function() vim.cmd
 
 -- Refresh statusbars/nvimtree/gitsigns once when entering
 vim.api.nvim_create_autocmd("VimEnter", { callback = git.refresh })
-
--- Refresh statusbars/nvimtree/gitsigns when leaving a terminal, in case I did things
-vim.api.nvim_create_autocmd("WinLeave", { pattern = "FTerm", callback = git.refresh })
 
 -- Refresh statusbars/nvimtree/gitsigns after writing to disk
 vim.api.nvim_create_autocmd("BufWritePost", { callback = git.refresh })
