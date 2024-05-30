@@ -8,12 +8,6 @@ return {
         },
     },
 
-    -- Absolute numbers in insert mode, otherwise relative
-    {
-        "sitiom/nvim-numbertoggle",
-        event = "VeryLazy",
-    },
-
     -- Highlights all words matching the one under the cursor
     {
         "RRethy/vim-illuminate",

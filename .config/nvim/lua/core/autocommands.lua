@@ -25,6 +25,26 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "FTerm",
     callback = function(event)
         vim.keymap.set("n", "q", require("FTerm").close, { buffer = event.buf })
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }, {
+    callback = function()
+        if vim.wo.nu and not vim.startswith(vim.api.nvim_get_mode().mode, 'i') then
+            vim.wo.relativenumber = true
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, {
+    callback = function(args)
+        if vim.wo.nu then
+            vim.wo.relativenumber = false
+        end
+
+        -- Redraw here to avoid having to first write something for the line numbers to update.
+        if args.event == 'CmdlineEnter' then
+            vim.cmd.redraw()
+        end
     end,
 })
 
