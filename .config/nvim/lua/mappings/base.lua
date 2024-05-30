@@ -1,5 +1,6 @@
 local utils = require("mappings._utils")
 local map = utils.map
+local expr = utils.expr
 local sibling_swap = require_lazy("sibling-swap")
 local stay_in_place = require_lazy("stay-in-place")
 
@@ -10,14 +11,18 @@ map("t", "<esc><esc>", "<c-\\><c-n>")
 map("i", "<c-b>", "<nop>")
 map("i", "<c-g>", "<nop>")
 
+-- Move up/down while considering word wrap
+expr('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']])
+expr('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']])
+
 -- Move around in msgarea
 map("c", "<m-left>", "<s-left>")
 map("c", "<m-right>", "<s-right>")
 
 -- Move around in insertmode
 map("i", "<c-h>", "<left>")
-map("i", "<c-j>", "<down>")
-map("i", "<c-k>", "<up>")
+map("i", "<c-j>", "<c-o>gj")
+map("i", "<c-k>", "<c-o>gk")
 map("i", "<c-l>", "<right>")
 
 -- Additional breakpoins
