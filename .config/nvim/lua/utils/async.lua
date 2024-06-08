@@ -44,9 +44,14 @@ M.system = function(cmd, args, opts)
 end
 
 M.prompt = function(prompt, initial)
-    return Promise(vim.schedule_wrap(function(resolve)
-        vim.ui.input({ prompt = prompt, default = initial }, function(result)
-            resolve(result)
+    return Promise(vim.schedule_wrap(function(resolve, reject)
+        vim.cmd.redraw()
+        vim.ui.input({ prompt = prompt .. " ", default = initial }, function(result)
+            if result == nil then
+                reject("canceled")
+            else
+                resolve(result)
+            end
         end)
     end))
 end
@@ -63,6 +68,9 @@ end
 
 M.error = function(message, use_output)
     return function(output)
+        if output == "canceled" then
+            return
+        end
         return Promise(vim.schedule_wrap(function(_, reject)
             local msg = vim.trim(use_output and (message .. output) or message)
             vim.notify(msg, vim.log.levels.ERROR)
