@@ -8,6 +8,7 @@ local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
 local diagnostics = require("custom.diagnostics")
 local notes = require("custom.notes")
+local pomodoro = require("custom.pomodoro")
 local t_opts = { jump_type = "never", trim_text = true }
 
 -- Frequently used stuff
@@ -75,6 +76,27 @@ end, desc("References"))
 map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
 map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
 map("n", leader("gp"), cmd("Git push -u origin"), desc("Push"))
+
+-- Pomodoro
+map("n", leader("pss"), function()
+    pomodoro.start_session(15)
+end, desc("Short Session"))
+
+map("n", leader("psl"), function()
+    pomodoro.start_session(45)
+end, desc("Long Session"))
+
+map("n", leader("pbs"), function()
+    pomodoro.start_break(5)
+end, desc("Short Break"))
+
+map("n", leader("pbl"), function()
+    pomodoro.start_break(15)
+end, desc("Long Break"))
+
+map("n", leader("pc"), function()
+    pomodoro.cancel()
+end, desc("Cancel"))
 
 -- Diagnostics
 map("n", leader("dr"), diagnostics.reset, desc("Restart"))
