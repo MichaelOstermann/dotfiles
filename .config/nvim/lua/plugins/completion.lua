@@ -20,7 +20,7 @@ return {
         cmp.event:on("menu_closed", illuminate.resume)
 
         local check_backspace = function()
-            local col = vim.fn.col "." - 1
+            local col = vim.fn.col(".") - 1
             return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
         end
 
@@ -28,7 +28,7 @@ return {
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
-                end
+                end,
             },
             sources = {
                 { name = "nvim_lsp" },
@@ -74,5 +74,5 @@ return {
                 documentation = cmp.config.window.bordered(),
             },
         })
-    end
+    end,
 }

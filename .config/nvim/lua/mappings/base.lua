@@ -12,8 +12,8 @@ map("i", "<c-b>", "<nop>")
 map("i", "<c-g>", "<nop>")
 
 -- Move up/down while considering word wrap
-expr('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']])
-expr('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']])
+expr("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']])
+expr("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']])
 
 -- Move around in msgarea
 map("c", "<m-left>", "<s-left>")

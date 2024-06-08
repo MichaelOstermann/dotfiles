@@ -4,7 +4,7 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "ray-x/lsp_signature.nvim",
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim"
+        "williamboman/mason-lspconfig.nvim",
     },
     config = function()
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -77,20 +77,20 @@ return {
             on_attach = on_attach,
             settings = { useFlatConfig = true },
             filetypes = {
-                'javascript',
-                'javascriptreact',
-                'javascript.jsx',
-                'typescript',
-                'typescriptreact',
-                'typescript.tsx',
-                'vue',
-                'svelte',
-                'astro',
+                "javascript",
+                "javascriptreact",
+                "javascript.jsx",
+                "typescript",
+                "typescriptreact",
+                "typescript.tsx",
+                "vue",
+                "svelte",
+                "astro",
                 "html",
                 "markdown",
                 "json",
                 "jsonc",
-                "yaml"
+                "yaml",
             },
         })
 
@@ -117,5 +117,5 @@ return {
 
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {})
-    end
+    end,
 }

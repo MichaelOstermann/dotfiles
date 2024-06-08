@@ -1,6 +1,6 @@
 function require_lazy(require_path)
     return setmetatable({}, {
-            __index = function(_, k)
+        __index = function(_, k)
             return function(...)
                 return require(require_path)[k](...)
             end

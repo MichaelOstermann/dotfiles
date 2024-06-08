@@ -48,13 +48,13 @@ return {
                         default = "󰧮",
                         folder = {
                             default = "",
-                            open = ""
-                        }
-                    }
+                            open = "",
+                        },
+                    },
                 },
             },
             on_attach = function(bufnr)
-                local api = require('nvim-tree.api')
+                local api = require("nvim-tree.api")
                 local git = require("utils.git")
                 local n = require("nvim-tree.api").events
 
@@ -106,7 +106,7 @@ return {
                 }) do
                     n.subscribe(event, git.refresh)
                 end
-            end
-        }
-    }
+            end,
+        },
+    },
 }

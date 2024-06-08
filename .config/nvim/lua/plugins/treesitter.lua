@@ -44,13 +44,13 @@ return {
                 "vue",
                 "xml",
                 "yaml",
-                "zig"
+                "zig",
             },
             autotag = { enable = true },
             highlight = { enable = true },
             indent = { enable = false },
         })
 
-        vim.treesitter.language.register('markdown', 'mdx')
-    end
+        vim.treesitter.language.register("markdown", "mdx")
+    end,
 }

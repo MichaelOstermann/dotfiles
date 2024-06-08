@@ -12,7 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local ok, lazy = pcall(require, "lazy")
-if not ok then return end
+if not ok then
+    return
+end
 
 vim.g.mapleader = " "
 

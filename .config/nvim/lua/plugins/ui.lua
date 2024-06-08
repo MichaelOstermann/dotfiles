@@ -21,6 +21,6 @@ return {
                 min_count_to_highlight = 2,
                 large_file_cutoff = 5000,
             })
-        end
+        end,
     },
 }

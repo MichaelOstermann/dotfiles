@@ -17,8 +17,10 @@ map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
-map("n", leader("y"), function() vim.fn.setreg('+', vim.fn.expand('%:p:.')) end, desc("Copy Path"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
+map("n", leader("y"), function()
+    vim.fn.setreg("+", vim.fn.expand("%:p:."))
+end, desc("Copy Path"))
 
 -- NvimTree
 map("n", leader("ee"), cmd("NvimTreeOpen"), desc("Open"))
@@ -40,13 +42,33 @@ map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
-map("n", leader("ff"), function() require("telescope.builtin").find_files() end, desc("Files"))
-map("n", leader("fp"), function() require("telescope.builtin").oldfiles({ cwd_only = true }) end, desc("Prev Files"))
-map("n", leader("fl"), function() require("telescope.builtin").current_buffer_fuzzy_find(t_opts) end, desc("Lines"))
-map("n", leader("fg"), function() require("telescope").extensions.egrepify.egrepify() end, desc("Grep"))
-map("n", leader("fi"), function() require("telescope.builtin").lsp_implementations(t_opts) end, desc("Implementations"))
-map("n", leader("fd"), function() require("telescope.builtin").lsp_definitions(t_opts) end, desc("Definitions"))
-map("n", leader("fr"), function() require("telescope.builtin").lsp_references(t_opts) end, desc("References"))
+map("n", leader("ff"), function()
+    require("telescope.builtin").find_files()
+end, desc("Files"))
+
+map("n", leader("fp"), function()
+    require("telescope.builtin").oldfiles({ cwd_only = true })
+end, desc("Prev Files"))
+
+map("n", leader("fl"), function()
+    require("telescope.builtin").current_buffer_fuzzy_find(t_opts)
+end, desc("Lines"))
+
+map("n", leader("fg"), function()
+    require("telescope").extensions.egrepify.egrepify()
+end, desc("Grep"))
+
+map("n", leader("fi"), function()
+    require("telescope.builtin").lsp_implementations(t_opts)
+end, desc("Implementations"))
+
+map("n", leader("fd"), function()
+    require("telescope.builtin").lsp_definitions(t_opts)
+end, desc("Definitions"))
+
+map("n", leader("fr"), function()
+    require("telescope.builtin").lsp_references(t_opts)
+end, desc("References"))
 
 -- Git
 map("n", leader("gs"), git.stage, desc("Stage"))

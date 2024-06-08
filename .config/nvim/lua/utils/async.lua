@@ -8,10 +8,14 @@ local M = {
 M.batch = function(fn)
     local inflight = nil
     return function(...)
-        if inflight then return inflight end
+        if inflight then
+            return inflight
+        end
         local next = fn(...)
         inflight = next
-        inflight:finally(function() inflight = nil end)
+        inflight:finally(function()
+            inflight = nil
+        end)
         return next
     end
 end

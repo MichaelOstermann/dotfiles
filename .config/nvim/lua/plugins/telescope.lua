@@ -7,7 +7,7 @@ return {
     event = "VeryLazy",
     cmd = { "Telescope" },
     config = function()
-        require('telescope').setup({
+        require("telescope").setup({
             defaults = {
                 sorting_strategy = "ascending",
                 color_devicons = false,
@@ -17,11 +17,11 @@ return {
                         width = { padding = 0 },
                         preview_cutoff = 120,
                         prompt_position = "top",
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
 
-        require('telescope').load_extension("egrepify")
-    end
+        require("telescope").load_extension("egrepify")
+    end,
 }

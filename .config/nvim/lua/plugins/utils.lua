@@ -47,11 +47,13 @@ return {
         lazy = true,
         opts = {
             hl = "NormalTerm",
-            dimensions  = {
-                height = 0.9,
-                width = 0.9,
+            dimensions = {
+                height = 1,
+                width = 1,
+                x = 0,
+                y = 0,
             },
-        }
+        },
     },
 
     -- Git indicators in signcolumn
@@ -61,14 +63,14 @@ return {
         opts = {
             watch_gitdir = { enable = false },
             signs = {
-                add          = { text = '▎' },
-                change       = { text = '▎' },
-                delete       = { text = '▎' },
-                topdelete    = { text = '▎' },
-                changedelete = { text = '▎' },
-                untracked    = { text = '▎' },
+                add = { text = "▎" },
+                change = { text = "▎" },
+                delete = { text = "▎" },
+                topdelete = { text = "▎" },
+                changedelete = { text = "▎" },
+                untracked = { text = "▎" },
             },
-        }
+        },
     },
 
     -- Automatically close buffers if there are more than 10, it helps with keeping
@@ -79,9 +81,10 @@ return {
         opts = true,
     },
 
+    -- Simplify macro usage.
     {
         "chrisgrieser/nvim-recorder",
-        keys = {"q"},
+        keys = { "q" },
         opts = {
             lessNotifications = true,
         },

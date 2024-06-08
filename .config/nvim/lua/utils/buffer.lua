@@ -51,16 +51,24 @@ end
 M.has_any_surrounding_chars = function(table)
     for _, pair in ipairs(table) do
         local left, right = unpack(pair)
-        if M.has_surrounding_chars(left, right) then return true end
+        if M.has_surrounding_chars(left, right) then
+            return true
+        end
     end
     return false
 end
 
 M.get_indentation_level = function(row)
     local level = math.floor(vim.fn.indent(row) / vim.bo.shiftwidth)
-    if level ~= 0 then return level end
-    if row == 1 then return level end
-    if unpack(vim.api.nvim_buf_get_lines(0, row - 1, row, false)) ~= "" then return 0 end
+    if level ~= 0 then
+        return level
+    end
+    if row == 1 then
+        return level
+    end
+    if unpack(vim.api.nvim_buf_get_lines(0, row - 1, row, false)) ~= "" then
+        return 0
+    end
     return M.get_indentation_level(row - 1)
 end
 
