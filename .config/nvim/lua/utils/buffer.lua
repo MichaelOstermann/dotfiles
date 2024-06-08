@@ -1,19 +1,20 @@
 local filetypes = require("utils.filetypes")
+local conform = require_lazy("conform")
 local M = {}
 
-local function has_eslint()
-    return not vim.tbl_isempty(vim.lsp.get_active_clients({
-        bufnr = vim.api.nvim_get_current_buf(),
-        name = "eslint",
-    }))
-end
-
 M.format_and_save = function()
-    if has_eslint() then
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    if not vim.tbl_isempty(vim.lsp.get_active_clients({
+        bufnr = bufnr,
+        name = "eslint",
+    })) then
         vim.cmd("EslintFixAll")
-    else
-        vim.lsp.buf.format()
+        vim.cmd("w")
+        return
     end
+
+    conform.format({ bufnr = bufnr })
     vim.cmd("w")
 end
 
