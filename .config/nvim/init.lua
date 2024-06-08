@@ -13,6 +13,7 @@ vim.cmd("colorscheme galbadia")
 require("core.lazy")
 require("core.settings")
 
+require("custom.diagnostics")
 require("custom.git")
 require("custom.statusline")
 require("custom.winbar")

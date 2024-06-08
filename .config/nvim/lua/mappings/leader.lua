@@ -4,9 +4,9 @@ local cmd = utils.cmd
 local desc = utils.desc
 local leader = utils.leader
 local buffer = require("utils.buffer")
-local diagnostics = require("utils.diagnostics")
 local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
+local diagnostics = require("custom.diagnostics")
 local t_opts = { jump_type = "never", trim_text = true }
 
 -- Frequently used stuff
