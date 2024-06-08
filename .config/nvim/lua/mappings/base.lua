@@ -1,3 +1,4 @@
+local au = require("utils.autocommand")
 local utils = require("utils.mappings")
 local map = utils.map
 local expr = utils.expr
@@ -51,3 +52,8 @@ map("n", "<tab>", stay_in_place.shift_right_line)
 map("x", "<tab>", stay_in_place.shift_right_visual)
 map("n", "<s-tab>", stay_in_place.shift_left_line)
 map("x", "<s-tab>", stay_in_place.shift_left_visual)
+
+-- Close terminals with q
+au("FileType", function(args)
+    vim.keymap.set("n", "q", require("FTerm").close, { buffer = args.buf })
+end, { pattern = "FTerm" })

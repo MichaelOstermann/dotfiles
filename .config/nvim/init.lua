@@ -10,9 +10,8 @@ end
 
 vim.cmd("colorscheme galbadia")
 
-require("core.settings")
 require("core.lazy")
-require("core.autocommands")
+require("core.settings")
 
 require("mappings.base")
 require("mappings.bs")

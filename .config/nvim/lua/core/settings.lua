@@ -1,3 +1,5 @@
+local au = require("utils.autocommand")
+
 vim.opt.autoindent = false
 vim.cmd("filetype indent off")
 vim.opt.confirm = true
@@ -46,3 +48,48 @@ vim.filetype.add({
         [".*/%.vscode/.*%.json"] = "jsonc",
     },
 })
+
+-- Disable continuing comments, lists, etc., something keeps resetting this so it's an autocmd
+au("FileType", function()
+    vim.opt.formatoptions = ""
+end)
+
+-- Settings for markdown, mdx, txt, etc.
+au("FileType", function()
+    -- Wrap long lines
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+
+    -- Enable spellchecking
+    vim.opt_local.spell = true
+
+    -- Wrap long lines within lists
+    vim.opt_local.breakindent = true
+    vim.opt_local.breakindentopt = "list:-1"
+end, { pattern = require("utils.filetypes").prose_filetypes })
+
+-- Equalize splits after resizing the window
+au("VimResized", function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+end)
+
+-- Relative numbers outside of insert mode
+au({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, function()
+    if vim.wo.nu and not vim.startswith(vim.api.nvim_get_mode().mode, "i") then
+        vim.wo.relativenumber = true
+    end
+end)
+
+-- Absolute numbers in insert mode
+au({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, function(args)
+    if vim.wo.nu then
+        vim.wo.relativenumber = false
+    end
+
+    -- Redraw here to avoid having to first write something for the line numbers to update.
+    if args.event == "CmdlineEnter" then
+        vim.cmd.redraw()
+    end
+end)
