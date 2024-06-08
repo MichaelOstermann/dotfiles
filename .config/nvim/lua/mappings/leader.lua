@@ -7,6 +7,7 @@ local buffer = require("utils.buffer")
 local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
 local diagnostics = require("custom.diagnostics")
+local notes = require("custom.notes")
 local t_opts = { jump_type = "never", trim_text = true }
 
 -- Frequently used stuff
@@ -16,6 +17,7 @@ map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
+map("n", leader("n"), notes.toggle, desc("Notes"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
