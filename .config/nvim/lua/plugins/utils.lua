@@ -1,5 +1,10 @@
 return {
+    -- Signals implementation
     {
+        "michaelostermann/nvim-signals",
+        lazy = true,
+    },
+
     },
 
     -- Easymotion-like goodies

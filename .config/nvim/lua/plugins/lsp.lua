@@ -10,6 +10,19 @@ return {
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local lspconfig = require("lspconfig")
         local signature = require("lsp_signature")
+        local signals = require("utils.signals")
+
+        local with = vim.lsp.with
+        vim.lsp.with = function(a, b)
+            if a == signature.signature_handler then
+                return with(function(...)
+                    signature.signature_handler(...)
+                    signals.signature:set(signature.status_line())
+                end, b)
+            else
+                return with(a, b)
+            end
+        end
 
         require("mason").setup()
         require("mason-lspconfig").setup({
