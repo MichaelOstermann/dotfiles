@@ -14,6 +14,8 @@ require("core.lazy")
 require("core.settings")
 
 require("custom.git")
+require("custom.statusline")
+require("custom.winbar")
 
 require("mappings.base")
 require("mappings.bs")
