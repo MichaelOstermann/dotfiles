@@ -20,13 +20,13 @@ M.batch = function(fn)
     end
 end
 
-M.system = function(cmd, args)
+M.system = function(cmd, args, opts)
     return Promise(function(resolve, reject)
         local ok, err = pcall(function()
             Job:new({
                 command = cmd,
                 args = args or {},
-                cwd = vim.loop.cwd(),
+                cwd = opts and opts.cwd or vim.loop.cwd(),
                 on_exit = function(j, code)
                     if code == 0 then
                         resolve(table.concat(j:result(), "\n"))
