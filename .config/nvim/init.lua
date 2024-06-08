@@ -13,6 +13,8 @@ vim.cmd("colorscheme galbadia")
 require("core.lazy")
 require("core.settings")
 
+require("custom.git")
+
 require("mappings.base")
 require("mappings.bs")
 require("mappings.cc")

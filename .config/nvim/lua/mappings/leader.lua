@@ -5,7 +5,6 @@ local desc = utils.desc
 local leader = utils.leader
 local buffer = require("utils.buffer")
 local diagnostics = require("utils.diagnostics")
-local git = require_lazy("utils.git")
 local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
 local t_opts = { jump_type = "never", trim_text = true }
@@ -71,9 +70,9 @@ map("n", leader("fr"), function()
 end, desc("References"))
 
 -- Git
-map("n", leader("gs"), git.stage, desc("Stage"))
-map("n", leader("gc"), git.commit, desc("Commit"))
-map("n", leader("ga"), git.amend, desc("Amend"))
+map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
+map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
+map("n", leader("gp"), cmd("Git push -u origin"), desc("Push"))
 
 -- Diagnostics
 map("n", leader("dr"), diagnostics.reset, desc("Restart"))
