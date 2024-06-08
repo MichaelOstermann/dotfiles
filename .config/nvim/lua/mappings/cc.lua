@@ -1,4 +1,4 @@
-local expr = require("mappings._utils").expr
+local expr = require("utils.mappings").expr
 local b = require("utils.buffer")
 
 expr("n", "cc", function()

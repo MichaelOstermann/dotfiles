@@ -1,4 +1,4 @@
-local utils = require("mappings._utils")
+local utils = require("utils.mappings")
 local map = utils.map
 local expr = utils.expr
 local sibling_swap = require_lazy("sibling-swap")

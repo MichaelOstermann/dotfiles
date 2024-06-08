@@ -1,4 +1,4 @@
-local utils = require("mappings._utils")
+local utils = require("utils.mappings")
 local map = utils.map
 local cmd = utils.cmd
 local desc = utils.desc
