@@ -18,7 +18,7 @@ local git_ahead = statusline.component(function()
     if ahead == 0 then
         return
     end
-    return { " ", { "+" .. git.ahead, "String" } }
+    return { " ", { "+" .. git.ahead:get(), "String" } }
 end)
 
 local git_behind = statusline.component(function()
