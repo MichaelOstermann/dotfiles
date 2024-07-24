@@ -1,13 +1,10 @@
 local expr = require("utils.mappings").expr
 local b = require("utils.buffer")
 
-local quotes = {
+local pairs = {
     { "'", "'" },
     { '"', '"' },
     { "`", "`" },
-}
-
-local brackets = {
     { "[", "]" },
     { "(", ")" },
     { "{", "}" },
@@ -20,11 +17,7 @@ expr("i", "<bs>", function()
         return "<bs>"
     end
 
-    if b.has_any_surrounding_chars(quotes) then
-        return "<left><del><del>"
-    end
-
-    if b.has_any_surrounding_chars(brackets) then
+    if b.has_any_surrounding_chars(pairs) then
         return "<left><del><del>"
     end
 
