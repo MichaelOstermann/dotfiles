@@ -59,23 +59,14 @@ au("BufLeave", refresh, { pattern = "term://*" })
 au("User", refresh, { pattern = "MiniGitCommandDone" })
 
 effect(function()
-    if M.is_repo:is(false) then
-        return
-    end
-
-    M.status:get()
-
-    gitsigns.refresh()
-    nvimtree.reload()
-end)
-
-effect(function()
     if M.is_repo:is(true) then
-        return
+        M.status:get()
+        gitsigns.refresh()
+        nvimtree.reload()
+    else
+        M.refresh_count:get()
+        nvimtree.reload()
     end
-
-    M.refresh_count:get()
-    nvimtree.reload()
 end)
 
 return M
