@@ -51,7 +51,9 @@ au({ "CursorMoved", "CursorMovedI" }, function()
 end)
 
 au("BufEnter", function(args)
-    M.buf:set(args.buf)
+    if vim.api.nvim_buf_get_name(args.buf) ~= "" then
+        M.buf:set(vim.api.nvim_get_current_buf())
+    end
 end)
 
 au("VimResized", function()
