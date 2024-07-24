@@ -5,7 +5,7 @@ local M = {}
 M.format_and_save = function()
     local bufnr = vim.api.nvim_get_current_buf()
 
-    if not vim.tbl_isempty(vim.lsp.get_active_clients({
+    if not vim.tbl_isempty(vim.lsp.get_clients({
         bufnr = bufnr,
         name = "eslint",
     })) then
@@ -35,8 +35,8 @@ M.get_node_type_right = function()
 end
 
 M.is_special = function()
-    return vim.tbl_contains(filetypes.special_filetypes, vim.bo.filetype)
-        or vim.tbl_contains(filetypes.special_buftypes, vim.bo.buftype)
+    return vim.list_contains(filetypes.special_filetypes, vim.bo.filetype)
+        or vim.list_contains(filetypes.special_buftypes, vim.bo.buftype)
 end
 
 M.get_surrounding_chars = function(left, right)

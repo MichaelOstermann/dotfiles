@@ -26,7 +26,7 @@ M.system = function(cmd, args, opts)
             Job:new({
                 command = cmd,
                 args = args or {},
-                cwd = opts and opts.cwd or vim.loop.cwd(),
+                cwd = opts and opts.cwd or vim.uv.cwd(),
                 on_exit = function(j, code)
                     if code == 0 then
                         resolve(table.concat(j:result(), "\n"))

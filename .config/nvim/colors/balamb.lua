@@ -4,7 +4,6 @@ end
 
 vim.g.colors_name = "balamb"
 vim.opt.background = "light"
-vim.opt.termguicolors = true
 
 local function set_hl(name, style)
     vim.api.nvim_set_hl(0, name, style)
@@ -18,9 +17,6 @@ local set_js_hl = function(name, style)
     set_hl(name .. ".javascriptreact", style)
     set_hl(name .. ".typescriptreact", style)
 end
-
-set_hl("typescriptParens", { fg = "#a2a19e" })
-set_hl("typescriptFuncType", { fg = "#cb912f" })
 
 set_hl("@attribute.css", { fg = "#d9730d" })
 set_hl("@boolean", { fg = "#d9730d" })

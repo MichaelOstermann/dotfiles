@@ -44,7 +44,7 @@ end
 local function start_clock()
     end_clock()
     tick()
-    timer = vim.loop.new_timer()
+    timer = vim.uv.new_timer()
     timer:start(0, 100, vim.schedule_wrap(tick))
 end
 

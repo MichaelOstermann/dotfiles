@@ -68,7 +68,7 @@ local function create_editor_win()
     editor_win:set(win)
     vim.opt_local.signcolumn = "no"
 
-    local name = vim.fn.fnamemodify(vim.loop.cwd(), ":t")
+    local name = vim.fn.fnamemodify(vim.uv.cwd(), ":t")
     local path = base_path .. "/" .. name .. ".md"
     vim.api.nvim_command("edit " .. path)
 end
