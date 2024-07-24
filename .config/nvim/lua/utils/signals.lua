@@ -37,11 +37,7 @@ M.col_diagnostics = computed(function()
 end)
 
 M.diagnostic = computed(function()
-    local row_diagnostics = M.row_diagnostics:get()
-    if #row_diagnostics == 1 then
-        return row_diagnostics[1]
-    end
-    return M.col_diagnostics:get()[1]
+    return M.col_diagnostics:get()[1] or M.row_diagnostics:get()[1]
 end)
 
 au({ "CursorMoved", "CursorMovedI" }, function()
