@@ -197,7 +197,13 @@ set_hl("WinBarNC", { fg = "#37352f", bg = "#f7f6f3" })
 set_hl("WinSeparator", { fg = "#edece9" })
 set_js_hl("@constructor", { fg = "#337ea9" })
 set_js_hl("@tag", { fg = "#337ea9" })
-
+set_hl("HydraRed", { fg = "#d44c48" })
+set_hl("HydraBlue", { fg = "#337ea9" })
+set_hl("HydraAmaranth", { fg = "#d9730d" })
+set_hl("HydraTeal", { fg = "#33a999" })
+set_hl("HydraPink", { fg = "#9065b0" })
+set_hl("MultiCursor", { link = "Visual" })
+set_hl("MultiCursorMain", { link = "Visual" })
 set_hl("NormalTerm", { fg = "#45443f", bg = "#f7f6f3" })
 
 vim.g.terminal_color_0 = "#dfdedb"

@@ -92,4 +92,28 @@ return {
         keys = { "<cr>" },
         opts = true,
     },
+
+    -- Multiple cursors
+    {
+        "smoka7/multicursors.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvimtools/hydra.nvim" },
+        cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+        opts = {
+            hint_config = {
+                float_opts = {
+                    border = "rounded",
+                },
+                position = "bottom-right",
+            },
+            generate_hints = {
+                normal = true,
+                insert = true,
+                extend = true,
+                config = {
+                    column_count = 1,
+                },
+            },
+        },
+    },
 }

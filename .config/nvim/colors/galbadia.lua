@@ -197,14 +197,20 @@ set_hl("WinBarNC", { fg = "#7481b9", bg = "#1f2029" })
 set_hl("WinSeparator", { fg = "#181921" })
 set_js_hl("@constructor", { fg = "#6789d0" })
 set_js_hl("@tag", { fg = "#6789d0" })
+set_hl("HydraRed", { fg = "#b05669" })
+set_hl("HydraBlue", { fg = "#6789d0" })
+set_hl("HydraAmaranth", { fg = "#a36747" })
+set_hl("HydraTeal", { fg = "#51909f" })
+set_hl("HydraPink", { fg = "#866fb1" })
+set_hl("MultiCursor", { link = "Visual" })
+set_hl("MultiCursorMain", { link = "Visual" })
 
 set_hl("NormalTerm", { fg = "#7b7e99", bg = "#1f2029" })
 
 vim.g.terminal_color_0 = "#3e3f4e"
 vim.g.terminal_color_1 = "#b05669"
 vim.g.terminal_color_2 = "#69884b"
-vim.g.terminal_color_3 = "#907149"
-vim.g.terminal_color_4 = "#6789d0"
+vim.g.terminal_color_3 = "#907149"vim.g.terminal_color_4 = "#6789d0"
 vim.g.terminal_color_5 = "#866fb1"
 vim.g.terminal_color_6 = "#51909f"
 vim.g.terminal_color_7 = "#515366"
