@@ -52,9 +52,9 @@ local function should_show_winbar(buf)
         and not vim.api.nvim_win_get_config(0).zindex
 end
 
-au("BufWinEnter", function(args)
+au({ "BufWinEnter", "WinNew" }, function()
     local win = vim.api.nvim_get_current_win()
-    local buf = args.buf
+    local buf = vim.api.nvim_get_current_buf()
 
     if should_show_winbar(buf) then
         attach_winbar(win, buf)
