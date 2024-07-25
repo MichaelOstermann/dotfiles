@@ -69,7 +69,11 @@ local function truncate(content)
 end
 
 local diagnostic = statusline.component(function()
-    if not signals.diagnostics_enabled:get() then
+    local buf = signals.buf:get()
+    if not buf then
+        return
+    end
+    if signals.buffers[buf].diagnostics_enabled:is(false) then
         return
     end
     if signals.mode:get() ~= "n" then

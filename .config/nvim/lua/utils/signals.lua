@@ -6,7 +6,6 @@ local computed = require("signals.computed")
 local M = {}
 
 M.diagnostics = signal({})
-M.diagnostics_enabled = signal(true)
 M.width = signal(vim.o.columns)
 M.height = signal(vim.o.lines)
 M.mode = signal(vim.api.nvim_get_mode().mode)
@@ -90,6 +89,7 @@ au("BufReadPost", function(args)
     local buf = args.buf
     local signals = {}
 
+    signals.diagnostics_enabled = signal(true)
     signals.name = signal(get_buf_name(buf))
     signals.modified = signal(get_buf_is_modified(buf))
     signals.diagnostics = computed(function()

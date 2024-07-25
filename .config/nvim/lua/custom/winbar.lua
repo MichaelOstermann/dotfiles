@@ -22,7 +22,7 @@ local function attach_winbar(win, buf)
 
     local winbar = statusline.components({
         statusline.component(function()
-            local diagnostics_enabled = signals.diagnostics_enabled:get()
+            local diagnostics_enabled = b.diagnostics_enabled:get()
             return {
                 {
                     b.name:get(),

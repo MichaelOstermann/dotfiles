@@ -5,27 +5,36 @@ local M = {}
 
 local timer
 
-local function stop_timer()
-    if not timer then
+local function stop_timer(buf)
+    if not vim.b[buf].diagnostics_timer then
         return
     end
-    vim.fn.timer_stop(timer)
-    timer = nil
+    vim.fn.timer_stop(vim.b[buf].diagnostics_timer)
+    vim.b[buf].diagnostics_timer = nil
 end
 
-local function disable()
-    vim.diagnostic.disable()
-    stop_timer()
-    signals.diagnostics_enabled:set(false)
+local function disable(args)
+    local buf = args.buf
+    vim.diagnostic.disable(buf)
+    stop_timer(buf)
+    if signals.buffers[buf] then
+        signals.buffers[buf].diagnostics_enabled:set(false)
+    end
 end
 
-local function enable()
-    stop_timer()
+local function enable(args)
+    local buf = args.buf
+    stop_timer(buf)
 
-    timer = vim.fn.timer_start(500, function()
-        timer = nil
-        vim.diagnostic.enable()
-        signals.diagnostics_enabled:set(true)
+    vim.b[buf].diagnostics_timer = vim.fn.timer_start(500, function()
+        if vim.api.nvim_buf_is_loaded(buf) then
+            vim.b[buf].diagnostics_timer = nil
+            vim.diagnostic.enable(buf)
+        end
+
+        if signals.buffers[buf] then
+            signals.buffers[buf].diagnostics_enabled:set(true)
+        end
     end)
 end
 
