@@ -46,11 +46,12 @@ return {
                 "yaml",
                 "zig",
             },
-            autotag = { enable = true },
             highlight = { enable = true },
             indent = { enable = false },
         })
 
         vim.treesitter.language.register("markdown", "mdx")
+
+        require("nvim-ts-autotag").setup()
     end,
 }
