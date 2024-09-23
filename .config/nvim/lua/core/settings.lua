@@ -93,3 +93,8 @@ au({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, funct
         vim.cmd.redraw()
     end
 end)
+
+-- Check buffers for changes upon leaving term
+au("BufLeave", function()
+    vim.cmd("checktime")
+end, { pattern = "term://*" })
