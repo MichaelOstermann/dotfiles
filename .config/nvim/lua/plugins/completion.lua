@@ -24,6 +24,8 @@ return {
             return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
         end
 
+        local excluded_trigger_characters = { " ", "<" }
+
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -66,6 +68,17 @@ return {
                     end
                 end),
             }),
+            completion = {
+                get_trigger_characters = function(chars)
+                    local new_chars = {}
+                    for _, char in ipairs(chars) do
+                        if not vim.list_contains(excluded_trigger_characters, char) then
+                            table.insert(new_chars, char)
+                        end
+                    end
+                    return new_chars
+                end,
+            },
             confirm_opts = {
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false,
