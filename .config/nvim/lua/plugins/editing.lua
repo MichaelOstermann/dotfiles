@@ -82,7 +82,7 @@ return {
         "Wansmer/treesj",
         dependencies = "nvim-treesitter/nvim-treesitter",
         lazy = true,
-        opts = { use_default_keymaps = false },
+        opts = { use_default_keymaps = false, max_join_length = 9999 },
     },
 
     -- Incrementally select treesitter nodes
