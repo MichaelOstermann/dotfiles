@@ -34,8 +34,8 @@ map("i", ";", ";<c-g>u")
 -- Prevent yanking on paste
 map("v", "p", "P")
 
--- Yank until end of line
-map("n", "Y", "y$")
+-- Delete char
+map("n", "<bs>", '"_dl')
 
 -- Move lines up/down
 map("n", "<c-j>", "<Plug>GoNMLineDown")

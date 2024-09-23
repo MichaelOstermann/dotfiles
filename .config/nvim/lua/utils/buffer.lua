@@ -18,20 +18,58 @@ M.format_and_save = function()
     vim.cmd("w")
 end
 
-M.get_node_type_left = function()
-    local _, node = pcall(function()
+M.get_node_types_left = function()
+    local ok, node = pcall(function()
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return vim.treesitter.get_node({ pos = { row - 1, col - 1 } }):type()
+        return vim.treesitter.get_node({ pos = { row - 1, col - 1 } })
     end)
-    return node or ""
+    local result = {}
+    while ok and node do
+        table.insert(result, node:type())
+        node = node:parent()
+    end
+    return result
 end
 
-M.get_node_type_right = function()
+M.get_node_types_right = function()
+    local ok, node = pcall(function()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return vim.treesitter.get_node({ pos = { row - 1, col } })
+    end)
+    local result = {}
+    while ok and node do
+        table.insert(result, node:type())
+        node = node:parent()
+    end
+    return result
+end
+
+M.has_node_type_left = function(pattern)
+    local ok, node = pcall(function()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return vim.treesitter.get_node({ pos = { row - 1, col - 1 } })
+    end)
+    while ok and node do
+        if string.find(node:type(), pattern) then
+            return true
+        end
+        node = node:parent()
+    end
+    return false
+end
+
+M.has_node_type_right = function(pattern)
     local _, node = pcall(function()
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return vim.treesitter.get_node({ pos = { row - 1, col } }):type()
+        return vim.treesitter.get_node({ pos = { row - 1, col } })
     end)
-    return node or ""
+    while ok and node do
+        if string.find(node:type(), pattern) then
+            return true
+        end
+        node = node:parent()
+    end
+    return false
 end
 
 M.is_special = function()

@@ -18,6 +18,7 @@ require("custom.git")
 require("custom.statusline")
 require("custom.winbar")
 
+require("mappings.$")
 require("mappings.base")
 require("mappings.bs")
 require("mappings.cc")
