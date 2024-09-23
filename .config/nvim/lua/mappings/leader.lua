@@ -7,7 +7,6 @@ local buffer = require("utils.buffer")
 local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
 local diagnostics = require("custom.diagnostics")
-local notes = require("custom.notes")
 local pomodoro = require("custom.pomodoro")
 local t_opts = { jump_type = "never", trim_text = true }
 
