@@ -2,6 +2,13 @@ local computed = require("signals.computed")
 
 local M = {}
 
+local function escape(str)
+    if type(str) ~= "string" then
+        return str
+    end
+    return str:gsub("%%", "%%%%")
+end
+
 local function resolve_highlight(highlights)
     if not highlights then
         return
@@ -18,6 +25,8 @@ end
 
 local function highlight(segment)
     local content, highlights = unpack(segment)
+    content = escape(content)
+
     local hi = resolve_highlight(highlights)
     if not hi then
         return content
@@ -33,7 +42,7 @@ local function component(fn)
             if type(segment) == "table" then
                 return highlight(segment)
             else
-                return segment
+                return escape(segment)
             end
         end, component:get() or {})
 
