@@ -14,6 +14,7 @@ M.row = signal(0)
 M.col = signal(0)
 M.lines = signal(0)
 M.signature = signal(nil)
+M.has_multicursor = signal(false)
 
 M.buf_diagnostics = computed(function()
     return vim.tbl_filter(function(diagnostic)

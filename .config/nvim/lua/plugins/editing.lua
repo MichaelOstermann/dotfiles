@@ -95,24 +95,21 @@ return {
 
     -- Multiple cursors
     {
-        "smoka7/multicursors.nvim",
-        event = "VeryLazy",
-        dependencies = { "nvimtools/hydra.nvim" },
-        cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+        "brenton-leighton/multiple-cursors.nvim",
+        version = "*",
         opts = {
-            hint_config = {
-                float_opts = {
-                    border = "rounded",
-                },
-                position = "bottom-right",
-            },
-            generate_hints = {
-                normal = true,
-                insert = true,
-                extend = true,
-                config = {
-                    column_count = 1,
-                },
+            pre_hook = function()
+                require("utils.signals").has_multicursor:set(true)
+            end,
+            post_hook = function()
+                require("utils.signals").has_multicursor:set(false)
+            end,
+        },
+        keys = {
+            {
+                "<Leader>d",
+                "<Cmd>MultipleCursorsAddJumpNextMatch<CR>",
+                mode = { "n", "x" },
             },
         },
     },

@@ -22,7 +22,6 @@ map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Rep
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
-map({ "n", "v" }, leader("m"), cmd("MCstart"), desc("Multicursor"))
 
 -- NvimTree
 map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
