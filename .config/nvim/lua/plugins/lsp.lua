@@ -80,7 +80,7 @@ return {
         lspconfig.jsonls.setup(opts)
         lspconfig.prismals.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
-        lspconfig.tailwindcss.setup(opts)
+        -- lspconfig.tailwindcss.setup(opts)
         lspconfig.taplo.setup(opts)
         lspconfig.ts_ls.setup(opts)
         lspconfig.zls.setup(opts)
