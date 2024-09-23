@@ -38,7 +38,7 @@ return {
                 "rust_analyzer",
                 "tailwindcss",
                 "taplo",
-                "tsserver",
+                "ts_ls",
                 "zls",
             },
         })
@@ -82,7 +82,7 @@ return {
         lspconfig.rust_analyzer.setup(opts)
         lspconfig.tailwindcss.setup(opts)
         lspconfig.taplo.setup(opts)
-        lspconfig.tsserver.setup(opts)
+        lspconfig.ts_ls.setup(opts)
         lspconfig.zls.setup(opts)
 
         lspconfig.eslint.setup({
