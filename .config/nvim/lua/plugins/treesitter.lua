@@ -1,6 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
+        "davidmh/mdx.nvim",
         "windwp/nvim-ts-autotag",
     },
     lazy = false,
@@ -50,8 +51,7 @@ return {
             indent = { enable = false },
         })
 
-        vim.treesitter.language.register("markdown", "mdx")
-
         require("nvim-ts-autotag").setup()
+        require("mdx").setup()
     end,
 }

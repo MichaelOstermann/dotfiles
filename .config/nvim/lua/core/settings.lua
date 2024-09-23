@@ -42,7 +42,6 @@ vim.opt.fillchars = {
 }
 
 vim.filetype.add({
-    extension = { mdx = "mdx" },
     pattern = {
         ["tsconfig*.json"] = "jsonc",
         [".*/%.vscode/.*%.json"] = "jsonc",
