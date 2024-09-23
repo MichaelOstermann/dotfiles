@@ -15,16 +15,11 @@ return {
                 clues = {
                     miniclue.gen_clues.builtin_completion(),
                     { mode = "n", keys = "<Leader>f", desc = "+find" },
-                    { mode = "n", keys = "<Leader>d", desc = "+diagnostics" },
                     { mode = "n", keys = "<Leader>g", desc = "+git" },
 
                     { mode = "n", keys = "<Leader>w", desc = "+windows" },
                     { mode = "n", keys = "<Leader>w+", postkeys = "<Leader>w" },
                     { mode = "n", keys = "<Leader>w-", postkeys = "<Leader>w" },
-
-                    { mode = "n", keys = "<Leader>e", desc = "+explorer" },
-                    { mode = "n", keys = "<Leader>e+", postkeys = "<Leader>e" },
-                    { mode = "n", keys = "<Leader>e-", postkeys = "<Leader>e" },
 
                     { mode = "n", keys = "<Leader>p", desc = "+pomodoro" },
                     { mode = "n", keys = "<Leader>ps", desc = "+session" },

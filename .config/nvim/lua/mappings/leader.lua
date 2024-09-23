@@ -18,7 +18,6 @@ map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
-map("n", leader("n"), notes.toggle, desc("Notes"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
@@ -26,12 +25,18 @@ end, desc("Copy Path"))
 map({ "n", "v" }, leader("m"), cmd("MCstart"), desc("Multicursor"))
 
 -- NvimTree
-map("n", leader("ee"), cmd("NvimTreeOpen"), desc("Open"))
-map("n", leader("ef"), cmd("NvimTreeFindFile"), desc("Focus File"))
-map("n", leader("ec"), cmd("NvimTreeClose"), desc("Close"))
-map("n", leader("e+"), cmd("NvimTreeResize +1"), desc("Increase Size"))
-map("n", leader("e-"), cmd("NvimTreeResize -1"), desc("Decrease Size"))
-map("n", leader("e="), cmd("NvimTreeResize 35"), desc("Default Size"))
+map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
+map("n", leader("<S-e>"), cmd("NvimTreeFindFile"), desc("Focus File"))
+
+-- Diagnostics
+map("n", leader("o"), vim.diagnostic.open_float, desc("Open Diagnostic"))
+map("n", leader("n"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
+map("n", leader("p"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
+
+-- Git
+map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
+map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
+map("n", leader("gp"), cmd("Git push -u origin"), desc("Push"))
 
 -- Window
 map("n", leader("wc"), "<c-w>c", desc("Close Window"))
@@ -43,6 +48,10 @@ map("n", leader("wh"), "<c-w>h", desc("Go Left"))
 map("n", leader("wj"), "<c-w>j", desc("Go Down"))
 map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
+map("n", leader("w<left>"), "<c-w>h", desc("Go Left"))
+map("n", leader("w<down>"), "<c-w>j", desc("Go Down"))
+map("n", leader("w<up>"), "<c-w>k", desc("Go Up"))
+map("n", leader("w<right>"), "<c-w>", desc("Go Right"))
 
 -- Telescope
 map("n", leader("ff"), function()
@@ -73,11 +82,6 @@ map("n", leader("fr"), function()
     require("telescope.builtin").lsp_references(t_opts)
 end, desc("References"))
 
--- Git
-map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
-map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
-map("n", leader("gp"), cmd("Git push -u origin"), desc("Push"))
-
 -- Pomodoro
 map("n", leader("pss"), function()
     pomodoro.start_session(15)
@@ -98,9 +102,3 @@ end, desc("Long Break"))
 map("n", leader("pc"), function()
     pomodoro.cancel()
 end, desc("Cancel"))
-
--- Diagnostics
-map("n", leader("dr"), diagnostics.reset, desc("Restart"))
-map("n", leader("do"), vim.diagnostic.open_float, desc("Open"))
-map("n", leader("dn"), vim.diagnostic.goto_next, desc("Next"))
-map("n", leader("dp"), vim.diagnostic.goto_prev, desc("Prev"))
