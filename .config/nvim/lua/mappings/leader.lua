@@ -37,7 +37,8 @@ map("n", leader("p"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
 -- Git
 map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
 map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
-map("n", leader("gp"), cmd("Git push -u origin"), desc("Push"))
+map("n", leader("gA"), cmd("silent Git commit --amend --no-edit"), desc("Amend"))
+map("n", leader("gP"), cmd("Git push -u origin"), desc("Push"))
 
 -- Window
 map("n", leader("wc"), "<c-w>c", desc("Close Window"))
