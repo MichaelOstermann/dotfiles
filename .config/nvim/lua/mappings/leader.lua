@@ -13,21 +13,21 @@ local t_opts = { jump_type = "never", trim_text = true }
 
 -- Frequently used stuff
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
-map("n", leader("<S-r>"), grug.open, desc("Search & Replace"))
+map("n", leader("R"), grug.open, desc("Search & Replace"))
 map("n", leader("h"), vim.lsp.buf.hover, desc("Hover"))
 map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
-map("v", leader("<S-r>"), grug.with_visual_selection, desc("Search & Replace"))
+map("v", leader("R"), grug.with_visual_selection, desc("Search & Replace"))
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
 
 -- NvimTree
 map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
-map("n", leader("<S-e>"), cmd("NvimTreeFindFile"), desc("Focus File"))
+map("n", leader("E"), cmd("NvimTreeFindFile"), desc("Focus File"))
 
 -- Diagnostics
 map("n", leader("o"), vim.diagnostic.open_float, desc("Open Diagnostic"))
@@ -53,7 +53,7 @@ map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 map("n", leader("w<left>"), "<c-w>h", desc("Go Left"))
 map("n", leader("w<down>"), "<c-w>j", desc("Go Down"))
 map("n", leader("w<up>"), "<c-w>k", desc("Go Up"))
-map("n", leader("w<right>"), "<c-w>", desc("Go Right"))
+map("n", leader("w<right>"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
 map("n", leader("ff"), function()

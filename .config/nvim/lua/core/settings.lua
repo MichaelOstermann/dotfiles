@@ -32,7 +32,7 @@ vim.opt.title = true
 vim.opt.titlestring = "nvim(%{substitute(substitute(getcwd(), $HOME, '~', ''), '\\~/Development/', '', '')})"
 
 vim.opt.fillchars = {
-    vert = "▎",
+    vert = "│",
     fold = " ",
     eob = " ",
     diff = "╱",

@@ -48,7 +48,9 @@ return {
         capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
         local disable_semantic_tokens = function(client)
-            client.server_capabilities.semanticTokensProvider = nil
+            if client and client.server_capabilities then
+                client.server_capabilities.semanticTokensProvider = nil
+            end
         end
 
         local setup_signatures = function(bufnr)
