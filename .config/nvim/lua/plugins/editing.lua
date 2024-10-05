@@ -100,7 +100,9 @@ return {
         config = function()
             local mc = require("multicursor-nvim")
 
-            mc.setup()
+            mc.setup({
+                signs = false,
+            })
 
             -- Add a cursor and jump to the next word under cursor.
             vim.keymap.set({ "n", "v" }, "<c-n>", function()
