@@ -3,12 +3,20 @@
   "contributes": {
     "snippets": [
       {
+        "language": "javascript",
+        "path": "./javascript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./javascript.json"
+      },
+      {
         "language": "typescript",
-        "path": "./typescript.json"
+        "path": "./javascript.json"
       },
       {
         "language": "typescriptreact",
-        "path": "./typescript.json"
+        "path": "./javascript.json"
       }
     ]
   }

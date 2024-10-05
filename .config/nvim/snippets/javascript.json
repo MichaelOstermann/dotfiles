@@ -11,6 +11,12 @@
       "export const $1 = $2"
     ]
   },
+  "export type": {
+    "prefix": "et",
+    "body": [
+      "export type $1 = $2"
+    ]
+  },
   "function": {
     "prefix": "fn",
     "body": [
