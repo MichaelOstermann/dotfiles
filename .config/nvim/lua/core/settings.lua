@@ -27,6 +27,7 @@ vim.opt.undolevels = 5000
 vim.opt.laststatus = 3
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
+vim.opt.showtabline = 0
 vim.opt.title = true
 vim.opt.titlestring = "nvim(%{substitute(substitute(getcwd(), $HOME, '~', ''), '\\~/Development/', '', '')})"
 

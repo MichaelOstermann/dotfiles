@@ -90,4 +90,22 @@ return {
             require("mini.git").setup()
         end,
     },
+
+    -- Search & Replace panel.
+    {
+        "MagicDuck/grug-far.nvim",
+        config = function()
+            require("grug-far").setup({
+                transient = true,
+                windowCreationCommand = "tabnew %",
+                icons = { enabled = false },
+                folding = { enabled = false },
+                resultLocation = { showNumberLabel = false },
+                keymaps = {
+                    openNextLocation = false,
+                    openPrevLocation = false,
+                },
+            })
+        end,
+    },
 }

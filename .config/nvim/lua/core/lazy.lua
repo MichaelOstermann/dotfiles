@@ -17,6 +17,7 @@ if not ok then
 end
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 lazy.setup("plugins", {
     change_detection = {

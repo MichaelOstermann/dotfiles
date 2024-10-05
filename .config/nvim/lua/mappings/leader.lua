@@ -6,18 +6,21 @@ local leader = utils.leader
 local buffer = require("utils.buffer")
 local treesj = require_lazy("treesj")
 local fterm = require_lazy("FTerm")
+local grug = require_lazy("grug-far")
 local diagnostics = require("custom.diagnostics")
 local pomodoro = require("custom.pomodoro")
 local t_opts = { jump_type = "never", trim_text = true }
 
 -- Frequently used stuff
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
+map("n", leader("<S-r>"), grug.open, desc("Search & Replace"))
 map("n", leader("h"), vim.lsp.buf.hover, desc("Hover"))
 map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
+map("v", leader("<S-r>"), grug.with_visual_selection, desc("Search & Replace"))
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
