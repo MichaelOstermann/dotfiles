@@ -31,6 +31,7 @@ return {
                 custom = {
                     "^\\.DS_Store",
                     "^\\.git$",
+                    "^\\.keep$",
                 },
             },
             renderer = {
