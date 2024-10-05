@@ -75,25 +75,6 @@ au("VimResized", function()
     vim.cmd("tabnext " .. current_tab)
 end)
 
--- Relative numbers outside of insert mode
-au({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, function()
-    if vim.wo.nu and not vim.startswith(vim.api.nvim_get_mode().mode, "i") then
-        vim.wo.relativenumber = true
-    end
-end)
-
--- Absolute numbers in insert mode
-au({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, function(args)
-    if vim.wo.nu then
-        vim.wo.relativenumber = false
-    end
-
-    -- Redraw here to avoid having to first write something for the line numbers to update.
-    if args.event == "CmdlineEnter" then
-        vim.cmd.redraw()
-    end
-end)
-
 -- Check buffers for changes upon leaving term
 au("BufLeave", function()
     vim.cmd("checktime")
