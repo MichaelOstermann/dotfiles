@@ -72,6 +72,15 @@ M.has_node_type_right = function(pattern)
     return false
 end
 
+M.is_jsdoc = function()
+    if not M.has_node_type_left("comment") then
+        return false
+    end
+
+    local line = vim.api.nvim_get_current_line()
+    return string.match(line, "^%s*/%*") or string.match(line, "^%s*%*")
+end
+
 M.is_special = function()
     return vim.list_contains(filetypes.special_filetypes, vim.bo.filetype)
         or vim.list_contains(filetypes.special_buftypes, vim.bo.buftype)

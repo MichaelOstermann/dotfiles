@@ -6,6 +6,16 @@ local function should_skip()
     return b.is_special() or signals.has_multicursor:is(true)
 end
 
+local function is_jsdoc()
+    if b.is_jsdoc() then
+        vim.opt.formatoptions = "ro"
+        return true
+    else
+        vim.opt.formatoptions = ""
+        return false
+    end
+end
+
 local function insert_pair(lhs, rhs)
     return function()
         if not should_skip() then
@@ -78,6 +88,9 @@ end)
 
 -- Indent after inserting a new line
 expr("n", "o", function()
+    if is_jsdoc() then
+        return "o"
+    end
     local row = vim.api.nvim_win_get_cursor(0)[1]
     local level = b.get_indentation_level(row)
     return "o" .. b.get_indentation_string(level)
@@ -85,6 +98,9 @@ end)
 
 -- Indent after inserting a new line
 expr("n", "O", function()
+    if is_jsdoc() then
+        return "O"
+    end
     local row = vim.api.nvim_win_get_cursor(0)[1]
     local level = b.get_indentation_level(row)
     return "O" .. b.get_indentation_string(level)
@@ -124,7 +140,7 @@ end)
 
 -- Split pairs and indent on cr, if applicable
 expr("i", "<cr>", function()
-    if should_skip() then
+    if is_jsdoc() or should_skip() then
         return "<cr>"
     end
 
