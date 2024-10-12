@@ -55,6 +55,12 @@ map("n", leader("w<down>"), "<c-w>j", desc("Go Down"))
 map("n", leader("w<up>"), "<c-w>k", desc("Go Up"))
 map("n", leader("w<right>"), "<c-w>l", desc("Go Right"))
 
+-- Quickfix
+map("n", leader("co"), cmd("copen"), desc("Open"))
+map("n", leader("cc"), cmd("cclose"), desc("Close"))
+map("n", leader("cn"), cmd("cnext"), desc("Next"))
+map("n", leader("cp"), cmd("cprevious"), desc("Prev"))
+
 -- Telescope
 map("n", leader("ff"), function()
     require("telescope.builtin").find_files()
