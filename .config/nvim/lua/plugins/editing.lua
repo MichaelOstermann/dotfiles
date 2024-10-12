@@ -131,6 +131,7 @@ return {
 
             vim.keymap.set("v", "I", mc.insertVisual)
             vim.keymap.set("v", "A", mc.appendVisual)
+            vim.keymap.set("n", "<leader>mA", mc.matchAllAddCursors, { desc = "Match all" })
             vim.keymap.set("n", "<leader>ma", mc.alignCursors, { desc = "Align" })
             vim.keymap.set("v", "<leader>ms", mc.splitCursors, { desc = "Split" })
             vim.keymap.set("v", "<leader>mm", mc.matchCursors, { desc = "Match" })
