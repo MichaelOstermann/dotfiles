@@ -94,6 +94,7 @@ return {
     -- Search & Replace panel.
     {
         "MagicDuck/grug-far.nvim",
+        event = "VeryLazy",
         config = function()
             require("grug-far").setup({
                 transient = true,
