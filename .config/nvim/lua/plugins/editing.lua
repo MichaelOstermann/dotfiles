@@ -107,6 +107,8 @@ return {
                 signs = false,
             })
 
+            vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+
             -- Add a cursor and jump to the next word under cursor.
             vim.keymap.set({ "n", "v" }, "<c-n>", function()
                 mc.addCursor("*")
