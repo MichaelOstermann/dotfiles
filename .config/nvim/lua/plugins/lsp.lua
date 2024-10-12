@@ -55,13 +55,9 @@ return {
 
         local setup_signatures = function(bufnr)
             signature.on_attach({
-                bind = true,
+                bind = false,
                 hint_enable = false,
                 floating_window = false,
-                floating_window_off_y = 0,
-                floating_window_off_x = 0,
-                toggle_key = "<C-s>",
-                toggle_key_flip_floatwin_setting = true,
             }, bufnr)
         end
 
