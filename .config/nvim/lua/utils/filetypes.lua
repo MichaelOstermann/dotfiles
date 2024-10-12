@@ -2,6 +2,7 @@ local M = {}
 
 M.special_filetypes = {
     "help",
+    "qf",
     "cmp_docs",
     "cmp_menu",
     "prompt",

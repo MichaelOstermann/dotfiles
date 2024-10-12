@@ -89,8 +89,10 @@ return {
     {
         "sustech-data/wildfire.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
-        keys = { "<cr>" },
-        opts = true,
+        event = "VeryLazy",
+        opts = {
+            filetype_exclude = require("utils.filetypes").special_filetypes,
+        },
     },
 
     -- Multiple cursors
