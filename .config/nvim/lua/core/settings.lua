@@ -10,7 +10,6 @@ vim.opt.shiftround = true
 vim.opt.hlsearch = false
 vim.opt.wrap = false
 vim.opt.number = true
-vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.swapfile = false
 vim.opt.writebackup = false
