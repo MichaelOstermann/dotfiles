@@ -47,13 +47,13 @@ return {
         capabilities.textDocument.completion.completionItem.snippetSupport = true
         capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
-        local disable_semantic_tokens = function(client)
+        local on_init = function(client)
             if client and client.server_capabilities then
                 client.server_capabilities.semanticTokensProvider = nil
             end
         end
 
-        local setup_signatures = function(bufnr)
+        local on_attach = function(client, bufnr)
             signature.on_attach({
                 bind = false,
                 hint_enable = false,
@@ -61,13 +61,9 @@ return {
             }, bufnr)
         end
 
-        local on_attach = function(client, bufnr)
-            disable_semantic_tokens(client)
-            setup_signatures(bufnr)
-        end
-
         local opts = {
             capabilities = capabilities,
+            on_init = on_init,
             on_attach = on_attach,
         }
 
