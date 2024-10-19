@@ -2,6 +2,7 @@ local au = require("utils.autocommand")
 local utils = require("utils.mappings")
 local map = utils.map
 local expr = utils.expr
+local flash = require_lazy("flash")
 local sibling_swap = require_lazy("sibling-swap")
 local stay_in_place = require_lazy("stay-in-place")
 
@@ -42,6 +43,10 @@ map("n", "<c-j>", "<Plug>GoNMLineDown")
 map("n", "<c-k>", "<Plug>GoNMLineUp")
 map("x", "<c-j>", "<Plug>GoVMLineDown")
 map("x", "<c-k>", "<Plug>GoVMLineUp")
+
+-- Flash
+map("n", "j", flash.jump)
+map("o", "j", flash.remote)
 
 -- Move treesitter nodes around
 map("n", "<c-h>", sibling_swap.swap_with_left)

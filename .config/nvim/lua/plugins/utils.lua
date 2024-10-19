@@ -19,7 +19,7 @@ return {
     -- Easymotion-like goodies
     {
         "folke/flash.nvim",
-        event = "VeryLazy",
+        lazy = true,
         opts = {
             modes = {
                 char = {
