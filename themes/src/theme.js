@@ -76,5 +76,28 @@ export default function({ name, mode, bg, fg, red, green, yellow, orange, blue, 
             magenta,
             cyan,
         },
+        markdown: {
+            h1: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            h2: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            h3: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            h4: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            h5: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            h6: { foreground: blue, background: chroma.mix(bg, blue, 0.05) },
+            quote: chroma.mix(bg, fg, 0.4),
+            lists: {
+                bullet: chroma.mix(bg, fg, 0.5),
+                unchecked: chroma.mix(bg, fg, 0.6),
+                checked: magenta,
+                todo: red,
+            },
+            callouts: {
+                info: blue,
+                hint: blue,
+                success: green,
+                warn: yellow,
+                error: red,
+                quote: chroma.mix(bg, fg, 0.4),
+            },
+        },
     }
 }

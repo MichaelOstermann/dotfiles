@@ -31,6 +31,20 @@ return {
         end,
     },
 
+    -- Prettier markdown.
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            sign = {
+                enabled = false,
+            },
+            code = {
+                style = "none",
+            },
+        },
+    },
+
     -- Smooth scroll, I find the instant scrolling to be disorienting
     {
         "karb94/neoscroll.nvim",
