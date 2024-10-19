@@ -26,4 +26,15 @@ M.prose_filetypes = {
     "mdx",
 }
 
+M.rg_ignores = {
+    "**/.DS_Store",
+    "**/.eslintcache",
+    "**/.git/**",
+    "**/build/**",
+    "**/cache/**",
+    "**/dist/**",
+    "**/node_modules/**",
+    "*.tsbuildinfo",
+}
+
 return M

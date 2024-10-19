@@ -7,6 +7,29 @@ return {
     event = "VeryLazy",
     cmd = { "Telescope" },
     config = function()
+        local ignores = "!{" .. table.concat(require("utils.filetypes").rg_ignores, ",") .. "}"
+
+        local find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--glob",
+            ignores,
+        }
+
+        local grep_command = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--glob",
+            ignores,
+        }
+
         require("telescope").setup({
             defaults = {
                 sorting_strategy = "ascending",
@@ -19,6 +42,10 @@ return {
                         prompt_position = "top",
                     },
                 },
+                vimgrep_arguments = grep_command,
+            },
+            pickers = {
+                find_files = { find_command = find_command },
             },
         })
 
