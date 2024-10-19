@@ -48,19 +48,23 @@ return {
 
     -- Git indicators in signcolumn
     {
-        "lewis6991/gitsigns.nvim",
+        "echasnovski/mini.diff",
+        version = "*",
         event = "BufReadPre",
         opts = {
-            watch_gitdir = { enable = false },
-            signs = {
-                add = { text = "▎" },
-                change = { text = "▎" },
-                delete = { text = "▎" },
-                topdelete = { text = "▎" },
-                changedelete = { text = "▎" },
-                untracked = { text = "▎" },
+            view = {
+                style = "sign",
+                signs = { add = "▎", change = "▎", delete = "▎" },
             },
-            signs_staged_enable = false,
+            mappings = {
+                apply = "",
+                reset = "",
+                textobject = "",
+                goto_first = "",
+                goto_prev = "",
+                goto_next = "",
+                goto_last = "",
+            },
         },
     },
 

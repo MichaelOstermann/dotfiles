@@ -230,10 +230,10 @@ hl("TelescopeNormal", { fg = "{{editor.foreground}}" })
 hl("TelescopePromptCounter", { fg = "{{accent}}" })
 hl("TelescopePromptTitle", { fg = "{{accent}}" })
 
--- GitSigns
-hl("GitSignsAdd", { fg = "{{gutter.added}}" })
-hl("GitSignsChange", { fg = "{{gutter.changed}}" })
-hl("GitSignsDelete", { fg = "{{gutter.deleted}}" })
+-- Mini.signs
+hl("MiniDiffSignAdd", { fg = "{{gutter.added}}" })
+hl("MiniDiffSignChange", { fg = "{{gutter.changed}}" })
+hl("MiniDiffSignDelete", { fg = "{{gutter.deleted}}" })
 
 -- Egrepify
 hl("EgrepifyCol", { link = "LineNr" })

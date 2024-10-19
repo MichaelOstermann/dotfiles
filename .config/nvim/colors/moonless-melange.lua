@@ -230,10 +230,10 @@ hl("TelescopeNormal", { fg = "#8f8882" })
 hl("TelescopePromptCounter", { fg = "#8a8fad" })
 hl("TelescopePromptTitle", { fg = "#8a8fad" })
 
--- GitSigns
-hl("GitSignsAdd", { fg = "#4f6856" })
-hl("GitSignsChange", { fg = "#78633c" })
-hl("GitSignsDelete", { fg = "#a65e51" })
+-- Mini.signs
+hl("MiniDiffSignAdd", { fg = "#4f6856" })
+hl("MiniDiffSignChange", { fg = "#78633c" })
+hl("MiniDiffSignDelete", { fg = "#a65e51" })
 
 -- Egrepify
 hl("EgrepifyCol", { link = "LineNr" })

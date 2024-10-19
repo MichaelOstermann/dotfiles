@@ -6,7 +6,6 @@ local computed = require("signals.computed")
 local signals = require("utils.signals")
 local git = require("utils.git")
 local async = require("utils.async")
-local gitsigns = require_lazy("gitsigns")
 local nvimtree = require("utils.nvimtree")
 
 local M = {}
@@ -61,7 +60,6 @@ au("User", refresh, { pattern = "MiniGitCommandDone" })
 effect(function()
     if M.is_repo:is(true) then
         M.status:get()
-        gitsigns.refresh()
         nvimtree.reload()
     else
         M.refresh_count:get()
