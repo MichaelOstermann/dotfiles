@@ -17,6 +17,12 @@
       "export type $1 = $2"
     ]
   },
+  "export interface": {
+    "prefix": "ei",
+    "body": [
+      "export interface $1 = $2"
+    ]
+  },
   "function": {
     "prefix": "fn",
     "body": [

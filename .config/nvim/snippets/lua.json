@@ -1,0 +1,10 @@
+{
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "function $1()",
+      "    $2",
+      "end"
+    ]
+  }
+}
