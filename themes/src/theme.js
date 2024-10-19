@@ -1,0 +1,80 @@
+import chroma from 'chroma-js'
+
+export default function({ name, mode, bg, fg, red, green, yellow, orange, blue, magenta, cyan }) {
+   return {
+        name,
+        mode,
+        border: chroma(bg).darken(0.2),
+        accent: blue,
+        error: red,
+        warning: yellow,
+        info: blue,
+        success: green,
+        search: yellow,
+        editor: {
+            background: bg,
+            foreground: fg,
+            selection: chroma.mix(bg, fg, 0.1).hex(),
+            highlight: chroma.mix(bg, fg, 0.05).hex(),
+            linenr: chroma.mix(bg, fg, 0.5),
+        },
+        winbar: {
+            background: bg,
+            foreground: fg,
+        },
+        statusline: {
+            background: bg,
+            foreground: chroma.mix(bg, fg, 0.7),
+        },
+        msgarea: {
+            background: bg,
+            foreground: chroma.mix(bg, fg, 0.7),
+        },
+        pmenu: {
+            background: bg,
+            foreground: chroma.mix(bg, fg, 0.8),
+            selection: chroma.mix(bg, fg, 0.1).hex(),
+            thumb: chroma.mix(bg, fg, 0.05).hex(),
+        },
+        sidebar: {
+            background: bg,
+            foreground: chroma.mix(bg, fg, 0.8),
+            added: chroma.mix(bg, green, 0.8),
+            changed: chroma.mix(bg, yellow, 0.8),
+            deleted: chroma.mix(bg, red, 0.8),
+            conflicted: red,
+            ignored: chroma.mix(bg, fg, 0.4),
+        },
+        gutter: {
+            added: chroma.mix(bg, green, 0.6),
+            changed: chroma.mix(bg, yellow, 0.6),
+            deleted: chroma.mix(bg, red, 0.6),
+        },
+        syntax: {
+            comment: chroma.mix(bg, fg, 0.4),
+            punctuation: chroma.mix(bg, fg, 0.5),
+            unused: chroma.mix(bg, fg, 0.6),
+            function: blue,
+            keyword: magenta,
+            parameter: yellow,
+            string: green,
+            constant: orange,
+            type: cyan,
+            TODO: { foreground: red, background: chroma.mix(bg, red, 0.1) },
+            NOTE: { foreground: blue, background: chroma.mix(bg, blue, 0.1) },
+        },
+        terminal: {
+            background: bg,
+            foreground: chroma.mix(bg, fg, 0.8),
+            black: chroma.mix(bg, fg, 0.3),
+            white: chroma.mix(bg, fg, 0.5),
+            attribute: yellow,
+            red,
+            green,
+            yellow,
+            blue,
+            magenta,
+            cyan,
+        },
+    }
+}

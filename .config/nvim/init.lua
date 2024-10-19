@@ -8,7 +8,7 @@ function require_lazy(require_path)
     })
 end
 
-vim.cmd("colorscheme galbadia")
+vim.cmd("colorscheme moonless-tokyonight")
 
 require("core.lazy")
 require("core.settings")

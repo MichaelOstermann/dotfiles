@@ -27,8 +27,8 @@ local function attach_winbar(win, buf)
                 {
                     b.name:get(),
                     {
-                        ErrorMsg = diagnostics_enabled and b.severity:is(vim.diagnostic.severity.ERROR),
-                        WarningMsg = diagnostics_enabled and b.severity:is(vim.diagnostic.severity.WARN),
+                        DiagnosticError = diagnostics_enabled and b.severity:is(vim.diagnostic.severity.ERROR),
+                        DiagnosticWarn = diagnostics_enabled and b.severity:is(vim.diagnostic.severity.WARN),
                     },
                 },
             }
