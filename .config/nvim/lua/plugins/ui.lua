@@ -69,4 +69,10 @@ return {
             })
         end,
     },
+
+    -- Prettier quickfix.
+    {
+        "yorickpeterse/nvim-pqf",
+        opts = {},
+    },
 }
