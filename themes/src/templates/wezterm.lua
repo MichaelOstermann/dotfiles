@@ -44,7 +44,7 @@ return function(config)
             "{{terminal.green}}",
             "{{terminal.yellow}}",
             "{{terminal.blue}}",
-            "{terminal.magenta}",
+            "{{terminal.magenta}}",
             "{{terminal.cyan}}",
             "{{terminal.white}}",
         },

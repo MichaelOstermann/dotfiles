@@ -44,7 +44,7 @@ return function(config)
             "#62836c",
             "#987d4a",
             "#8a8fad",
-            "{terminal.magenta}",
+            "#95718b",
             "#5c7576",
             "#68635e",
         },
