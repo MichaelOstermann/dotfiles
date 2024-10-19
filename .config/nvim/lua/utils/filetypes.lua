@@ -19,13 +19,6 @@ M.special_buftypes = {
     "terminal",
 }
 
-M.prose_filetypes = {
-    "txt",
-    "gitcommit",
-    "markdown",
-    "mdx",
-}
-
 M.rg_ignores = {
     "**/.DS_Store",
     "**/.eslintcache",

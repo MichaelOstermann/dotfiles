@@ -53,20 +53,6 @@ au("FileType", function()
     vim.opt.formatoptions = ""
 end)
 
--- Settings for markdown, mdx, txt, etc.
-au("FileType", function()
-    -- Wrap long lines
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
-
-    -- Enable spellchecking
-    vim.opt_local.spell = true
-
-    -- Wrap long lines within lists
-    vim.opt_local.breakindent = true
-    vim.opt_local.breakindentopt = "list:-1"
-end, { pattern = require("utils.filetypes").prose_filetypes })
-
 -- Equalize splits after resizing the window
 au("VimResized", function()
     local current_tab = vim.fn.tabpagenr()
