@@ -50,6 +50,10 @@ export default function({ name, mode, bg, fg, red, green, yellow, orange, blue, 
             changed: chroma.mix(bg, yellow, 0.6),
             deleted: chroma.mix(bg, red, 0.6),
         },
+        diff: {
+            added: green,
+            deleted: red,
+        },
         syntax: {
             comment: chroma.mix(bg, fg, 0.4),
             punctuation: chroma.mix(bg, fg, 0.5),

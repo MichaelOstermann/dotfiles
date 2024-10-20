@@ -262,6 +262,12 @@ hl("RenderMarkdownError", { fg = "{{markdown.callouts.error}}" })
 hl("RenderMarkdownQuote", { fg = "{{markdown.callouts.quote}}" })
 -- RenderMarkdownLink
 
+-- WIP CodeCompanion diffs
+hl("@diff.plus.diff", { fg = "{{diff.added}}" })
+hl("@diff.minus.diff", { fg = "{{diff.deleted}}" })
+hl("@string.special.path.diff", { fg = "NONE" })
+hl("@markup.raw.block.markdown", { fg = "NONE" })
+
 -- diffAdded = { fg = c.git.add },
 -- diffRemoved = { fg = c.git.delete },
 -- diffChanged = { fg = c.git.change },

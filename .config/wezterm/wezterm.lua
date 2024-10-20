@@ -39,6 +39,6 @@ config.keys = {
     },
 }
 
-require("themes/moonless-tokyonight")(config)
+require("theme")(config)
 
 return config
