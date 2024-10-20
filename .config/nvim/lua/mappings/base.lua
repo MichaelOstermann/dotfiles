@@ -2,9 +2,6 @@ local au = require("utils.autocommand")
 local utils = require("utils.mappings")
 local map = utils.map
 local expr = utils.expr
-local flash = require_lazy("flash")
-local sibling_swap = require_lazy("sibling-swap")
-local stay_in_place = require_lazy("stay-in-place")
 
 -- Escape to normal mode in terminals
 map("t", "<esc><esc>", "<c-\\><c-n>")
@@ -45,18 +42,18 @@ map("x", "<c-j>", "<Plug>GoVMLineDown")
 map("x", "<c-k>", "<Plug>GoVMLineUp")
 
 -- Flash
-map("n", "j", flash.jump)
-map("o", "j", flash.remote)
+map("n", "j", lazy_call("flash", "jump"))
+map("o", "j", lazy_call("flash", "remote"))
 
 -- Move treesitter nodes around
-map("n", "<c-h>", sibling_swap.swap_with_left)
-map("n", "<c-l>", sibling_swap.swap_with_right)
+map("n", "<c-h>", lazy_call("sibling_swap", "swap_with_left"))
+map("n", "<c-l>", lazy_call("sibling_swap", "swap_with_right"))
 
 -- Indent without moving cursors
-map("n", "<tab>", stay_in_place.shift_right_line)
-map("x", "<tab>", stay_in_place.shift_right_visual)
-map("n", "<s-tab>", stay_in_place.shift_left_line)
-map("x", "<s-tab>", stay_in_place.shift_left_visual)
+map("n", "<tab>", lazy_call("stay_in_place", "shift_right_line"))
+map("x", "<tab>", lazy_call("stay_in_place", "shift_right_visual"))
+map("n", "<s-tab>", lazy_call("stay_in_place", "shift_left_line"))
+map("x", "<s-tab>", lazy_call("stay_in_place", "shift_left_visual"))
 
 -- Close terminals with q
 au("FileType", function(args)

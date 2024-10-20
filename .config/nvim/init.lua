@@ -1,11 +1,8 @@
-function require_lazy(require_path)
-    return setmetatable({}, {
-        __index = function(_, k)
-            return function(...)
-                return require(require_path)[k](...)
-            end
-        end,
-    })
+function lazy_call(require_path, method, ...)
+    local args = { ... }
+    return function()
+        return require(require_path)[method](unpack(args))
+    end
 end
 
 require("core.theme")

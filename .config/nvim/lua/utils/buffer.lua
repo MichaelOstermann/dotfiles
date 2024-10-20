@@ -1,5 +1,4 @@
 local filetypes = require("utils.filetypes")
-local conform = require_lazy("conform")
 local M = {}
 
 M.format_and_save = function()
@@ -14,7 +13,7 @@ M.format_and_save = function()
         return
     end
 
-    conform.format({ bufnr = bufnr })
+    require("conform").format({ bufnr = bufnr })
     vim.cmd("w")
 end
 

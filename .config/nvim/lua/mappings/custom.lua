@@ -1,9 +1,8 @@
-local mc = require("multicursor-nvim")
 local expr = require("utils.mappings").expr
 local b = require("utils.buffer")
 
 local function should_skip()
-    return b.is_special() or mc.hasCursors()
+    return b.is_special() or require("multicursor-nvim").hasCursors()
 end
 
 local function is_jsdoc()
