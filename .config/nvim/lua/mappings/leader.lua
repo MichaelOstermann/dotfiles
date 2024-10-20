@@ -15,7 +15,6 @@ local t_opts = { jump_type = "never", trim_text = true }
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
 map("n", leader("R"), grug.open, desc("Search & Replace"))
 map("n", leader("h"), vim.lsp.buf.hover, desc("Hover"))
-map("n", leader("a"), vim.lsp.buf.code_action, desc("Actions"))
 map("n", leader("s"), buffer.format_and_save, desc("Format & Save"))
 map("n", leader("j"), treesj.toggle, desc("Split/Join"))
 map("n", leader("t"), fterm.open, desc("Terminal"))
@@ -25,14 +24,47 @@ map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
 
+-- AI
+map("n", leader("ac"), cmd("CodeCompanionChat"), desc("Chat"))
+map("n", leader("at"), cmd("CodeCompanionChat Toggle"), desc("Toggle"))
+
+map("n", leader("ag"), function()
+    require("codecompanion").prompt("commit")
+end, desc("Commit Message"))
+
+map("n", leader("au"), function()
+    require("codecompanion").prompt("tests")
+end, desc("Unit Tests"))
+
+map("n", leader("af"), function()
+    require("codecompanion").prompt("fix")
+end, desc("Fix Code"))
+
+map("n", leader("aw"), function()
+    require("codecompanion").prompt("workflow")
+end, desc("Workflow"))
+
+map("n", leader("ab"), function()
+    require("codecompanion").prompt("buffer")
+end, desc("Buffer"))
+
+map("n", leader("ae"), function()
+    require("codecompanion").prompt("explain")
+end, desc("Explain Code"))
+
+map("n", leader("ad"), function()
+    require("codecompanion").prompt("lsp")
+end, desc("Explain Diagnostics"))
+
 -- NvimTree
 map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
 map("n", leader("E"), cmd("NvimTreeFindFile"), desc("Focus File"))
 
 -- Diagnostics
-map("n", leader("o"), vim.diagnostic.open_float, desc("Open Diagnostic"))
-map("n", leader("n"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
-map("n", leader("p"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
+map("n", leader("do"), vim.diagnostic.open_float, desc("Open Diagnostic"))
+map("n", leader("dn"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
+map("n", leader("dp"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
+map("n", leader("da"), vim.lsp.buf.code_action, desc("Code Actions"))
 
 -- Git
 map("n", leader("gs"), cmd("Git add %"), desc("Stage"))

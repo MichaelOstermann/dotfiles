@@ -18,6 +18,8 @@ return {
                     { mode = "n", keys = "<Leader>g", desc = "+git" },
                     { mode = "n", keys = "<Leader>c", desc = "+quickfix" },
                     { mode = "n", keys = "<Leader>m", desc = "+multicursor" },
+                    { mode = "n", keys = "<Leader>d", desc = "+diagnostic" },
+                    { mode = "n", keys = "<Leader>a", desc = "+ai" },
 
                     { mode = "n", keys = "<Leader>w", desc = "+windows" },
                     { mode = "n", keys = "<Leader>w+", postkeys = "<Leader>w" },
