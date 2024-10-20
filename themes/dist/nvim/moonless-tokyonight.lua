@@ -177,7 +177,7 @@ hl("FlashCurrent", { fg = "#7481B9", bg = "#282a3a" })
 hl("MasonHighlight", { fg = "#6789d0" })
 hl("MasonHighlightBlockBold", { fg = "#1F2029", bg = "#6789d0" })
 hl("MasonMuted", { fg = "#4d5579" })
-hl("MasonMutedBlock", { bg = "" })
+hl("MasonMutedBlock", { bg = "#282a3a" })
 
 -- Mini.clue
 hl("MiniClueBorder", { link = "WinSeparator" })
@@ -262,6 +262,7 @@ hl("RenderMarkdownError", { fg = "#b05669" })
 hl("RenderMarkdownQuote", { fg = "#4d5579" })
 -- RenderMarkdownLink
 
+-- WIP CodeCompanion diffs
 hl("@diff.plus.diff", { fg = "#69884b" })
 hl("@diff.minus.diff", { fg = "#b05669" })
 hl("@string.special.path.diff", { fg = "NONE" })

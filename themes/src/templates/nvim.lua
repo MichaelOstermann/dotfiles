@@ -177,7 +177,7 @@ hl("FlashCurrent", { fg = "{{editor.foreground}}", bg = "{{editor.highlight}}" }
 hl("MasonHighlight", { fg = "{{accent}}" })
 hl("MasonHighlightBlockBold", { fg = "{{editor.background}}", bg = "{{accent}}" })
 hl("MasonMuted", { fg = "{{syntax.comment}}" })
-hl("MasonMutedBlock", { bg = "{{highlight}}" })
+hl("MasonMutedBlock", { bg = "{{editor.highlight}}" })
 
 -- Mini.clue
 hl("MiniClueBorder", { link = "WinSeparator" })
