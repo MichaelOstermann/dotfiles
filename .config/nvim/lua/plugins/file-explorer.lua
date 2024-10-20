@@ -14,9 +14,6 @@ return {
                 cmd = "open",
                 args = { "--reveal" },
             },
-            filesystem_watchers = {
-                enable = false,
-            },
             view = {
                 width = 35,
                 signcolumn = "auto",
@@ -61,8 +58,6 @@ return {
 
                 local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
-                require("utils.nvimtree").reload = api.tree.reload
-
                 vim.keymap.set("n", "<Esc>", "<c-w><c-p>", opts)
                 vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts)
                 vim.keymap.set("n", "<Right>", api.node.open.edit, opts)
@@ -97,13 +92,11 @@ return {
                 vim.keymap.set("n", "bd", api.marks.bulk.trash, opts)
                 vim.keymap.set("n", "bm", api.marks.bulk.move, opts)
 
-                -- Refresh statusbars/nvimtree/gitsigns when I do stuff in nvimtree
+                -- Refresh statusbars when I do stuff in nvimtree
                 for _, event in ipairs({
                     n.Event.NodeRenamed,
                     n.Event.FileCreated,
                     n.Event.FileRemoved,
-                    n.Event.FolderCreated,
-                    n.Event.FolderRemoved,
                 }) do
                     n.subscribe(event, git.refresh)
                 end
