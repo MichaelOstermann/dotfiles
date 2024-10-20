@@ -47,6 +47,11 @@ return {
             pickers = {
                 find_files = { find_command = find_command },
             },
+            extensions = {
+                egrepify = {
+                    results_ts_hl = false,
+                },
+            },
         })
 
         require("telescope").load_extension("egrepify")
