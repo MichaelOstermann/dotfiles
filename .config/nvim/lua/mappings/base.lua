@@ -50,10 +50,10 @@ map("n", "<c-h>", lazy_call("sibling_swap", "swap_with_left"))
 map("n", "<c-l>", lazy_call("sibling_swap", "swap_with_right"))
 
 -- Indent without moving cursors
-map("n", "<tab>", lazy_call("stay_in_place", "shift_right_line"))
-map("x", "<tab>", lazy_call("stay_in_place", "shift_right_visual"))
-map("n", "<s-tab>", lazy_call("stay_in_place", "shift_left_line"))
-map("x", "<s-tab>", lazy_call("stay_in_place", "shift_left_visual"))
+map("n", "<tab>", lazy_call("stay-in-place", "shift_right_line"))
+map("x", "<tab>", lazy_call("stay-in-place", "shift_right_visual"))
+map("n", "<s-tab>", lazy_call("stay-in-place", "shift_left_line"))
+map("x", "<s-tab>", lazy_call("stay-in-place", "shift_left_visual"))
 
 -- Close terminals with q
 au("FileType", function(args)
