@@ -28,16 +28,12 @@ return {
         require("mason-lspconfig").setup({
             automatic_installation = true,
             ensure_installed = {
-                "cssls",
                 "eslint",
                 "gopls",
-                "graphql",
                 "html",
                 "jsonls",
-                "prismals",
                 "rust_analyzer",
                 "tailwindcss",
-                "taplo",
                 "ts_ls",
                 "zls",
             },
@@ -65,14 +61,10 @@ return {
             on_attach = on_attach,
         }
 
-        lspconfig.cssls.setup(opts)
         lspconfig.gopls.setup(opts)
-        lspconfig.graphql.setup(opts)
         lspconfig.html.setup(opts)
-        lspconfig.prismals.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
-        -- lspconfig.tailwindcss.setup(opts)
-        lspconfig.taplo.setup(opts)
+        lspconfig.tailwindcss.setup(opts)
         lspconfig.ts_ls.setup(opts)
         lspconfig.zls.setup(opts)
 
