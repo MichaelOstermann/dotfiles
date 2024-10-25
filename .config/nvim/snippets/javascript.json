@@ -20,7 +20,9 @@
   "export interface": {
     "prefix": "ei",
     "body": [
-      "export interface $1 = $2"
+      "export interface $1 {",
+      "    $2",
+      "}$3"
     ]
   },
   "function": {
