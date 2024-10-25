@@ -157,4 +157,10 @@ return {
             },
         },
     },
+
+    -- JSON schemas for lsp.
+    {
+        "b0o/SchemaStore.nvim",
+        lazy = true,
+    },
 }

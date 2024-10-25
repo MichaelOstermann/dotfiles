@@ -69,13 +69,28 @@ return {
         lspconfig.gopls.setup(opts)
         lspconfig.graphql.setup(opts)
         lspconfig.html.setup(opts)
-        lspconfig.jsonls.setup(opts)
         lspconfig.prismals.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
         -- lspconfig.tailwindcss.setup(opts)
         lspconfig.taplo.setup(opts)
         lspconfig.ts_ls.setup(opts)
         lspconfig.zls.setup(opts)
+
+        lspconfig.jsonls.setup({
+            capabilities = capabilities,
+            on_init = on_init,
+            on_attach = on_attach,
+            settings = {
+                json = {
+                    validate = { enable = true },
+                    format = { enable = false },
+                },
+            },
+            on_new_config = function(config)
+                config.settings.json.schemas = config.settings.json.schemas or {}
+                vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
+            end,
+        })
 
         lspconfig.eslint.setup({
             capabilities = capabilities,
