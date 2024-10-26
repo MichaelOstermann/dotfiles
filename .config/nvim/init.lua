@@ -16,4 +16,3 @@ require("custom.winbar")
 
 require("mappings.base")
 require("mappings.custom")
-require("mappings.leader")
