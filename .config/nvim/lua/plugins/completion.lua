@@ -43,7 +43,6 @@ return {
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-u>"] = cmp.mapping.scroll_docs(-1),
                 ["<C-d>"] = cmp.mapping.scroll_docs(1),
-                ["<C-Space>"] = cmp.mapping.complete(),
                 ["<Esc>"] = cmp.mapping(function(fallback)
                     if cmp.get_active_entry() ~= nil then
                         cmp.abort()
