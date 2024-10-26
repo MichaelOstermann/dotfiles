@@ -177,7 +177,7 @@ hl("FlashCurrent", { fg = "#8f8882", bg = "#332f2c" })
 hl("MasonHighlight", { fg = "#8a8fad" })
 hl("MasonHighlightBlockBold", { fg = "#292522", bg = "#8a8fad" })
 hl("MasonMuted", { fg = "#605b56" })
-hl("MasonMutedBlock", { bg = "" })
+hl("MasonMutedBlock", { bg = "#332f2c" })
 
 -- Mini.clue
 hl("MiniClueBorder", { link = "WinSeparator" })
@@ -212,7 +212,7 @@ hl("NvimTreeGitIgnoredIcon", { fg = "#605b56" })
 hl("NvimTreeGitMergeIcon", { fg = "#D47766" })
 hl("NvimTreeGitNewIcon", { fg = "#5a7762" })
 hl("NvimTreeGitRenamedIcon", { fg = "#897144" })
-hl("NvimTreeGitStagedIcon", { fg = "#897144" })
+hl("NvimTreeGitStagedIcon", { fg = "#827b75" })
 hl("NvimTreeImageFile", { fg = "#827b75" })
 hl("NvimTreeNormal", { fg = "#827b75", bg = "#292522" })
 hl("NvimTreeOpenedFolderName", { fg = "#827b75" })
@@ -262,6 +262,7 @@ hl("RenderMarkdownError", { fg = "#D47766" })
 hl("RenderMarkdownQuote", { fg = "#605b56" })
 -- RenderMarkdownLink
 
+-- WIP CodeCompanion diffs
 hl("@diff.plus.diff", { fg = "#62836c" })
 hl("@diff.minus.diff", { fg = "#D47766" })
 hl("@string.special.path.diff", { fg = "NONE" })
