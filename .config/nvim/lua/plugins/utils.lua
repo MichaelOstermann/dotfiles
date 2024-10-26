@@ -97,6 +97,14 @@ return {
         end,
     },
 
+    -- Extra textobjects.
+    {
+        "echasnovski/mini.ai",
+        version = "*",
+        event = "VeryLazy",
+        opts = {},
+    },
+
     -- Search & Replace panel.
     {
         "MagicDuck/grug-far.nvim",
