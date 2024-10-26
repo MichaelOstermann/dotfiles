@@ -220,6 +220,7 @@ hl("NvimTreeSpecialFile", { fg = "#827b75" })
 hl("NvimTreeWindowPicker", { fg = "#292522", bg = "#8a8fad" })
 
 -- Cmp
+hl("CmpFloatBorder", { fg = "#211e1b", bg = "#292522" })
 hl("CmpItemAbbrMatch", { fg = "#987d4a" })
 hl("CmpItemAbbrMatchFuzzy", { fg = "#987d4a" })
 

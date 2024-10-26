@@ -84,6 +84,10 @@ return {
                 select = false,
             },
             window = {
+                completion = cmp.config.window.bordered({
+                    col_offset = -1,
+                    winhighlight = "Normal:Pmenu,FloatBorder:CmpFloatBorder,CursorLine:PmenuSel,Search:None",
+                }),
                 documentation = cmp.config.window.bordered(),
             },
         })

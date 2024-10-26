@@ -220,6 +220,7 @@ hl("NvimTreeSpecialFile", { fg = "{{sidebar.foreground}}" })
 hl("NvimTreeWindowPicker", { fg = "{{editor.background}}", bg = "{{accent}}" })
 
 -- Cmp
+hl("CmpFloatBorder", { fg = "{{border}}", bg = "{{pmenu.background}}" })
 hl("CmpItemAbbrMatch", { fg = "{{search}}" })
 hl("CmpItemAbbrMatchFuzzy", { fg = "{{search}}" })
 

@@ -212,7 +212,7 @@ hl("NvimTreeGitIgnoredIcon", { fg = "#4d5579" })
 hl("NvimTreeGitMergeIcon", { fg = "#b05669" })
 hl("NvimTreeGitNewIcon", { fg = "#5f7a46" })
 hl("NvimTreeGitRenamedIcon", { fg = "#816644" })
-hl("NvimTreeGitStagedIcon", { fg = "#816644" })
+hl("NvimTreeGitStagedIcon", { fg = "#6974a6" })
 hl("NvimTreeImageFile", { fg = "#6974a6" })
 hl("NvimTreeNormal", { fg = "#6974a6", bg = "#1F2029" })
 hl("NvimTreeOpenedFolderName", { fg = "#6974a6" })
@@ -220,6 +220,7 @@ hl("NvimTreeSpecialFile", { fg = "#6974a6" })
 hl("NvimTreeWindowPicker", { fg = "#1F2029", bg = "#6789d0" })
 
 -- Cmp
+hl("CmpFloatBorder", { fg = "#181921", bg = "#1F2029" })
 hl("CmpItemAbbrMatch", { fg = "#907149" })
 hl("CmpItemAbbrMatchFuzzy", { fg = "#907149" })
 
