@@ -104,49 +104,9 @@ return {
     {
         "jake-stewart/multicursor.nvim",
         branch = "1.0",
-        event = "VeryLazy",
-        config = function()
-            local mc = require("multicursor-nvim")
-
-            mc.setup({
-                signs = false,
-            })
-
-            vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
-
-            -- Add a cursor and jump to the next word under cursor.
-            vim.keymap.set({ "n", "v" }, "<c-n>", function()
-                mc.addCursor("*")
-            end)
-
-            -- Jump to the next word under cursor but do not add a cursor.
-            vim.keymap.set({ "n", "v" }, "<c-s>", function()
-                mc.skipCursor("*")
-            end)
-
-            vim.keymap.set("n", "<esc>", function()
-                if not mc.cursorsEnabled() then
-                    mc.enableCursors()
-                elseif mc.hasCursors() then
-                    mc.clearCursors()
-                else
-                    -- Default <esc> handler.
-                end
-            end)
-
-            vim.keymap.set("v", "I", mc.insertVisual)
-            vim.keymap.set("v", "A", mc.appendVisual)
-            vim.keymap.set("n", "<leader>mA", mc.matchAllAddCursors, { desc = "Match all" })
-            vim.keymap.set("n", "<leader>ma", mc.alignCursors, { desc = "Align" })
-            vim.keymap.set("v", "<leader>ms", mc.splitCursors, { desc = "Split" })
-            vim.keymap.set("v", "<leader>mm", mc.matchCursors, { desc = "Match" })
-            vim.keymap.set({ "n", "v" }, "<leader>mx", mc.deleteCursor, { desc = "Delete cursor" })
-
-
-            vim.api.nvim_set_hl(0, "MultiCursorCursor", { link = "Cursor" })
-            vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
-            vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { link = "Visual" })
-            vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-        end,
+        lazy = true,
+        opts = {
+            signs = false,
+        },
     },
 }
