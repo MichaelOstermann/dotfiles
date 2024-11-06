@@ -9,6 +9,7 @@ require("core.theme")
 require("core.lazy")
 require("core.settings")
 
+require("custom.autounload")
 require("custom.diagnostics")
 require("custom.git")
 require("custom.statusline")
