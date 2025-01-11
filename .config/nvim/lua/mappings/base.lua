@@ -104,7 +104,7 @@ map("n", leader("E"), cmd("NvimTreeFindFile"), desc("Focus File"))
 map("n", leader("do"), vim.diagnostic.open_float, desc("Open Diagnostic"))
 map("n", leader("dn"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
 map("n", leader("dp"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
-map("n", leader("da"), vim.lsp.buf.code_action, desc("Code Actions"))
+map("n", leader("df"), vim.lsp.buf.code_action, desc("Fix Diagnostic"))
 
 -- Git
 map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
