@@ -100,7 +100,6 @@ return {
         lspconfig.eslint.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = { useFlatConfig = true },
             filetypes = {
                 "javascript",
                 "javascriptreact",
@@ -127,6 +126,7 @@ return {
                 "postcss",
             },
             settings = {
+                useFlatConfig = true,
                 -- Silent stylistic rules, but still auto fix them
                 rulesCustomizations = {
                     { rule = "style/*", severity = "off", fixable = true },
