@@ -28,7 +28,6 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.showtabline = 0
 vim.opt.title = true
-vim.opt.titlestring = "nvim(%{substitute(substitute(getcwd(), $HOME, '~', ''), '\\~/Development/', '', '')})"
 
 vim.opt.fillchars = {
     vert = "│",
@@ -47,6 +46,17 @@ vim.filetype.add({
         [".*/%.vscode/.*%.json"] = "jsonc",
     },
 })
+
+_G.get_titlestring = function()
+    local title = vim.loop
+        .cwd()
+        :gsub(vim.env.HOME, "~")
+        :gsub("~/Development/", "")
+        :gsub("~/Library/Mobile Documents/com~apple~CloudDocs/", "iCloud/")
+    return "nvim(" .. title .. ")"
+end
+
+vim.opt.titlestring = "%{luaeval('get_titlestring()')}"
 
 -- Disable continuing comments, lists, etc., something keeps resetting this so it's an autocmd
 au("FileType", function()
