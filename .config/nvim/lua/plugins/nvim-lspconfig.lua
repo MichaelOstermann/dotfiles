@@ -33,7 +33,7 @@ return {
                 "jsonls",
                 "rust_analyzer",
                 "tailwindcss",
-                "ts_ls",
+                "vtsls",
                 "zls",
             },
         })
@@ -63,8 +63,23 @@ return {
         lspconfig.html.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
         lspconfig.tailwindcss.setup(opts)
-        lspconfig.ts_ls.setup(opts)
         lspconfig.zls.setup(opts)
+
+        lspconfig.vtsls.setup({
+            capabilities = capabilities,
+            on_init = on_init,
+            on_attach = on_attach,
+            settings = {
+                vtsls = {
+                    autoUseWorkspaceTsdk = true,
+                    experimental = {
+                        completion = {
+                            enableServerSideFuzzyMatch = true,
+                        },
+                    },
+                },
+            },
+        })
 
         lspconfig.jsonls.setup({
             capabilities = capabilities,
