@@ -1,6 +1,7 @@
 local au = require("utils.autocommand")
 
 vim.opt.autoindent = false
+vim.opt.smartindent = false
 vim.cmd("filetype indent off")
 vim.opt.confirm = true
 vim.opt.shiftwidth = 4
