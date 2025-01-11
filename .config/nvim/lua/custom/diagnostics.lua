@@ -38,11 +38,6 @@ local function enable(args)
     end)
 end
 
-M.reset = function()
-    vim.diagnostic.reset()
-    vim.cmd("LspRestart")
-end
-
 au("InsertEnter", disable)
 au("InsertLeave", enable)
 
