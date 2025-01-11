@@ -29,7 +29,6 @@ return {
             automatic_installation = true,
             ensure_installed = {
                 "eslint",
-                "gopls",
                 "html",
                 "jsonls",
                 "rust_analyzer",
@@ -61,7 +60,6 @@ return {
             on_attach = on_attach,
         }
 
-        lspconfig.gopls.setup(opts)
         lspconfig.html.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
         lspconfig.tailwindcss.setup(opts)
