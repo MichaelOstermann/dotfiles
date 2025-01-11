@@ -1,5 +1,6 @@
 local expr = require("utils.mappings").expr
 local b = require("utils.buffer")
+local au = require("utils.autocommand")
 
 local function should_skip()
     return b.is_special() or require("multicursor-nvim").hasCursors()
@@ -171,4 +172,29 @@ expr("i", "<cr>", function()
     end
 
     return "<cr>" .. b.get_indentation_string(level)
+end)
+
+-- https://github.com/windwp/nvim-ts-autotag/issues/166
+-- https://github.com/jake-stewart/multicursor.nvim/issues/39
+au("FileType", function()
+    local TagConfigs = require("nvim-ts-autotag.config.init")
+    local Autotag = require("nvim-ts-autotag.internal")
+    local mc = require("multicursor-nvim")
+
+    if TagConfigs:get(vim.bo.filetype) ~= nil then
+        vim.keymap.set("i", ">", function()
+            if mc.hasCursors() then
+                vim.api.nvim_paste(">", false, -1)
+            else
+                local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+                vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { ">" })
+                Autotag.close_tag()
+                vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+            end
+        end, {
+            noremap = true,
+            silent = true,
+            buffer = true,
+        })
+    end
 end)

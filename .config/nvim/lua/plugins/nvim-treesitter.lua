@@ -51,7 +51,12 @@ return {
             indent = { enable = false },
         })
 
-        require("nvim-ts-autotag").setup()
+        require("nvim-ts-autotag").setup({
+            opts = {
+                enable_close = false,
+            },
+        })
+
         require("mdx").setup()
     end,
 }
