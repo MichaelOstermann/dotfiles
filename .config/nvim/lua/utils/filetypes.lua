@@ -9,6 +9,7 @@ M.special_filetypes = {
     "TelescopePrompt",
     "NvimTree",
     "grug-far",
+    "mason",
 }
 
 M.special_buftypes = {
