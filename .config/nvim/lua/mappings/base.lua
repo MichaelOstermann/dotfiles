@@ -27,6 +27,10 @@ map("i", "<c-j>", "<c-o>gj")
 map("i", "<c-k>", "<c-o>gk")
 map("i", "<c-l>", "<right>")
 
+-- Horizontal Scrolling
+map({ "n", "i", "v" }, "<S-ScrollWheelLeft>", "6zh")
+map({ "n", "i", "v" }, "<S-ScrollWheelRight>", "6zl")
+
 -- Additional breakpoins
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
