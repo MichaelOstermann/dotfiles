@@ -85,12 +85,6 @@ end, desc("Copy Path"))
 map("n", leader("ac"), cmd("CodeCompanionChat"), desc("Chat"))
 map("n", leader("at"), cmd("CodeCompanionChat Toggle"), desc("Toggle"))
 map("n", leader("ag"), lazy_call("codecompanion", "prompt", "commit"), desc("Commit Message"))
-map("n", leader("au"), lazy_call("codecompanion", "prompt", "tests"), desc("Unit Tests"))
-map("n", leader("af"), lazy_call("codecompanion", "prompt", "fix"), desc("Fix Code"))
-map("n", leader("aw"), lazy_call("codecompanion", "prompt", "workflow"), desc("Workflow"))
-map("n", leader("ab"), lazy_call("codecompanion", "prompt", "buffer"), desc("Buffer"))
-map("n", leader("ae"), lazy_call("codecompanion", "prompt", "explain"), desc("Explain Code"))
-map("n", leader("ad"), lazy_call("codecompanion", "prompt", "lsp"), desc("Explain Diagnostics"))
 
 -- Flash
 map("n", "j", lazy_call("flash", "jump"))

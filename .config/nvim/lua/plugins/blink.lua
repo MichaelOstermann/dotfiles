@@ -31,6 +31,7 @@ return {
             },
             sources = {
                 cmdline = {},
+                default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
                 providers = {
                     snippets = {
                         name = "Snippets",
