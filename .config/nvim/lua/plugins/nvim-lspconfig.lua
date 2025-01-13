@@ -1,13 +1,12 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
+        "saghen/blink.cmp",
         "ray-x/lsp_signature.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local lspconfig = require("lspconfig")
         local signature = require("lsp_signature")
         local signals = require("utils.signals")
@@ -38,7 +37,7 @@ return {
             },
         })
 
-        local capabilities = cmp_nvim_lsp.default_capabilities()
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
 
         local on_init = function(client)
             if client and client.server_capabilities then

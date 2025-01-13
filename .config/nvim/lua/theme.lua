@@ -219,10 +219,10 @@ hl("NvimTreeOpenedFolderName", { fg = "#6974a6" })
 hl("NvimTreeSpecialFile", { fg = "#6974a6" })
 hl("NvimTreeWindowPicker", { fg = "#1F2029", bg = "#6789d0" })
 
--- Cmp
-hl("CmpFloatBorder", { fg = "#181921", bg = "#1F2029" })
-hl("CmpItemAbbrMatch", { fg = "#907149" })
-hl("CmpItemAbbrMatchFuzzy", { fg = "#907149" })
+-- Blink
+hl("BlinkCmpMenuBorder", { link = "WinSeparator" })
+hl("BlinkCmpDocBorder", { link = "WinSeparator" })
+hl("BlinkCmpLabelDescription", { fg = "#6789d0" })
 
 -- Telescope
 hl("TelescopeBorder", { fg = "#1F2029" })
