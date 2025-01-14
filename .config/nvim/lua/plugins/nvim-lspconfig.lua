@@ -60,7 +60,6 @@ return {
         }
 
         lspconfig.html.setup(opts)
-        lspconfig.rust_analyzer.setup(opts)
         lspconfig.tailwindcss.setup(opts)
         lspconfig.zls.setup(opts)
 
@@ -81,6 +80,19 @@ return {
                         completion = {
                             enableServerSideFuzzyMatch = true,
                         },
+                    },
+                },
+            },
+        })
+
+        lspconfig.rust_analyzer.setup({
+            capabilities = capabilities,
+            on_init = on_init,
+            on_attach = on_attach,
+            settings = {
+                ["rust-analyzer"] = {
+                    cargo = {
+                        targetDir = true,
                     },
                 },
             },
