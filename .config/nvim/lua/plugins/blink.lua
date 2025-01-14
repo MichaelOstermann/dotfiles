@@ -51,14 +51,22 @@ return {
             },
             keymap = {
                 ["<CR>"] = { "accept", "fallback" },
-                ["<Esc>"] = { "hide", "fallback" },
+                ["<Esc>"] = { "cancel", "fallback" },
                 ["<C-n>"] = { "select_next", "show" },
                 ["<C-p>"] = { "select_prev" },
                 ["<Down>"] = { "select_next", "fallback" },
                 ["<Up>"] = { "select_prev", "fallback" },
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
-                ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+                ["<Tab>"] = {
+                    function(cmp)
+                        local item = cmp.get_selected_item()
+                        if item and item.source_id == "snippets" then
+                            return cmp.accept()
+                        end
+                    end,
+                    "fallback",
+                },
             },
             appearance = {
                 kind_icons = {
