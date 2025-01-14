@@ -64,11 +64,17 @@ return {
         lspconfig.tailwindcss.setup(opts)
         lspconfig.zls.setup(opts)
 
+        local ts_settings = {
+            suggest = { completeFunctionCalls = false },
+        }
+
         lspconfig.vtsls.setup({
             capabilities = capabilities,
             on_init = on_init,
             on_attach = on_attach,
             settings = {
+                typescript = ts_settings,
+                javascript = ts_settings,
                 vtsls = {
                     autoUseWorkspaceTsdk = true,
                     experimental = {
