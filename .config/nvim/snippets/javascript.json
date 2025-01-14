@@ -2,43 +2,43 @@
   "console.log": {
     "prefix": "cl",
     "body": [
-      "console.log($1)$2"
+      "console.log($0)"
     ]
   },
   "export const": {
     "prefix": "ec",
     "body": [
-      "export const $1 = $2"
+      "export const $0 = "
     ]
   },
   "export type": {
     "prefix": "et",
     "body": [
-      "export type $1 = $2"
+      "export type $0 = "
     ]
   },
   "export interface": {
     "prefix": "ei",
     "body": [
-      "export interface $1 {",
-      "    $2",
+      "export interface $0 {",
+      "    ",
       "}$3"
     ]
   },
   "function": {
     "prefix": "fn",
     "body": [
-      "function $1($2)$3 {",
-      "    $4",
-      "}$5"
+      "function $0() {",
+      "    ",
+      "}"
     ]
   },
   "export function": {
     "prefix": "efn",
     "body": [
-      "export function $1($2)$3 {",
-      "    $4",
-      "}$5"
+      "export function $0() {",
+      "    ",
+      "}"
     ]
   }
 }
