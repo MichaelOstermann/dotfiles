@@ -37,7 +37,11 @@ return {
             },
         })
 
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            require("blink.cmp").get_lsp_capabilities(),
+            require("lsp-file-operations").default_capabilities()
+        )
 
         local on_init = function(client)
             if client and client.server_capabilities then
@@ -68,6 +72,12 @@ return {
             on_init = on_init,
             on_attach = on_attach,
             settings = {
+                typescript = {
+                    updateImportsOnFileMove = { enabled = "never" },
+                },
+                javascript = {
+                    updateImportsOnFileMove = { enabled = "never" },
+                },
                 vtsls = {
                     autoUseWorkspaceTsdk = true,
                     experimental = {
