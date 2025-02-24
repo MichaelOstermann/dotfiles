@@ -22,6 +22,9 @@ return {
                         auto_insert = true,
                     },
                 },
+                accept = {
+                    auto_brackets = { enabled = false },
+                },
                 menu = {
                     border = "rounded",
                 },
