@@ -59,6 +59,19 @@ map("x", "<tab>", lazy_call("stay-in-place", "shift_right_visual"))
 map("n", "<s-tab>", lazy_call("stay-in-place", "shift_left_line"))
 map("x", "<s-tab>", lazy_call("stay-in-place", "shift_left_visual"))
 
+-- Surround shortcuts
+map("x", '"', '<Plug>(nvim-surround-visual)"')
+map("x", "'", "<Plug>(nvim-surround-visual)'")
+map("x", "`", "<Plug>(nvim-surround-visual)`")
+map("x", "(", "<Plug>(nvim-surround-visual)(")
+map("x", "{", "<Plug>(nvim-surround-visual){")
+map("x", "[", "<Plug>(nvim-surround-visual)[")
+map("x", "<", "<Plug>(nvim-surround-visual)<")
+map("x", ")", "<Plug>(nvim-surround-visual))")
+map("x", "}", "<Plug>(nvim-surround-visual)}")
+map("x", "]", "<Plug>(nvim-surround-visual)]")
+map("x", ">", "<Plug>(nvim-surround-visual)>")
+
 -- Illuminate
 map("n", "<c-n>", lazy_call("illuminate", "goto_next_reference"))
 map("n", "<c-p>", lazy_call("illuminate", "goto_prev_reference"))
