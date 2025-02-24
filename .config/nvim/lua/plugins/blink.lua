@@ -54,8 +54,6 @@ return {
                 },
             },
             keymap = {
-                ["<CR>"] = { "accept", "fallback" },
-                ["<Esc>"] = { "cancel", "fallback" },
                 ["<C-n>"] = { "select_next", "show" },
                 ["<C-p>"] = { "select_prev" },
                 ["<Down>"] = { "select_next", "fallback" },
@@ -72,6 +70,21 @@ return {
                         end
                     end,
                     "fallback",
+                },
+                ["<CR>"] = {
+                    function()
+                        if require("minuet.virtualtext").action.is_visible() then
+                            require("minuet.virtualtext").action.accept()
+                            return true
+                        end
+                    end,
+                    "accept",
+                    "fallback",
+                },
+                ["<C-a>"] = {
+                    function()
+                        require("minuet.virtualtext").action.next()
+                    end,
                 },
             },
             appearance = {
