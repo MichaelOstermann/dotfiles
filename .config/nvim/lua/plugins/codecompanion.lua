@@ -17,6 +17,9 @@ return {
             },
         },
         adapters = {
+            opts = {
+                show_defaults = false,
+            },
             anthropic = function()
                 return require("codecompanion.adapters").extend("anthropic", {
                     env = {
@@ -40,9 +43,10 @@ return {
         display = {
             chat = {
                 window = {
-                    layout = "float",
-                    height = 0.8,
-                    width = 100,
+                    width = 80,
+                    opts = {
+                        number = false,
+                    },
                 },
             },
         },
