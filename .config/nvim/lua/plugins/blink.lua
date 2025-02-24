@@ -18,8 +18,10 @@ return {
             completion = {
                 list = {
                     selection = {
-                        preselect = true,
                         auto_insert = true,
+                        preselect = function(ctx)
+                            return ctx.mode ~= "cmdline"
+                        end,
                     },
                 },
                 accept = {
