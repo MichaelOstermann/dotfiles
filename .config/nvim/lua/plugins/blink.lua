@@ -5,7 +5,6 @@ return {
     event = { "InsertEnter" },
     config = function()
         local au = require("utils.autocommand")
-        local has_multicursors = lazy_call("multicursor-nvim", "hasCursors")
 
         require("luasnip.loaders.from_vscode").lazy_load({
             paths = { "./snippets" },
@@ -15,10 +14,6 @@ return {
         au("User", lazy_call("illuminate", "resume"), { pattern = "BlinkCmpMenuClose" })
 
         require("blink.cmp").setup({
-            enabled = function()
-                local mc = require("multicursor-nvim")
-                return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false and not has_multicursors()
-            end,
             snippets = { preset = "luasnip" },
             completion = {
                 list = {
