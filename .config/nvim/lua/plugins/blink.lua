@@ -31,7 +31,6 @@ return {
                 },
             },
             sources = {
-                cmdline = {},
                 default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
                 providers = {
                     snippets = {
@@ -60,6 +59,17 @@ return {
                 ["<Up>"] = { "select_prev", "fallback" },
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+                -- https://github.com/Saghen/blink.cmp/issues/547
+                ["<Esc>"] = {
+                    "cancel",
+                    function(cmp)
+                        if vim.fn.getcmdtype() ~= "" then
+                            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+                            return true
+                        end
+                    end,
+                    "fallback",
+                },
             },
             appearance = {
                 kind_icons = {
