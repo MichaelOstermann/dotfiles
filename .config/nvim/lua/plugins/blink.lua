@@ -1,10 +1,15 @@
 return {
     "saghen/blink.cmp",
     version = "*",
+    dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
     event = { "InsertEnter" },
     config = function()
         local au = require("utils.autocommand")
         local has_multicursors = lazy_call("multicursor-nvim", "hasCursors")
+
+        require("luasnip.loaders.from_vscode").lazy_load({
+            paths = { "./snippets" },
+        })
 
         au("User", lazy_call("illuminate", "pause"), { pattern = "BlinkCmpMenuOpen" })
         au("User", lazy_call("illuminate", "resume"), { pattern = "BlinkCmpMenuClose" })
@@ -14,6 +19,7 @@ return {
                 local mc = require("multicursor-nvim")
                 return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false and not has_multicursors()
             end,
+            snippets = { preset = "luasnip" },
             completion = {
                 list = {
                     selection = {
