@@ -136,13 +136,6 @@ map("n", leader("fd"), lazy_call("telescope.builtin", "lsp_definitions", t_opts)
 map("n", leader("fr"), lazy_call("telescope.builtin", "lsp_references", t_opts), desc("References"))
 map("n", leader("fg"), cmd("Telescope egrepify"), desc("Grep"))
 
--- Pomodoro
-map("n", leader("pss"), lazy_call("custom.pomodoro", "start_session", 15), desc("Short Session"))
-map("n", leader("psl"), lazy_call("custom.pomodoro", "start_session", 45), desc("Long Session"))
-map("n", leader("pbs"), lazy_call("custom.pomodoro", "start_break", 5), desc("Short Break"))
-map("n", leader("pbl"), lazy_call("custom.pomodoro", "start_break", 15), desc("Long Break"))
-map("n", leader("pc"), lazy_call("custom.pomodoro", "cancel"), desc("Cancel"))
-
 -- Multicursor
 map("v", "I", lazy_call("multicursor-nvim", "insertVisual"))
 map("v", "A", lazy_call("multicursor-nvim", "appendVisual"))

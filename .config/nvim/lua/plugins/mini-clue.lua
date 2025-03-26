@@ -23,10 +23,6 @@ return {
                 { mode = "n", keys = "<Leader>w", desc = "+windows" },
                 { mode = "n", keys = "<Leader>w+", postkeys = "<Leader>w" },
                 { mode = "n", keys = "<Leader>w-", postkeys = "<Leader>w" },
-
-                { mode = "n", keys = "<Leader>p", desc = "+pomodoro" },
-                { mode = "n", keys = "<Leader>ps", desc = "+session" },
-                { mode = "n", keys = "<Leader>pb", desc = "+break" },
             },
         })
     end,

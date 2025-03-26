@@ -3,7 +3,6 @@ local computed = require("signals.computed")
 local signals = require("utils.signals")
 local statusline = require("utils.statusline")
 local git = require("custom.git")
-local pomodoro = require("custom.pomodoro")
 
 local git_branch = statusline.component(function()
     local branch = git.branch:get()
@@ -37,22 +36,12 @@ local lines = statusline.component(function()
     return { " ", signals.lines:get(), "L" }
 end)
 
-local pom = statusline.component(function()
-    if pomodoro.is_running:is(false) then
-        return
-    end
-    local session_icon = pomodoro.type:is("session") and "" or ""
-    local break_icon = pomodoro.type:is("break") and "" or ""
-    return { " ", session_icon, break_icon, "  ", pomodoro.time_left:get() }
-end)
-
 local right = statusline.components({
     git_branch,
     git_ahead,
     git_behind,
     pos,
     lines,
-    pom,
 })
 
 local available_width = computed(function()
