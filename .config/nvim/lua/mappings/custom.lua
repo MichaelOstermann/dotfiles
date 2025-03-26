@@ -1,4 +1,5 @@
 local expr = require("utils.mappings").expr
+local map = require("utils.mappings").map
 local b = require("utils.buffer")
 local au = require("utils.autocommand")
 
@@ -197,4 +198,34 @@ au("FileType", function()
             buffer = true,
         })
     end
+end)
+
+-- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/javascript.lua
+map("i", "t", function()
+    vim.api.nvim_feedkeys("t", "n", true)
+
+    if should_skip() then
+        return
+    end
+
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+    local text_before = line:sub(col - 3, col)
+
+    if text_before ~= "awai" then
+        return
+    end
+
+    local function_node = b.find_node_ancestor({ "arrow_function", "function_declaration", "function" })
+    if not function_node then
+        return
+    end
+
+    local function_text = vim.treesitter.get_node_text(function_node, 0)
+    if vim.startswith(function_text, "async ") then
+        return
+    end
+
+    local start_row, start_col = function_node:start()
+    vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { "async " })
 end)

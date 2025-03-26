@@ -71,6 +71,19 @@ M.has_node_type_right = function(pattern)
     return false
 end
 
+M.find_node_ancestor = function(types)
+    local node = vim.treesitter.get_node()
+
+    while node do
+        if vim.list_contains(types, node:type()) then
+            return node
+        end
+        node = node:parent()
+    end
+
+    return node
+end
+
 M.is_jsdoc = function()
     if not M.has_node_type_left("comment") then
         return false
