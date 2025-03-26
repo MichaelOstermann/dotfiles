@@ -21,6 +21,9 @@ expr("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']])
 map("c", "<m-left>", "<s-left>")
 map("c", "<m-right>", "<s-right>")
 
+-- Delete word in msgarea
+map("c", "<m-bs>", "<c-w>")
+
 -- Move around in insertmode
 map("i", "<c-h>", "<left>")
 map("i", "<c-j>", "<c-o>gj")
@@ -59,19 +62,6 @@ map("x", "<tab>", lazy_call("stay-in-place", "shift_right_visual"))
 map("n", "<s-tab>", lazy_call("stay-in-place", "shift_left_line"))
 map("x", "<s-tab>", lazy_call("stay-in-place", "shift_left_visual"))
 
--- Surround shortcuts
-map("x", '"', '<Plug>(nvim-surround-visual)"')
-map("x", "'", "<Plug>(nvim-surround-visual)'")
-map("x", "`", "<Plug>(nvim-surround-visual)`")
-map("x", "(", "<Plug>(nvim-surround-visual)(")
-map("x", "{", "<Plug>(nvim-surround-visual){")
-map("x", "[", "<Plug>(nvim-surround-visual)[")
-map("x", "<", "<Plug>(nvim-surround-visual)<")
-map("x", ")", "<Plug>(nvim-surround-visual))")
-map("x", "}", "<Plug>(nvim-surround-visual)}")
-map("x", "]", "<Plug>(nvim-surround-visual)]")
-map("x", ">", "<Plug>(nvim-surround-visual)>")
-
 -- Illuminate
 map("n", "<c-n>", lazy_call("illuminate", "goto_next_reference"))
 map("n", "<c-p>", lazy_call("illuminate", "goto_prev_reference"))
@@ -108,13 +98,13 @@ map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
 map("n", leader("E"), cmd("NvimTreeFindFile"), desc("Focus File"))
 
 -- Diagnostics
+map("n", leader("dd"), vim.lsp.buf.code_action, desc("Fix Diagnostic"))
 map("n", leader("do"), vim.diagnostic.open_float, desc("Open Diagnostic"))
-map("n", leader("dn"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
-map("n", leader("dp"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
-map("n", leader("df"), vim.lsp.buf.code_action, desc("Fix Diagnostic"))
+map("n", leader("df"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
+map("n", leader("ds"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
 
 -- Git
-map("n", leader("gs"), cmd("Git add %"), desc("Stage"))
+map("n", leader("gg"), cmd("Git add %"), desc("Stage"))
 map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
 map("n", leader("gA"), cmd("silent Git commit --amend --no-edit"), desc("Amend"))
 map("n", leader("gP"), cmd("Git push -u origin"), desc("Push"))
@@ -156,10 +146,10 @@ map("n", leader("pc"), lazy_call("custom.pomodoro", "cancel"), desc("Cancel"))
 -- Multicursor
 map("v", "I", lazy_call("multicursor-nvim", "insertVisual"))
 map("v", "A", lazy_call("multicursor-nvim", "appendVisual"))
-map("n", "<c-leftmouse>", lazy_call("multicursor-nvim", "handleMouse"))
+map("n", "<a-leftmouse>", lazy_call("multicursor-nvim", "handleMouse"))
 map({ "n", "v" }, "<a-up>", lazy_call("multicursor-nvim", "lineAddCursor", -1))
 map({ "n", "v" }, "<a-down>", lazy_call("multicursor-nvim", "lineAddCursor", 1))
-map({ "n", "v" }, "<c-m>", lazy_call("multicursor-nvim", "addCursor", "*"))
+map({ "n", "v" }, "~", lazy_call("multicursor-nvim", "addCursor", "*"))
 map("n", "<leader>mA", lazy_call("multicursor-nvim", "matchAllAddCursors"), desc("Match all"))
 map("n", "<leader>ma", lazy_call("multicursor-nvim", "alignCursors"), desc("Align"))
 map({ "n", "v" }, "<leader>mt", lazy_call("multicursor-nvim", "toggleCursor"), desc("Toggle"))

@@ -10,6 +10,7 @@ return {
             providers = { "regex" },
             min_count_to_highlight = 2,
             large_file_cutoff = 5000,
+            disable_keymaps = true,
         })
     end,
 }
