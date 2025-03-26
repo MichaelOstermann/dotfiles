@@ -88,6 +88,8 @@ return {
                         require("minuet.virtualtext").action.next()
                     end,
                 },
+                ["<Tab>"] = { "fallback" },
+                ["<S-Tab>"] = { "fallback" },
             },
             appearance = {
                 kind_icons = {
