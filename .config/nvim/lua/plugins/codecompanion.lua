@@ -7,13 +7,13 @@ return {
     opts = {
         strategies = {
             chat = {
-                adapter = "anthropic",
+                adapter = "gemini",
             },
             inline = {
-                adapter = "anthropic",
+                adapter = "gemini",
             },
             agent = {
-                adapter = "anthropic",
+                adapter = "gemini",
             },
         },
         adapters = {
@@ -35,6 +35,18 @@ return {
                     schema = {
                         model = {
                             default = "gpt-4o",
+                        },
+                    },
+                })
+            end,
+            gemini = function()
+                return require("codecompanion.adapters").extend("gemini", {
+                    env = {
+                        api_key = os.getenv("GEMINI_API_KEY"),
+                    },
+                    schema = {
+                        model = {
+                            default = "gemini-2.5-pro-exp-03-25",
                         },
                     },
                 })
