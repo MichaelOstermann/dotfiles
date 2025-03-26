@@ -98,6 +98,14 @@ return {
                     cargo = {
                         targetDir = true,
                     },
+                    completion = {
+                        postfix = {
+                            enable = false,
+                        },
+                        callable = {
+                            snippets = "none",
+                        },
+                    },
                 },
             },
         })
