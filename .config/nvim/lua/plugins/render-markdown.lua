@@ -4,11 +4,19 @@ return {
     ft = { "markdown", "mdx", "codecompanion" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
+        render_modes = { "n", "c", "t", "i" },
         sign = {
             enabled = false,
         },
+        bullet = {},
         code = {
-            style = "none",
+            highlight = "None",
+            highlight_border = false,
+            highlight_inline = "None",
+        },
+        heading = {
+            position = "inline",
+            icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
         },
     },
 }
