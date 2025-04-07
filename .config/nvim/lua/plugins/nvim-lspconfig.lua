@@ -9,19 +9,27 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
         local signature = require("lsp_signature")
+        local signature_helper = require("lsp_signature.helper")
         local signals = require("utils.signals")
 
-        local with = vim.lsp.with
-        vim.lsp.with = function(a, b)
+        local with = signature_helper.lsp_with
+        signature_helper.lsp_with = function(a, b)
             if a == signature.signature_handler then
                 return with(function(...)
-                    signature.signature_handler(...)
+                    local o = signature.signature_handler(...)
                     signals.signature:set(signature.status_line())
+                    return o
                 end, b)
             else
                 return with(a, b)
             end
         end
+
+        signature.setup({
+            bind = false,
+            hint_enable = false,
+            floating_window = false,
+        })
 
         require("mason").setup()
         require("mason-lspconfig").setup({
@@ -49,18 +57,9 @@ return {
             end
         end
 
-        local on_attach = function(client, bufnr)
-            signature.on_attach({
-                bind = false,
-                hint_enable = false,
-                floating_window = false,
-            }, bufnr)
-        end
-
         local opts = {
             capabilities = capabilities,
             on_init = on_init,
-            on_attach = on_attach,
         }
 
         lspconfig.html.setup(opts)
@@ -70,7 +69,6 @@ return {
         lspconfig.vtsls.setup({
             capabilities = capabilities,
             on_init = on_init,
-            on_attach = on_attach,
             settings = {
                 typescript = {
                     updateImportsOnFileMove = { enabled = "never" },
@@ -92,7 +90,6 @@ return {
         lspconfig.rust_analyzer.setup({
             capabilities = capabilities,
             on_init = on_init,
-            on_attach = on_attach,
             settings = {
                 ["rust-analyzer"] = {
                     cargo = {
@@ -113,7 +110,6 @@ return {
         lspconfig.jsonls.setup({
             capabilities = capabilities,
             on_init = on_init,
-            on_attach = on_attach,
             settings = {
                 json = {
                     validate = { enable = true },
@@ -128,7 +124,6 @@ return {
 
         lspconfig.eslint.setup({
             capabilities = capabilities,
-            on_attach = on_attach,
             filetypes = {
                 "javascript",
                 "javascriptreact",
@@ -192,12 +187,5 @@ return {
                 suffix = "",
             },
         })
-
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = "rounded",
-            silent = true,
-        })
-
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {})
     end,
 }

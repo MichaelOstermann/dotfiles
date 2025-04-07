@@ -74,7 +74,12 @@ end, { pattern = "FTerm" })
 -- Frequently used stuff
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
 map("n", leader("R"), lazy_call("grug-far", "open"), desc("Search & Replace"))
-map("n", leader("h"), vim.lsp.buf.hover, desc("Hover"))
+map("n", leader("h"), function()
+    vim.lsp.buf.hover({
+        border = "rounded",
+        silent = true,
+    })
+end, desc("Hover"))
 map("n", leader("s"), lazy_call("utils.buffer", "format_and_save"), desc("Format & Save"))
 map("n", leader("j"), lazy_call("treesj", "toggle"), desc("Split/Join"))
 map("n", leader("t"), lazy_call("FTerm", "open"), desc("Terminal"))
