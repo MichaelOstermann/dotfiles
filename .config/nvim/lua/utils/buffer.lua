@@ -8,7 +8,7 @@ M.format_and_save = function()
         bufnr = bufnr,
         name = "eslint",
     })) then
-        vim.cmd("EslintFixAll")
+        vim.cmd("LspEslintFixAll")
         vim.cmd("w")
         return
     end

@@ -15,7 +15,9 @@ end
 
 local function disable(args)
     local buf = args.buf
-    vim.diagnostic.disable(buf)
+    vim.diagnostic.enable(false, {
+        bufnr = buf,
+    })
     stop_timer(buf)
     if signals.buffers[buf] then
         signals.buffers[buf].diagnostics_enabled:set(false)
@@ -29,7 +31,9 @@ local function enable(args)
     vim.b[buf].diagnostics_timer = vim.fn.timer_start(500, function()
         if vim.api.nvim_buf_is_loaded(buf) then
             vim.b[buf].diagnostics_timer = nil
-            vim.diagnostic.enable(buf)
+            vim.diagnostic.enable(true, {
+                bufnr = buf,
+            })
         end
 
         if signals.buffers[buf] then

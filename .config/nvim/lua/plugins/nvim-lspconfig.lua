@@ -2,26 +2,10 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "saghen/blink.cmp",
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason.nvim",
+        "mason-org/mason-lspconfig.nvim",
     },
     config = function()
-        local lspconfig = require("lspconfig")
-
-        require("mason").setup()
-        require("mason-lspconfig").setup({
-            automatic_installation = true,
-            ensure_installed = {
-                "eslint",
-                "html",
-                "jsonls",
-                "rust_analyzer",
-                "tailwindcss",
-                "vtsls",
-                "zls",
-            },
-        })
-
         local capabilities = vim.tbl_deep_extend(
             "force",
             require("blink.cmp").get_lsp_capabilities(),
@@ -39,11 +23,11 @@ return {
             on_init = on_init,
         }
 
-        lspconfig.html.setup(opts)
-        lspconfig.tailwindcss.setup(opts)
-        lspconfig.zls.setup(opts)
+        vim.lsp.config("html", opts)
+        vim.lsp.config("tailwindcss", opts)
+        vim.lsp.config("zls", opts)
 
-        lspconfig.vtsls.setup({
+        vim.lsp.config("vtsls", {
             capabilities = capabilities,
             on_init = on_init,
             settings = {
@@ -64,7 +48,7 @@ return {
             },
         })
 
-        lspconfig.rust_analyzer.setup({
+        vim.lsp.config("rust_analyzer", {
             capabilities = capabilities,
             on_init = on_init,
             settings = {
@@ -84,7 +68,7 @@ return {
             },
         })
 
-        lspconfig.jsonls.setup({
+        vim.lsp.config("jsonls", {
             capabilities = capabilities,
             on_init = on_init,
             settings = {
@@ -99,7 +83,7 @@ return {
             end,
         })
 
-        lspconfig.eslint.setup({
+        vim.lsp.config("eslint", {
             capabilities = capabilities,
             filetypes = {
                 "javascript",
@@ -162,6 +146,25 @@ return {
                 header = "",
                 prefix = "",
                 suffix = "",
+            },
+        })
+
+        require("mason").setup({
+            ui = {
+                width = 1,
+                height = 1,
+            },
+        })
+        require("mason-lspconfig").setup({
+            automatic_installation = true,
+            ensure_installed = {
+                "eslint",
+                "html",
+                "jsonls",
+                "rust_analyzer",
+                "tailwindcss",
+                "vtsls",
+                "zls",
             },
         })
     end,
