@@ -12,29 +12,6 @@ mouse-hide-while-typing = true
 window-padding-x = 10
 window-width = 160
 window-height = 36
-
-background = 1F2029
-foreground = 6974a6
-selection-background = 2f3346
-selection-foreground = 6974a6
-cursor-color = D3B732
-cursor-text = 1F2029
-
-palette = 0=#454c6b
-palette = 1=#b05669
-palette = 2=#69884b
-palette = 3=#907149
-palette = 4=#6789d0
-palette = 5=#866fb1
-palette = 6=#51909f
-palette = 7=#555e86
-palette = 8=#454c6b
-palette = 9=#b05669
-palette = 10=#69884b
-palette = 11=#907149
-palette = 12=#6789d0
-palette = 13=#866fb1
-palette = 14=#51909f
-palette = 15=#555e86
+theme = moon
 
 keybind = cmd+d=new_split:right
