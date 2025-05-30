@@ -115,9 +115,9 @@ map("n", leader("gA"), cmd("silent Git commit --amend --no-edit"), desc("Amend")
 map("n", leader("gP"), cmd("Git push -u origin"), desc("Push"))
 
 -- Window
-map("n", leader("wc"), "<c-w>c", desc("Close Window"))
+map("n", leader("c"), "<c-w>c", desc("Close Window"))
+map("n", leader("v"), cmd("vsplit"), desc("Vertical Split"))
 map("n", leader("w="), "<c-w>=", desc("Equalize Size"))
-map("n", leader("wv"), cmd("vsplit"), desc("Vertical Split"))
 map("n", leader("w+"), cmd("vertical resize +1"), desc("Increase Size"))
 map("n", leader("w-"), cmd("vertical resize -1"), desc("Decrease Size"))
 map("n", leader("wh"), "<c-w>h", desc("Go Left"))
@@ -126,10 +126,10 @@ map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
 -- Quickfix
-map("n", leader("co"), cmd("copen"), desc("Open"))
-map("n", leader("cc"), cmd("cclose"), desc("Close"))
-map("n", leader("cn"), cmd("cnext"), desc("Next"))
-map("n", leader("cp"), cmd("cprevious"), desc("Prev"))
+map("n", leader("qo"), cmd("copen"), desc("Open"))
+map("n", leader("qc"), cmd("cclose"), desc("Close"))
+map("n", leader("qn"), cmd("cnext"), desc("Next"))
+map("n", leader("qp"), cmd("cprevious"), desc("Prev"))
 
 -- Telescope
 local t_opts = { jump_type = "never", trim_text = true }
