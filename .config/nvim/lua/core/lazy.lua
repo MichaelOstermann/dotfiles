@@ -11,15 +11,19 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local ok, lazy = pcall(require, "lazy")
-if not ok then
-    return
-end
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-lazy.setup("plugins", {
+require("lazy").setup({
+    ui = {
+        size = {
+            width = 1,
+            height = 1,
+        },
+    },
+    spec = {
+        { import = "plugins" },
+    },
     change_detection = {
         enabled = false,
     },
