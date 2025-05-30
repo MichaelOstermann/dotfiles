@@ -114,7 +114,7 @@ return {
                 useFlatConfig = true,
                 -- Silent stylistic rules, but still auto fix them
                 rulesCustomizations = {
-                    { rule = "style/*", severity = "off", fixable = true },
+                    { rule = "@stylistic/*", severity = "off", fixable = true },
                     { rule = "format/*", severity = "off", fixable = true },
                     { rule = "*-indent", severity = "off", fixable = true },
                     { rule = "*-spacing", severity = "off", fixable = true },

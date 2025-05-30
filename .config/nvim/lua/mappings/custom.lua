@@ -202,7 +202,7 @@ end)
 
 -- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/javascript.lua
 map("i", "t", function()
-    vim.api.nvim_feedkeys("t", "n", true)
+    vim.api.nvim_paste("t", false, -1)
 
     if should_skip() then
         return
@@ -210,9 +210,10 @@ map("i", "t", function()
 
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local line = vim.api.nvim_get_current_line()
-    local text_before = line:sub(col - 3, col)
+    local text_before = line:sub(col - 4, col)
 
-    if text_before ~= "awai" then
+    if text_before ~= "await" then
+        print("skip 1")
         return
     end
 
