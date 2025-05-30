@@ -81,13 +81,6 @@ local diagnostic = statusline.component(function()
         }
 end)
 
-local function is_valid_range(range)
-    if not range then
-        return false
-    end
-    return range["end"] > range.start
-end
-
 local signature = statusline.component(function()
     if diagnostic.size:get() > 0 then
         return
@@ -109,14 +102,14 @@ local signature = statusline.component(function()
 
     local range = signature.range
 
-    if not is_valid_range(range) then
+    if not range then
         return { signature.label }
     end
 
     return {
-        { string.sub(signature.label, 1, range.start - 1) },
-        { string.sub(signature.label, range.start, range["end"]), "MoreMsg" },
-        { string.sub(signature.label, range["end"] + 1) },
+        { string.sub(signature.label, 1, range[1] - 1) },
+        { string.sub(signature.label, range[1], range[2]), "MoreMsg" },
+        { string.sub(signature.label, range[2] + 1) },
     }
 end)
 

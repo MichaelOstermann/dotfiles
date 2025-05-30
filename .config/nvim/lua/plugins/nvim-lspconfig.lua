@@ -2,34 +2,11 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "saghen/blink.cmp",
-        "ray-x/lsp_signature.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
     config = function()
         local lspconfig = require("lspconfig")
-        local signature = require("lsp_signature")
-        local signature_helper = require("lsp_signature.helper")
-        local signals = require("utils.signals")
-
-        local with = signature_helper.lsp_with
-        signature_helper.lsp_with = function(a, b)
-            if a == signature.signature_handler then
-                return with(function(...)
-                    local o = signature.signature_handler(...)
-                    signals.signature:set(signature.status_line())
-                    return o
-                end, b)
-            else
-                return with(a, b)
-            end
-        end
-
-        signature.setup({
-            bind = false,
-            hint_enable = false,
-            floating_window = false,
-        })
 
         require("mason").setup()
         require("mason-lspconfig").setup({
