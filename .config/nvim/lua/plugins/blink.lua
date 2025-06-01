@@ -1,7 +1,10 @@
 return {
     "saghen/blink.cmp",
     version = "*",
-    dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
+    dependencies = {
+        { "L3MON4D3/LuaSnip", version = "v2.*" },
+        "disrupted/blink-cmp-conventional-commits",
+    },
     event = { "InsertEnter" },
     config = function()
         local au = require("utils.autocommand")
@@ -36,7 +39,14 @@ return {
                 },
             },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+                default = {
+                    "conventional_commits",
+                    "lsp",
+                    "path",
+                    "snippets",
+                    "buffer",
+                    "codecompanion",
+                },
                 providers = {
                     snippets = {
                         name = "Snippets",
@@ -52,6 +62,13 @@ return {
                                 end, vim.api.nvim_list_bufs())
                             end,
                         },
+                    },
+                    conventional_commits = {
+                        name = "Conventional Commits",
+                        module = "blink-cmp-conventional-commits",
+                        enabled = function()
+                            return vim.bo.filetype == "gitcommit"
+                        end,
                     },
                 },
             },
