@@ -10,6 +10,7 @@ M.special_filetypes = {
     "NvimTree",
     "grug-far",
     "mason",
+    "Custom",
 }
 
 M.special_buftypes = {
