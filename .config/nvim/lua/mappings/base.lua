@@ -126,6 +126,7 @@ map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
+map("n", leader("fe"), lazy_call("custom.eslint", "run"), desc("ESLint"))
 map("n", leader("ft"), lazy_call("custom.tsc", "run"), desc("TSC"))
 
 local t_opts = { jump_type = "never", trim_text = true }
