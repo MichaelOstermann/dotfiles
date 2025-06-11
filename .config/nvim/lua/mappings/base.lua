@@ -125,12 +125,6 @@ map("n", leader("wj"), "<c-w>j", desc("Go Down"))
 map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
--- Quickfix
-map("n", leader("qo"), cmd("copen"), desc("Open"))
-map("n", leader("qc"), cmd("cclose"), desc("Close"))
-map("n", leader("qn"), cmd("cnext"), desc("Next"))
-map("n", leader("qp"), cmd("cprevious"), desc("Prev"))
-
 -- Telescope
 local t_opts = { jump_type = "never", trim_text = true }
 map("n", leader("ff"), lazy_call("telescope.builtin", "find_files"), desc("Files"))

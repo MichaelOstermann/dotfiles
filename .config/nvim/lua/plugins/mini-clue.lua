@@ -15,7 +15,6 @@ return {
                 miniclue.gen_clues.builtin_completion(),
                 { mode = "n", keys = "<Leader>f", desc = "+find" },
                 { mode = "n", keys = "<Leader>g", desc = "+git" },
-                { mode = "n", keys = "<Leader>q", desc = "+quickfix" },
                 { mode = "n", keys = "<Leader>m", desc = "+multicursor" },
                 { mode = "n", keys = "<Leader>d", desc = "+diagnostic" },
                 { mode = "n", keys = "<Leader>a", desc = "+ai" },
