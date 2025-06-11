@@ -126,6 +126,8 @@ map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
+map("n", leader("ft"), lazy_call("custom.tsc", "run"), desc("TSC"))
+
 local t_opts = { jump_type = "never", trim_text = true }
 map("n", leader("ff"), lazy_call("telescope.builtin", "find_files"), desc("Files"))
 map("n", leader("fp"), lazy_call("telescope.builtin", "oldfiles", { cwd_only = true }), desc("Prev Files"))
