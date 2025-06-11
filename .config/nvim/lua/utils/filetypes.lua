@@ -29,7 +29,6 @@ M.rg_ignores = {
     "**/cache/**",
     "**/dist/**",
     "**/node_modules/**",
-    "*.tsbuildinfo",
 }
 
 return M

@@ -126,17 +126,16 @@ map("n", leader("wk"), "<c-w>k", desc("Go Up"))
 map("n", leader("wl"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
+map("n", leader("fg"), lazy_call("custom.ripgrep", "run"), desc("Grep"))
 map("n", leader("fe"), lazy_call("custom.eslint", "run"), desc("ESLint"))
 map("n", leader("ft"), lazy_call("custom.tsc", "run"), desc("TSC"))
 
 local t_opts = { jump_type = "never", trim_text = true }
 map("n", leader("ff"), lazy_call("telescope.builtin", "find_files"), desc("Files"))
 map("n", leader("fp"), lazy_call("telescope.builtin", "oldfiles", { cwd_only = true }), desc("Prev Files"))
-map("n", leader("fl"), lazy_call("telescope.builtin", "current_buffer_fuzzy_find", t_opts), desc("Lines"))
 map("n", leader("fi"), lazy_call("telescope.builtin", "lsp_implementations", t_opts), desc("Implementations"))
 map("n", leader("fd"), lazy_call("telescope.builtin", "lsp_definitions", t_opts), desc("Definitions"))
 map("n", leader("fr"), lazy_call("telescope.builtin", "lsp_references", t_opts), desc("References"))
-map("n", leader("fg"), cmd("Telescope egrepify"), desc("Grep"))
 
 -- Multicursor
 map("v", "I", lazy_call("multicursor-nvim", "insertVisual"))

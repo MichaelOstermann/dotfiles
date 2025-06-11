@@ -2,7 +2,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "fdschmidt93/telescope-egrepify.nvim",
     },
     event = "VeryLazy",
     cmd = { "Telescope" },
@@ -47,13 +46,6 @@ return {
             pickers = {
                 find_files = { find_command = find_command },
             },
-            extensions = {
-                egrepify = {
-                    results_ts_hl = false,
-                },
-            },
         })
-
-        require("telescope").load_extension("egrepify")
     end,
 }
