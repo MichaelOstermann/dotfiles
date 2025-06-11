@@ -61,7 +61,7 @@ expr("i", "<space>", function()
     if not should_skip() and b.has_surrounding_chars("{", "}") then
         return "  <c-g>u<left>"
     end
-    return " <c-g>u"
+    return " "
 end)
 
 -- `|` + $ = `${|}`
