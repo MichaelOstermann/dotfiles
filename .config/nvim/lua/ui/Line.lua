@@ -1,42 +1,45 @@
+local Range = require("utils.Range")
+
 local M = {}
-local L = {}
+M.__index = M
 
-L.add = function(line, text, highlight)
-    text = tostring(text)
-    local length = #text
-
-    if length == 0 then
-        return line
-    end
-
-    if highlight then
-        table.insert(line.highlights, {
-            highlight,
-            line.length,
-            length,
-        })
-    end
-
-    line.content = line.content .. text
-    line.length = line.length + length
-
-    return line
-end
-
-L.set_data = function(line, data)
-    line.data = vim.tbl_extend("force", line.data, data)
-    return line
-end
-
-M.create = function()
+function M.create(row)
     return setmetatable({
+        row = row,
         length = 0,
         content = "",
         highlights = {},
-        data = {},
-    }, {
-        __index = L,
-    })
+    }, M)
+end
+
+function M:add(text, highlight)
+    text = tostring(text)
+
+    local length = #text
+
+    if length == 0 then
+        return self
+    end
+
+    local range = Range.empty():set_rows(self.row):set_cols(self.length):shift_focus_col(length)
+
+    if highlight then
+        local prev_highlight = self.highlights[#self.highlights]
+        if
+            prev_highlight
+            and prev_highlight.name == highlight
+            and prev_highlight.range:get_col_end() == range:get_col_start()
+        then
+            prev_highlight.range:shift_focus_col(length)
+        else
+            table.insert(self.highlights, { name = highlight, range = range })
+        end
+    end
+
+    self.content = self.content .. text
+    self.length = range:get_col_end()
+
+    return self
 end
 
 return M

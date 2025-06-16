@@ -6,7 +6,6 @@ M.special_filetypes = {
     "cmp_docs",
     "cmp_menu",
     "prompt",
-    "TelescopePrompt",
     "NvimTree",
     "grug-far",
     "mason",
@@ -29,6 +28,8 @@ M.rg_ignores = {
     "**/cache/**",
     "**/dist/**",
     "**/node_modules/**",
+    "**/bun.lock",
+    "**/Cargo.lock",
 }
 
 return M

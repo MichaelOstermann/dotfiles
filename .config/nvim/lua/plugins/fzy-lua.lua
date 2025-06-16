@@ -1,0 +1,3 @@
+return {
+    "swarn/fzy-lua",
+}

@@ -344,13 +344,6 @@ hl("PmenuExtra", { fg = blue })
 -- hl("BlinkCmpLabelDeprecated", { link = "Comment" })
 hl("BlinkCmpKind", { link = "NONE" })
 
--- Telescope
-hl("TelescopeBorder", { fg = bg })
-hl("TelescopeMatching", { fg = yellow })
-hl("TelescopeNormal", { fg = fg })
-hl("TelescopePromptCounter", { fg = blue })
-hl("TelescopePromptTitle", { fg = blue })
-
 -- Mini.signs
 hl("MiniDiffSignAdd", { fg = green_600 })
 hl("MiniDiffSignChange", { fg = yellow_600 })

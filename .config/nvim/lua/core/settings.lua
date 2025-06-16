@@ -59,6 +59,12 @@ end
 
 vim.opt.titlestring = "%{luaeval('get_titlestring()')}"
 
+vim.filetype.add({
+    extension = {
+        ts = "typescript",
+    },
+})
+
 -- Disable continuing comments, lists, etc., something keeps resetting this so it's an autocmd
 au("FileType", function()
     vim.opt.formatoptions = ""
