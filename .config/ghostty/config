@@ -15,3 +15,4 @@ window-height = 36
 theme = moon
 
 keybind = cmd+d=new_split:right
+keybind = shift+enter=text:\n

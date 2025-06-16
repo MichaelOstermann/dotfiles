@@ -111,7 +111,6 @@ return {
                 "postcss",
             },
             settings = {
-                useFlatConfig = true,
                 -- Silent stylistic rules, but still auto fix them
                 rulesCustomizations = {
                     { rule = "@stylistic/*", severity = "off", fixable = true },
@@ -127,20 +126,6 @@ return {
                     { rule = "*semi", severity = "off", fixable = true },
                 },
             },
-            on_attach = function(client)
-                vim.api.nvim_buf_create_user_command(0, "LspEslintFixAll", function()
-                    local bufnr = vim.api.nvim_get_current_buf()
-                    client:request_sync("workspace/executeCommand", {
-                        command = "eslint.applyAllFixes",
-                        arguments = {
-                            {
-                                uri = vim.uri_from_bufnr(bufnr),
-                                version = vim.lsp.util.buf_versions[bufnr],
-                            },
-                        },
-                    }, nil, bufnr)
-                end, {})
-            end,
         })
 
         vim.fn.sign_define("DiagnosticSignError", { numhl = "DiagnosticSignError", priority = 10 })

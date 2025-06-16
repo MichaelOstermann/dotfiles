@@ -2,15 +2,22 @@ local au = require("utils.autocommand")
 
 local lru_bufs = {}
 
--- Remove the current buffer from our list and append it, maintaining a LRU list.
--- While at it, remove any buffers that have been unloaded in the meantime,
--- to prevent the list from growing indefinitely.
-local function add_current_buf()
-    local cur_buf = vim.api.nvim_get_current_buf()
-    lru_bufs = vim.tbl_filter(function(buf)
-        return buf ~= cur_buf and vim.api.nvim_buf_is_loaded(buf)
+local is_file = function(buf)
+    return vim.api.nvim_buf_is_loaded(buf)
+        and vim.api.nvim_buf_get_name(buf) ~= ""
+        and vim.api.nvim_get_option_value("buftype", { buf = buf }) == ""
+end
+
+local function add_buf(buf)
+    if not is_file(buf) then
+        return
+    end
+
+    lru_bufs = vim.tbl_filter(function(lru_buf)
+        return lru_buf ~= buf and vim.api.nvim_buf_is_loaded(lru_buf)
     end, lru_bufs)
-    table.insert(lru_bufs, cur_buf)
+
+    table.insert(lru_bufs, buf)
 end
 
 local function get_visible_bufs()
@@ -29,21 +36,17 @@ end
 local function get_unloadable_bufs()
     local visible_bufs = get_visible_bufs()
     return vim.tbl_filter(function(buf)
-        -- Must be a buffer associated with a file on disk.
-        return vim.api.nvim_buf_get_name(buf) ~= ""
-            -- Ignore buffers that are unlisted.
-            and vim.api.nvim_buf_get_option(buf, "buflisted")
-            -- Ignore modified/unsaved buffers.
-            and not vim.api.nvim_buf_get_option(buf, "modified")
-            -- Ignore buffers currently present in any window.
-            and not vim.list_contains(visible_bufs, buf)
+        return vim.api.nvim_buf_is_loaded(buf)
+            and vim.api.nvim_buf_get_option(buf, "modified") == false
+            and vim.list_contains(visible_bufs, buf) == false
     end, lru_bufs)
 end
 
-au("BufEnter", function()
-    add_current_buf()
+au({ "BufEnter", "BufWinEnter" }, function(evt)
+    add_buf(evt.buf)
     local unloadable_bufs = get_unloadable_bufs()
     if #unloadable_bufs > 10 then
-        vim.api.nvim_buf_delete(unloadable_bufs[1], {})
+        local buf = table.remove(unloadable_bufs, 1)
+        vim.api.nvim_buf_delete(buf, {})
     end
 end)

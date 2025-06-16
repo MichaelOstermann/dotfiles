@@ -61,7 +61,7 @@ expr("i", "<space>", function()
     if not should_skip() and b.has_surrounding_chars("{", "}") then
         return "  <c-g>u<left>"
     end
-    return " "
+    return " <c-g>u"
 end)
 
 -- `|` + $ = `${|}`
@@ -146,7 +146,10 @@ expr("i", "<cr>", function()
     end
 
     local level = b.get_current_indentation_level()
-    local expand = "<cr><cr>" .. b.get_indentation_string(level) .. "<up>" .. b.get_indentation_string(level + 1)
+    local expand = "<cr><cr>"
+        .. b.get_indentation_string(level)
+        .. "<up>"
+        .. b.get_indentation_string(level + 1)
 
     if
         b.has_any_surrounding_chars({
@@ -213,11 +216,11 @@ map("i", "t", function()
     local text_before = line:sub(col - 4, col)
 
     if text_before ~= "await" then
-        print("skip 1")
         return
     end
 
-    local function_node = b.find_node_ancestor({ "arrow_function", "function_declaration", "function" })
+    local function_node =
+        b.find_node_ancestor({ "arrow_function", "function_declaration", "function" })
     if not function_node then
         return
     end
