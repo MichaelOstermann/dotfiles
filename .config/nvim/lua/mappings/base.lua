@@ -83,11 +83,6 @@ map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
 
--- AI
-map("n", leader("ac"), cmd("CodeCompanionChat"), desc("Chat"))
-map("n", leader("at"), cmd("CodeCompanionChat Toggle"), desc("Toggle"))
-map("n", leader("ag"), lazy_call("codecompanion", "prompt", "commit"), desc("Commit Message"))
-
 -- Flash
 map("n", "j", lazy_call("flash", "jump"))
 map("o", "j", lazy_call("flash", "remote"))

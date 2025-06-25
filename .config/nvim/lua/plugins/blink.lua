@@ -45,7 +45,6 @@ return {
                     "path",
                     "snippets",
                     "buffer",
-                    "codecompanion",
                 },
                 providers = {
                     snippets = {
@@ -84,7 +83,11 @@ return {
                     "cancel",
                     function(cmp)
                         if vim.fn.getcmdtype() ~= "" then
-                            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+                            vim.api.nvim_feedkeys(
+                                vim.api.nvim_replace_termcodes("<C-c>", true, true, true),
+                                "n",
+                                true
+                            )
                             return true
                         end
                     end,

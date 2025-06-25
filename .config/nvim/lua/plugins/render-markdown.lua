@@ -1,7 +1,7 @@
 -- Prettier markdown.
 return {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "mdx", "codecompanion" },
+    ft = { "markdown", "mdx" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
         render_modes = { "n", "c", "t" },
