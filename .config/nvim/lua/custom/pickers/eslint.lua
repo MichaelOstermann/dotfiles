@@ -50,7 +50,7 @@ local pane = dual_pane({
             return
         end
 
-        pane.results.spinner:start()
+        pane.title.spinner:start()
 
         job = vim.system(
             { bin, ".", "--format", "json" },
@@ -60,7 +60,7 @@ local pane = dual_pane({
                 cwd = vim.uv.cwd(),
             },
             vim.schedule_wrap(function(result)
-                pane.results.spinner:stop()
+                pane.title.spinner:stop()
 
                 local ok, data = pcall(
                     vim.json.decode,

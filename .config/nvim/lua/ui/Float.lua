@@ -1,6 +1,5 @@
 local Win = require("utils.Win")
 local Buf = require("utils.Buf")
-local Spinner = require("ui.Spinner")
 local au = require("utils.autocommand")
 local signal = require("signals.signal")
 local effect = require("signals.effect")
@@ -11,11 +10,14 @@ local M = {}
 M.__index = M
 setmetatable(M, { __index = Win })
 
+local msgarea_height = 1
+local statusline_height = 1
+
 M.max_width = signal(vim.o.columns)
-M.max_height = signal(vim.o.lines)
+M.max_height = signal(vim.o.lines - msgarea_height - statusline_height)
 au("VimResized", function()
     M.max_width:set(vim.o.columns)
-    M.max_height:set(vim.o.lines)
+    M.max_height:set(vim.o.lines - msgarea_height - statusline_height)
 end)
 
 local function get_value(x, fallback)
@@ -32,7 +34,7 @@ end
 
 function M.create(options)
     local float = setmetatable({
-        row = signal(1),
+        row = signal(0),
         col = signal(0),
         did_mount = signal(false),
         callbacks = {
@@ -40,34 +42,25 @@ function M.create(options)
         },
     }, M)
 
-    local msgarea_height = 1
     local border_width = options.border and 2 or 0
 
     float.top = computed(function()
-        if type(options.top) == "nil" then
-            return 0
-        elseif type(options.top) == "number" then
-            return options.top
-        elseif type(options.top) == "function" then
-            return options.top()
-        else
-            return options.top:get()
-        end
+        return get_value(options.top, 0)
     end)
 
     float.left = computed(function()
-        return get_value(options.left, 0)
+        return get_value(options.left, 0) + (options.margin_left or 0)
     end)
 
     float.height = computed(function()
-        local max = M.max_height:get() - float.top:get() - border_width - msgarea_height
+        local max = M.max_height:get() - float.top:get() - border_width
         local height = get_value(options.height, max)
         return math.min(height, max)
     end)
 
     float.width = computed(function()
         local max = M.max_width:get() - float.left:get() - border_width
-        local width = get_value(options.width, max)
+        local width = get_value(options.width, max) - (options.margin_left or 0)
         return math.min(width, max)
     end)
 
@@ -91,15 +84,6 @@ function M.create(options)
             height = float.height:get(),
             style = "minimal",
             border = options.border,
-        })
-
-        float.spinner = Spinner.create({
-            on_tick = function(message)
-                float:set_title({ { message, "Number" } })
-            end,
-            on_stop = function(message)
-                float:set_title(options.title)
-            end,
         })
 
         float:set_filetype("Custom")

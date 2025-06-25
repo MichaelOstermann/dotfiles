@@ -107,7 +107,7 @@ function M:scroll_to(row)
     local height = vim.api.nvim_win_get_height(self.id)
     self:enter(function()
         local view = vim.fn.winsaveview()
-        view.topline = row - math.floor(height / 2)
+        view.topline = math.max(row - math.floor(height / 2), 1)
         vim.fn.winrestview(view)
     end)
     return self
@@ -180,6 +180,16 @@ function M:set_lines(...)
     return self
 end
 
+function M:clear_lines(...)
+    self:buf():clear_lines(...)
+    return self
+end
+
+function M:highlight_line(...)
+    self:buf():highlight_line(...)
+    return self
+end
+
 function M:highlight_range(...)
     self:buf():highlight_range(...)
     return self
@@ -192,6 +202,11 @@ end
 
 function M:is_loaded(...)
     return self:buf():is_loaded(...)
+end
+
+function M:on_focus(...)
+    self:buf():on_focus(...)
+    return self
 end
 
 function M:on_content_changed(...)

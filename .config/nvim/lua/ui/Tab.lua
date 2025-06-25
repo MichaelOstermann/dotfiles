@@ -25,6 +25,9 @@ function M:open()
 
     if not self.id then
         vim.cmd("tabnew")
+        -- Hack to prevent other plugins that close their own tabs via g<Tab> (eg. :Git commit) to go to this one,
+        -- instead of the one where all my code is.
+        vim.cmd("-tabmove")
         self.id = vim.api.nvim_get_current_tabpage()
     else
         vim.api.nvim_set_current_tabpage(self.id)

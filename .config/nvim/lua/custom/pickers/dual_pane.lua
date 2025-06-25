@@ -1,3 +1,4 @@
+local Title = require("ui.Title")
 local Tab = require("ui.Tab")
 local List = require("ui.List")
 local Float = require("ui.Float")
@@ -6,26 +7,36 @@ local Lsp = require("utils.Lsp")
 local effect = require("signals.effect")
 local batch = require("signals.batch")
 
+local preview_width = 90
+
 return function(options)
-    local results = List.create({
-        title = options.title,
-        border = "rounded",
-        focus = true,
+    local title = Title.create({
+        content = options.title,
         width = function()
-            return Float.max_width:get() - 90
+            return Float.max_width:get() - preview_width
+        end,
+    })
+
+    local results = List.create({
+        focus = true,
+        top = title.bottom,
+        width = function()
+            return Float.max_width:get() - preview_width
         end,
         render = options.render,
     })
 
     local preview = Preview.create({
-        border = "rounded",
-        left = results.right,
-        width = 90,
+        left = function()
+            return results.right:get() + 1
+        end,
+        width = preview_width - 1,
     })
 
     local tab = Tab.create()
 
     local pane = {
+        title = title,
         results = results,
         preview = preview,
         tab = tab,
@@ -45,6 +56,7 @@ return function(options)
     end
 
     tab:on_mount(function()
+        title:open()
         results:open()
         preview:open()
 
@@ -64,7 +76,11 @@ return function(options)
         preview:map("n", "<tab>", function()
             results:focus()
         end)
-        preview:map("n", "<esc>", function()
+
+        results:map("n", "<s-tab>", function()
+            preview:focus()
+        end)
+        preview:map("n", "<s-tab>", function()
             results:focus()
         end)
 

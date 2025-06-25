@@ -25,11 +25,11 @@ local pane = dual_pane({
             tsc.stop(task)
         end
 
-        pane.results.spinner:start()
+        pane.title.spinner:start()
 
         task = tsc.run({
             on_report = vim.schedule_wrap(function(report)
-                pane.results.spinner:stop()
+                pane.title.spinner:stop()
                 task = nil
                 local last_path = nil
                 local result = {}

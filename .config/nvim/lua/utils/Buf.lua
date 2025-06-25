@@ -65,8 +65,27 @@ function M:set_lines(row_start, row_end, lines)
     return self
 end
 
+function M:clear_lines()
+    vim.api.nvim_buf_set_lines(self.id, 0, -1, false, {})
+    return self
+end
+
+function M:highlight_line(name, line)
+    pcall(vim.hl.range, self.id, ns, name, { line - 1, 0 }, { line - 1, -1 })
+    return self
+end
+
 function M:highlight_range(name, range)
-    if not range:is_collapsed() then
+    if range:is_collapsed() then
+        pcall(
+            vim.hl.range,
+            self.id,
+            ns,
+            name,
+            { range:get_row_start() - 1, 0 },
+            { range:get_row_end() - 1, -1 }
+        )
+    else
         pcall(
             vim.hl.range,
             self.id,
@@ -86,6 +105,11 @@ end
 
 function M:is_loaded()
     return vim.api.nvim_buf_is_loaded(self.id)
+end
+
+function M:on_focus(cb)
+    au({ "BufEnter" }, cb, { buffer = self.id })
+    return self
 end
 
 function M:on_content_changed(cb)
