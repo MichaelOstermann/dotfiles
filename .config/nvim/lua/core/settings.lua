@@ -29,6 +29,7 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.showtabline = 0
 vim.opt.title = true
+vim.opt.fixendofline = false
 
 vim.opt.fillchars = {
     vert = "│",

@@ -18,8 +18,8 @@ expr("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']])
 expr("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']])
 
 -- Move around in msgarea
-map("c", "<m-left>", "<s-left>")
-map("c", "<m-right>", "<s-right>")
+map("c", "<m-b>", "<s-left>")
+map("c", "<m-f>", "<s-right>")
 
 -- Delete word in msgarea
 map("c", "<m-bs>", "<c-w>")
