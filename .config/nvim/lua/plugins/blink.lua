@@ -40,11 +40,13 @@ return {
             },
             sources = {
                 default = {
-                    "conventional_commits",
                     "lsp",
                     "path",
                     "snippets",
                     "buffer",
+                },
+                per_filetype = {
+                    gitcommit = { "conventional_commits" },
                 },
                 providers = {
                     snippets = {

@@ -24,6 +24,21 @@ function M:line_count()
     return vim.api.nvim_buf_line_count(self.id)
 end
 
+function M:set_buftype(buftype)
+    vim.api.nvim_set_option_value("buftype", buftype, { buf = self.id })
+    return self
+end
+
+function M:set_bufhidden(bufhidden)
+    vim.api.nvim_set_option_value("bufhidden", bufhidden, { buf = self.id })
+    return self
+end
+
+function M:set_buflisted(buflisted)
+    vim.api.nvim_set_option_value("buflisted", buflisted, { buf = self.id })
+    return self
+end
+
 function M:set_filetype(filetype)
     vim.api.nvim_set_option_value("filetype", filetype or "", { buf = self.id })
     return self

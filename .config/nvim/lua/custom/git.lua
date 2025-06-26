@@ -26,7 +26,7 @@ M.behind = computed(function()
     return tonumber(status:match("behind (%d+)")) or 0
 end)
 
-local refresh = async.batch(function()
+M.refresh = async.batch(function()
     return async.Promise
         .all({
             git.fetch_is_repo(),
@@ -44,10 +44,9 @@ local refresh = async.batch(function()
         end))
 end)
 
-au("VimEnter", refresh)
-au("FocusGained", refresh)
-au("BufWritePost", refresh)
-au("BufLeave", refresh, { pattern = "term://*" })
-au("User", refresh, { pattern = "MiniGitCommandDone" })
+au("VimEnter", M.refresh)
+au("FocusGained", M.refresh)
+au("BufWritePost", M.refresh)
+au("BufLeave", M.refresh, { pattern = "term://*" })
 
 return M

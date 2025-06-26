@@ -98,10 +98,10 @@ map("n", leader("df"), vim.diagnostic.goto_next, desc("Next Diagnostic"))
 map("n", leader("ds"), vim.diagnostic.goto_prev, desc("Prev Diagnostic"))
 
 -- Git
-map("n", leader("gg"), cmd("Git add %"), desc("Stage"))
-map("n", leader("gc"), cmd("Git commit"), desc("Commit"))
-map("n", leader("gA"), cmd("silent Git commit --amend --no-edit"), desc("Amend"))
-map("n", leader("gP"), cmd("Git push -u origin"), desc("Push"))
+map("n", leader("gg"), lazy_call("custom.stage", "run"), desc("Stage"))
+map("n", leader("gc"), lazy_call("custom.commit", "run"), desc("Commit"))
+map("n", leader("gA"), lazy_call("custom.amend", "run"), desc("Amend"))
+map("n", leader("gP"), lazy_call("custom.push", "run"), desc("Push"))
 
 -- Window
 map("n", leader("c"), "<c-w>c", desc("Close Window"))

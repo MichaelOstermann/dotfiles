@@ -6,6 +6,7 @@ M.special_filetypes = {
     "cmp_docs",
     "cmp_menu",
     "prompt",
+    "gitcommit",
     "NvimTree",
     "grug-far",
     "mason",

@@ -21,10 +21,6 @@ local function trim_trailing(str)
     return (string.gsub(str, "%s+$", ""))
 end
 
-local function starts_with(str, prefix)
-    return string.sub(str, 1, #prefix) == prefix
-end
-
 local prompt = Input.create({
     label = "Ripgrep ",
     focus = true,
@@ -141,7 +137,7 @@ local ripgrep = function(manual)
             end
 
             for _, line in ipairs(vim.split(data, "\n", { plain = true })) do
-                if starts_with(line, '{"type":"match"') then
+                if vim.startswith(line, '{"type":"match"') then
                     local ok, data =
                         pcall(vim.json.decode, line, { luanil = { object = true, array = true } })
                     if ok and data.type == "match" then

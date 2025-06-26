@@ -138,6 +138,21 @@ function M:set_config(options)
     return self
 end
 
+function M:set_buftype(...)
+    self:buf():set_buftype(...)
+    return self
+end
+
+function M:set_bufhidden(...)
+    self:buf():set_bufhidden(...)
+    return self
+end
+
+function M:set_buflisted(...)
+    self:buf():set_buflisted(...)
+    return self
+end
+
 function M:set_filetype(...)
     self:buf():set_filetype(...)
     return self
