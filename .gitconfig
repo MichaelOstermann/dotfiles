@@ -1,0 +1,13 @@
+[core]
+  editor = $EDITOR
+[credential]
+  helper = osxkeychain
+[diff]
+  algorithm = patience
+[push]
+  default = current
+[user]
+  name = "Michael Ostermann"
+  email = michaelostermann@me.com
+[init]
+  defaultBranch = main
