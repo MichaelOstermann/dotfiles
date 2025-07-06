@@ -141,6 +141,9 @@ local ripgrep = function(manual)
                     local ok, data =
                         pcall(vim.json.decode, line, { luanil = { object = true, array = true } })
                     if ok and data.type == "match" then
+                        if data.data.lines.bytes then
+                            goto continue
+                        end
                         for _, submatch in ipairs(data.data.submatches) do
                             count = count + 1
                             local path = data.data.path.text
@@ -159,6 +162,7 @@ local ripgrep = function(manual)
                                     :set_focus_col(submatch["end"]),
                             })
                         end
+                        ::continue::
                     end
                 end
             end
