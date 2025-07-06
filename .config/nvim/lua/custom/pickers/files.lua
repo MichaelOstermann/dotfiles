@@ -176,16 +176,6 @@ tab:on_mount(function()
         results:focus()
     end)
 
-    prompt:map("n", "<esc>", function()
-        prompt:clear_lines()
-    end)
-    results:map("n", "<esc>", function()
-        prompt:focus()
-    end)
-    preview:map("n", "<esc>", function()
-        prompt:focus()
-    end)
-
     effect(refresh)
 
     effect(function()
