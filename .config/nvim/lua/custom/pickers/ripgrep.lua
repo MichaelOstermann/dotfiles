@@ -98,14 +98,15 @@ local ripgrep = function(manual)
         "--fixed-strings",
         "--smart-case",
         "--hidden",
-        "--glob",
-        ignores,
     }
 
     if include ~= "" then
         table.insert(cmd, "--glob")
         table.insert(cmd, "{" .. include .. "}")
     end
+
+    table.insert(cmd, "--glob")
+    table.insert(cmd, ignores)
 
     table.insert(cmd, prompt)
 
