@@ -70,12 +70,9 @@ return {
                 json = {
                     validate = { enable = true },
                     format = { enable = false },
+                    schemas = require("schemastore").json.schemas(),
                 },
             },
-            on_new_config = function(config)
-                config.settings.json.schemas = config.settings.json.schemas or {}
-                vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
-            end,
         })
 
         vim.lsp.config("eslint", {
