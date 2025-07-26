@@ -56,11 +56,6 @@ local pane = dual_pane({
     end,
 })
 
-pane.tab:on_before_open(function()
-    win = vim.api.nvim_get_current_win()
-    buf = vim.api.nvim_get_current_buf()
-end)
-
 return {
     open = function()
         pane.tab:open()

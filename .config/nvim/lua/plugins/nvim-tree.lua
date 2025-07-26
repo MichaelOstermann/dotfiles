@@ -18,6 +18,9 @@ return {
                 width = 35,
                 signcolumn = "auto",
             },
+            sort = {
+                sorter = "case_sensitive",
+            },
             actions = {
                 open_file = { resize_window = false },
                 remove_file = { close_window = false },

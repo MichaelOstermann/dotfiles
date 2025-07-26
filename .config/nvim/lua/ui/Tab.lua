@@ -14,6 +14,7 @@ function M.create(options)
         callbacks = {
             on_mount = {},
             on_before_open = {},
+            on_open = {},
         },
     }, M)
 end
@@ -39,6 +40,10 @@ function M:open()
         end
         self.did_mount:set(true)
     end
+
+    for _, callback in ipairs(self.callbacks.on_open) do
+        callback(self)
+    end
 end
 
 function M:close()
@@ -59,13 +64,18 @@ function M:close_and_edit(path, range)
     return self
 end
 
+function M:on_before_open(callback)
+    table.insert(self.callbacks.on_before_open, callback)
+    return self
+end
+
 function M:on_mount(callback)
     table.insert(self.callbacks.on_mount, callback)
     return self
 end
 
-function M:on_before_open(callback)
-    table.insert(self.callbacks.on_before_open, callback)
+function M:on_open(callback)
+    table.insert(self.callbacks.on_open, callback)
     return self
 end
 

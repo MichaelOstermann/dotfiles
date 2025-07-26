@@ -18,6 +18,10 @@ function M.current()
     return M.of(vim.api.nvim_get_current_win())
 end
 
+function M:is_current()
+    return self.id == vim.api.nvim_get_current_win()
+end
+
 function M:buf()
     return Buf.of(vim.api.nvim_win_get_buf(self.id))
 end

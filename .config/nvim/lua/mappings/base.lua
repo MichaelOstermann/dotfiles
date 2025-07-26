@@ -40,6 +40,10 @@ map("v", "p", "P")
 map("n", "<bs>", '"_dl')
 map("v", "<bs>", '"_d')
 
+-- Disable option+tab
+map({ "n", "i", "v" }, "<m-tab>", "<nop>")
+map({ "n", "i", "v" }, "<m-s-tab>", "<nop>")
+
 -- Move lines up/down
 map("n", "<c-down>", "<Plug>GoNMLineDown")
 map("n", "<c-up>", "<Plug>GoNMLineUp")
