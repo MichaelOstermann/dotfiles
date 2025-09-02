@@ -100,13 +100,13 @@ local ripgrep = function(manual)
         "--hidden",
     }
 
+    table.insert(cmd, "--glob")
+    table.insert(cmd, ignores)
+
     if include ~= "" then
         table.insert(cmd, "--glob")
         table.insert(cmd, "{" .. include .. "}")
     end
-
-    table.insert(cmd, "--glob")
-    table.insert(cmd, ignores)
 
     table.insert(cmd, prompt)
 
