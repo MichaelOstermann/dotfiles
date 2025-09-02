@@ -31,9 +31,9 @@ function format_size() {
     if (( b < 1000 )); then
         echo "${b} B"
     elif (( b < 1000000 )); then
-        printf "%.2f KB\n" "$(bc <<< "$b/1000")"
+        printf "%.2f KB\n" "$(bc <<< "scale=2; $b/1000")"
     else
-        printf "%.2f MB\n" "$(bc <<< "$b/1000000")"
+        printf "%.2f MB\n" "$(bc <<< "scale=2; $b/1000000")"
     fi
 }
 
