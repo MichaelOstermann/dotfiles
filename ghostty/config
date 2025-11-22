@@ -1,0 +1,42 @@
+font-family = "Iosevka NF"
+font-size = 14
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+adjust-cell-height = 10%
+adjust-cursor-thickness = 130%
+macos-titlebar-style = "tabs"
+window-inherit-working-directory = true
+mouse-scroll-multiplier = 0.5
+mouse-hide-while-typing = true
+window-padding-x = 10
+
+keybind = shift+enter=text:\n
+keybind = option+backspace=text:\x1b\x7f
+# Disable splits
+keybind = ctrl+shift+d=unbind
+keybind = ctrl+shift+e=unbind
+
+background = 1F2029
+foreground = 6974a6
+selection-background = 2f3346
+selection-foreground = 6974a6
+cursor-color = D3B732
+cursor-text = 1F2029
+
+palette = 0=#2F3346
+palette = 1=#b05669
+palette = 2=#69884b
+palette = 3=#907149
+palette = 4=#6789d0
+palette = 5=#866fb1
+palette = 6=#51909f
+palette = 7=#555e86
+palette = 8=#2F3346
+palette = 9=#b05669
+palette = 10=#69884b
+palette = 11=#907149
+palette = 12=#6789d0
+palette = 13=#866fb1
+palette = 14=#51909f
+palette = 15=#555e86
