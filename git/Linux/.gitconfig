@@ -1,0 +1,14 @@
+[core]
+  editor = $EDITOR
+[credential]
+  credentialStore = secretservice
+  helper = /usr/bin/git-credential-manager
+[diff]
+  algorithm = patience
+[push]
+  default = current
+[user]
+  name = Michael Ostermann
+  email = michaelostermann@me.com
+[init]
+  defaultBranch = main
