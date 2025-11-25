@@ -1,0 +1,11 @@
+[mode]
+normal_main = { fg = "blue", bg = "reset", reversed = true }
+normal_alt = { fg = "black", bg = "blue", reversed = true }
+select_main = { fg = "yellow", bg = "reset", reversed = true }
+select_alt = { fg = "black", bg = "yellow", reversed = true }
+unset_main = { fg = "red", bg = "reset", reversed = true }
+unset_alt = { fg = "black", bg = "red", reversed = true }
+
+[status]
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }

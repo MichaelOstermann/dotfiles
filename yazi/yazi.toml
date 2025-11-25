@@ -1,0 +1,9 @@
+[mgr]
+sort_by = "natural"
+sort_sensitive = true
+sort_dir_first = true
+show_hidden = true
+ratio = [0, 1, 1]
+
+[preview]
+wrap = "yes"
