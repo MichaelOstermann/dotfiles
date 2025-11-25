@@ -1,0 +1,22 @@
+font=Iosevka NF 13
+border-radius=10
+padding=14,18
+width=350
+background-color=#1F2029
+text-color=#7481B9
+border-color=#3b405a
+progress-color=over #6789d0
+icons=0
+max-visible=3
+ignore-timeout=1
+default-timeout=6000
+
+[urgency=low]
+default-timeout=3000
+
+[urgency=normal]
+default-timeout=6000
+
+[urgency=high]
+default-timeout=0
+border-color=#b05669
