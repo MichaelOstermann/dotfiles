@@ -1,5 +1,4 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
-source $(brew --prefix asdf)/libexec/asdf.sh
 source $HOME/.zprezto/init.zsh
 source $HOME/.zprezto/modules/directory/init.zsh
 source $HOME/.zprezto/modules/completion/init.zsh
@@ -11,8 +10,8 @@ source $HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
 WORDCHARS=${WORDCHARS/./}
 # https://github.com/ajeetdsouza/zoxide/issues/491#issuecomment-1797118520
 compdef __zoxide_z=vim; compdef __zoxide_zi=vim;
-
 unsetopt BEEP
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
