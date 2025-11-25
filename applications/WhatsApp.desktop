@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=WhatsApp
+Exec=chromium --app=https://web.whatsapp.com --class=WhatsApp --app-id=WhatsApp --user-data-dir=.local/share/webapps/whatsapp
+Icon=whatsapp.png
+Type=Application
+Categories=Internet;

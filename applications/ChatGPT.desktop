@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=ChatGPT
+Exec=chromium --app=https://chat.openai.com --class=ChatGPT --app-id=ChatGPT --user-data-dir=.local/share/webapps/chatgpt
+Icon=chatgpt.png
+Type=Application
+Categories=Internet;

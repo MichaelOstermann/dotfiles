@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Slack
+Exec=chromium --app=https://diamonddoges.slack.com --class=Slack --app-id=Slack --user-data-dir=.local/share/webapps/diamonddoges
+Icon=slack.png
+Type=Application
+Categories=Internet;

@@ -1,0 +1,9 @@
+# ~/.local/share/applications/lock.desktop
+[Desktop Entry]
+Name=Lock Screen
+Comment=Lock the screen using swaylock
+Exec=hyprlock
+Icon=system-lock-screen
+Terminal=false
+Type=Application
+Categories=System;

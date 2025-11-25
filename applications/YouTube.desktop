@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=YouTube
+Exec=chromium --app=https://youtube.com --class=YouTube --app-id=YouTube --user-data-dir=.local/share/webapps/youtube
+Icon=youtube.png
+Type=Application
+Categories=Internet;

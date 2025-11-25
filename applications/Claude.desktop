@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Claude
+Exec=chromium --app=https://claude.ai --class=Claude --app-id=Claude --user-data-dir=.local/share/webapps/claude
+Icon=claude-ai.png
+Type=Application
+Categories=Internet;
