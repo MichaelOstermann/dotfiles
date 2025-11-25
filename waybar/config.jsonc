@@ -1,0 +1,84 @@
+{
+    "layer": "top",
+    "height": 38,
+    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "memory"],
+    "modules-center": ["wlr/taskbar"],
+    "modules-right": ["custom/updates", "network", "wireplumber", "clock#date", "clock#time"],
+    "clock#date": {
+        "interval": 60,
+        "tooltip": false,
+        "format": "{:%a %b %d}",
+        "on-click": "gnome-calendar"
+    },
+    "clock#time": {
+        "interval": 60,
+        "tooltip": false,
+        "format": "{:%H:%M}",
+        "on-click": "gnome-calendar"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "  {usage}%",
+        "tooltip": false,
+        "on-click": "resources -d -t applications"
+    },
+    "custom/temperature": {
+        "tooltip": false,
+        "exec": "sensors | awk '/Tctl:|Tdie:/ {printf \"%d\", $2; exit}'",
+        "interval": 5,
+        "format": "{text}°",
+        "on-click": "resources -d -t applications"
+    },
+    "memory": {
+        "tooltip": false,
+        "interval": 5,
+        "format": "  {used} {total}",
+        "on-click": "resources -d -t processes"
+    },
+	"custom/gpu-usage": {
+	    "tooltip": false,
+	    "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
+	    "interval": 5,
+	    "format": "  {text}%",
+	    "on-click": "resources -d -t processes"
+	},
+	"custom/gpu-temp": {
+	    "tooltip": false,
+	    "exec": "awk '{print $1/1000}' /sys/class/drm/card1/device/hwmon/hwmon*/temp1_input",
+	    "interval": 5,
+	    "format": "{text}°",
+	    "on-click": "resources -d -t processes"
+	},
+    "wireplumber": {
+        "format": "{volume}%",
+        "tooltip": false,
+        "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound",
+        "max-volume": 100,
+        "scroll-step": 0.2
+    },
+    "network": {
+        "tooltip": false,
+        "format-wifi": "{icon}",
+        "format-ethernet": "",
+        "format-disconnected": "{icon}",
+        "format-icons-disconnected": "󰤭",
+        "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center network"
+    },
+    "wlr/taskbar": {
+        "sort-by-app-id": true,
+        "on-click": "activate",
+        "ignore-list": ["Picture-in-Picture"]
+    },
+    "custom/updates": {
+        "format": "{icon}{text}",
+        "return-type": "json",
+        "format-icons": {
+            "has-updates": "󰮯 ",
+            "updated": ""
+        },
+        "exec-if": "which waybar-module-pacman-updates",
+        "exec": "waybar-module-pacman-updates --no-zero-output"
+    }
+}

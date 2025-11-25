@@ -1,0 +1,105 @@
+#waybar {
+    border: 0;
+    background-color: transparent;
+    color: #93a2d7;
+    font-family: "Iosevka NF";
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.modules-left, .modules-center, .modules-right {
+    padding: 4px 0;
+    margin: 0 3px;
+}
+
+label.module {
+    padding: 0 8px;
+    margin: 0 3px;
+    border-radius: 4px;
+}
+
+.modules-right label.module {
+    padding: 0 4px;
+    margin: 0 3px;
+    border-radius: 4px;
+}
+
+#taskbar button {
+    background-color: transparent;
+    border: 0;
+}
+
+#taskbar button.active {
+    background-color: #282a3a;
+    border: 0;
+}
+
+#custom-updates {
+    color: #b05669;
+}
+
+#custom-gpu-usage, #custom-gpu-temp {
+    color: #866fb1;
+}
+
+#custom-updates {
+    margin-right: 6px;
+}
+
+#memory {
+    color: #69884b;
+}
+
+#network {
+    margin-right: 14px;
+}
+
+#wireplumber {
+    margin-left: 0;
+}
+
+#network {
+    color: #6789d0;
+}
+
+#cpu, #custom-temperature {
+    color: #907149;
+}
+
+#cpu, #custom-gpu-usage {
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#custom-temperature, #custom-gpu-temp {
+    margin-left: 0;
+    padding-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#custom-temperature, #custom-gpu-temp {
+    padding-right: 4px;
+}
+
+
+tooltip {
+    background: #282a3a;
+    color: #93a2d7;
+    border: 1px solid #181921;
+    padding: 0px;
+    margin: 0px;
+}
+
+tooltip label {
+    color: #93a2d7;
+    padding: 0;
+    font-family: "Iosevka NF";
+    font-size: 17px;
+    font-weight: 500;
+}
+
+button:hover {
+    background: #2f3346;
+}
