@@ -1,0 +1,159 @@
+/***********************
+ *  Color Definitions  *
+ ***********************/
+@define-color accent_color #78aeed;
+@define-color accent_bg_color #3584e4;
+@define-color accent_fg_color #ffffff;
+@define-color destructive_color #ff7b63;
+@define-color destructive_bg_color #c01c28;
+@define-color destructive_fg_color #ffffff;
+@define-color success_color #8ff0a4;
+@define-color success_bg_color #26a269;
+@define-color success_fg_color #ffffff;
+@define-color warning_color #f8e45c;
+@define-color warning_bg_color #cd9309;
+@define-color warning_fg_color rgba(0, 0, 0, 0.8);
+@define-color error_color #ff7b63;
+@define-color error_bg_color #c01c28;
+@define-color error_fg_color #ffffff;
+@define-color window_bg_color #1f2029;
+@define-color window_fg_color #93a2d7;
+@define-color view_bg_color #1e1e1e;
+@define-color view_fg_color #93a2d7;
+@define-color headerbar_bg_color #1f2029;
+@define-color headerbar_fg_color #93a2d7;
+@define-color card_bg_color #282a3a;
+@define-color card_fg_color #93a2d7;
+@define-color dialog_bg_color #242424;
+@define-color dialog_fg_color #93a2d7;
+@define-color popover_bg_color #242424;
+@define-color popover_fg_color #93a2d7;
+
+/************************
+ *  Base App Structure  *
+ ************************/
+
+window,
+dialog,
+.background,
+.view,
+textview,
+treeview,
+list,
+notebook,
+notebook > header {
+    background-color: @window_bg_color;
+    color: @window_fg_color;
+}
+
+/***********************
+ *   Header / Toolbar  *
+ ***********************/
+
+headerbar,
+.titlebar,
+toolbar {
+    background-color: @headerbar_bg_color;
+    color: @headerbar_fg_color;
+    border-bottom: 1px solid shade(@headerbar_bg_color, 0.7);
+}
+
+headerbar button,
+.titlebar button {
+    background-color: transparent;
+    color: @headerbar_fg_color;
+}
+
+headerbar button:hover,
+.titlebar button:hover {
+    background-color: shade(@headerbar_bg_color, 1.2);
+}
+
+/***********************
+ *       Buttons       *
+ ***********************/
+
+button {
+    background-color: shade(@window_bg_color, 1.1);
+    color: @window_fg_color;
+    border: 1px solid shade(@window_bg_color, 1.3);
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+button:hover {
+    background-color: shade(@window_bg_color, 1.3);
+}
+
+button:active {
+    background-color: shade(@window_bg_color, 0.9);
+}
+
+/***********************
+ *        Entry        *
+ ***********************/
+
+entry {
+    background-color: shade(@window_bg_color, 1.1);
+    color: @window_fg_color;
+    border: 1px solid shade(@window_bg_color, 1.4);
+    border-radius: 4px;
+}
+
+entry:focus {
+    border-color: @accent_bg_color;
+}
+
+/***********************
+ *        Lists        *
+ ***********************/
+
+list,
+treeview {
+    background-color: @view_bg_color;
+    color: @view_fg_color;
+}
+
+/***********************
+ *       Dialogs       *
+ ***********************/
+
+dialog {
+    background-color: @dialog_bg_color;
+    color: @dialog_fg_color;
+}
+
+/***********************
+ *      Popovers       *
+ ***********************/
+
+popover {
+    background-color: @popover_bg_color;
+    color: @popover_fg_color;
+    border: 1px solid shade(@popover_bg_color, 1.2);
+}
+
+/***********************
+ *     Scrollbars      *
+ ***********************/
+
+scrollbar slider {
+    background-color: shade(@window_bg_color, 1.4);
+    border-radius: 4px;
+}
+
+scrollbar slider:hover {
+    background-color: shade(@window_bg_color, 1.6);
+}
+
+/***********************
+ *     Accent Items    *
+ ***********************/
+
+button.suggested-action,
+button:checked,
+progress,
+scale highlight {
+    background-color: @accent_bg_color;
+    color: @accent_fg_color;
+}
