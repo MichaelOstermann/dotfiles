@@ -2,6 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "saghen/blink.cmp",
+        "mrjones2014/codesettings.nvim",
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
     },
@@ -12,7 +13,11 @@ return {
             require("lsp-file-operations").default_capabilities()
         )
 
-        -- TODO is this before init?
+        local before_init = function(_, config)
+            local codesettings = require("codesettings")
+            config = codesettings.with_local_settings(config.name, config)
+        end
+
         local on_init = function(client)
             if client and client.server_capabilities then
                 client.server_capabilities.semanticTokensProvider = nil
@@ -21,6 +26,7 @@ return {
 
         local opts = {
             capabilities = capabilities,
+            before_init = before_init,
             on_init = on_init,
         }
 
@@ -30,6 +36,7 @@ return {
 
         vim.lsp.config("vtsls", {
             capabilities = capabilities,
+            before_init = before_init,
             on_init = on_init,
             settings = {
                 typescript = {
@@ -46,6 +53,7 @@ return {
 
         vim.lsp.config("rust_analyzer", {
             capabilities = capabilities,
+            before_init = before_init,
             on_init = on_init,
             settings = {
                 ["rust-analyzer"] = {
@@ -66,7 +74,6 @@ return {
 
         vim.lsp.config("jsonls", {
             capabilities = capabilities,
-            on_init = on_init,
             settings = {
                 json = {
                     validate = { enable = true },
