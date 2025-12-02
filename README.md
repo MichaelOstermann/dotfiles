@@ -6,6 +6,7 @@ ln -s $HOME/Development/dotfiles/fish $HOME/.config
 ln -s $HOME/Development/dotfiles/niri $HOME/.config
 ln -s $HOME/Development/dotfiles/hypr $HOME/.config
 ln -s $HOME/Development/dotfiles/mako $HOME/.config
+ln -s $HOME/Development/dotfiles/nvim $HOME/.config
 ln -s $HOME/Development/dotfiles/yazi $HOME/.config
 ln -s $HOME/Development/dotfiles/zed $HOME/.config
 ln -s $HOME/Development/dotfiles/fuzzel $HOME/.config
