@@ -12,6 +12,7 @@ application/x-extension-xht=firefox.desktop
 image/png=org.gnome.Loupe.desktop
 text/vnd.trolltech.linguist=dev.zed.Zed.desktop
 application/json=dev.zed.Zed.desktop
+application/x-tiled-tsx=dev.zed.Zed.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;zen.desktop;
@@ -27,3 +28,4 @@ application/x-extension-xht=zen.desktop;firefox.desktop;
 image/png=firefox.desktop;org.gnome.Loupe.desktop;
 text/vnd.trolltech.linguist=dev.zed.Zed.desktop;
 application/json=dev.zed.Zed.desktop;
+application/x-tiled-tsx=dev.zed.Zed.desktop;
