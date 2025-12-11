@@ -95,16 +95,7 @@ return {
                     end,
                     "fallback",
                 },
-                ["<CR>"] = {
-                    function()
-                        if require("minuet.virtualtext").action.is_visible() then
-                            require("minuet.virtualtext").action.accept()
-                            return true
-                        end
-                    end,
-                    "accept",
-                    "fallback",
-                },
+                ["<CR>"] = { "accept", "fallback" },
                 ["<C-a>"] = {
                     function()
                         require("minuet.virtualtext").action.next()
