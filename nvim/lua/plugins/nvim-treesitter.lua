@@ -56,7 +56,5 @@ return {
                 enable_close = false,
             },
         })
-
-        require("mdx").setup()
     end,
 }
