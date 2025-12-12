@@ -398,6 +398,8 @@ binds {
     XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
     XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
     XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioForward allow-when-locked=true { spawn "playerctl" "position" "5+"; }
+    XF86AudioRewind allow-when-locked=true { spawn "playerctl" "position" "5-"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
