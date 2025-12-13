@@ -1,13 +1,13 @@
 {
     "layer": "top",
     "height": 38,
-    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "memory"],
+    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "memory", "disk", "network#speeds"],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["custom/updates", "network", "wireplumber", "clock#date", "clock#time"],
+    "modules-right": ["custom/updates", "network#connection", "wireplumber", "clock#date", "clock#time"],
     "clock#date": {
         "interval": 60,
         "tooltip": false,
-        "format": "{:%a %b %d}",
+        "format": "{:%a %d.%m.%y}",
         "on-click": "gnome-calendar"
     },
     "clock#time": {
@@ -18,7 +18,7 @@
     },
     "cpu": {
         "interval": 5,
-        "format": "  {usage}%",
+        "format": "{usage}%",
         "tooltip": false,
         "on-click": "resources -d -t applications"
     },
@@ -26,20 +26,19 @@
         "tooltip": false,
         "exec": "sensors | awk '/Tctl:|Tdie:/ {printf \"%d\", $2; exit}'",
         "interval": 5,
-        "format": "{text}°",
-        "on-click": "resources -d -t applications"
+        "format": "{text}°"
     },
     "memory": {
         "tooltip": false,
         "interval": 5,
-        "format": "  {used} {total}",
+        "format": "{used}GiB {total}GiB",
         "on-click": "resources -d -t processes"
     },
 	"custom/gpu-usage": {
 	    "tooltip": false,
 	    "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
 	    "interval": 5,
-	    "format": "  {text}%",
+	    "format": "{text}%",
 	    "on-click": "resources -d -t processes"
 	},
 	"custom/gpu-temp": {
@@ -49,6 +48,13 @@
 	    "format": "{text}°",
 	    "on-click": "resources -d -t processes"
 	},
+    "disk": {
+        "format": "{used} {percentage_used}%"
+    },
+    "network#speeds": {
+        "interval": 3,
+        "format": "{bandwidthDownBytes} {bandwidthUpBytes}"
+    },
     "wireplumber": {
         "format": "{volume}%",
         "tooltip": false,
@@ -56,7 +62,7 @@
         "max-volume": 100,
         "scroll-step": 0.2
     },
-    "network": {
+    "network#connection": {
         "tooltip": false,
         "format-wifi": "{icon}",
         "format-ethernet": "",

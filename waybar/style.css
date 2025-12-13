@@ -7,6 +7,11 @@
     font-size: 17px;
 }
 
+.modules-left {
+    font-size: 16px;
+    color: #6e7bb0;
+}
+
 .modules-left, .modules-center, .modules-right {
     padding: 4px 0;
     margin: 0 3px;
@@ -36,34 +41,15 @@ label.module {
 
 #custom-updates {
     color: #b05669;
-}
-
-#custom-gpu-usage, #custom-gpu-temp {
-    color: #866fb1;
-}
-
-#custom-updates {
     margin-right: 6px;
 }
 
-#memory {
-    color: #69884b;
-}
-
-#network {
+#network.connection {
     margin-right: 14px;
 }
 
 #wireplumber {
     margin-left: 0;
-}
-
-#network {
-    color: #6789d0;
-}
-
-#cpu, #custom-temperature {
-    color: #907149;
 }
 
 #cpu, #custom-gpu-usage {
@@ -82,7 +68,6 @@ label.module {
 #custom-temperature, #custom-gpu-temp {
     padding-right: 4px;
 }
-
 
 tooltip {
     background: #282a3a;
