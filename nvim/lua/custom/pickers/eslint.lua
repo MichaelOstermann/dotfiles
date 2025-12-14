@@ -86,7 +86,7 @@ local pane = dual_pane({
                                     type = "result",
                                     path = path,
                                     severity = msg.severity,
-                                    message = msg.message,
+                                    message = msg.message:gsub("\n+", ""),
                                     ruleId = msg.ruleId,
                                 }
 
