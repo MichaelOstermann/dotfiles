@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "height": 38,
-    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "memory", "disk", "network#speeds"],
+    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "custom/memory", "custom/disk", "network#speeds"],
     "modules-center": ["wlr/taskbar"],
     "modules-right": ["custom/updates", "network#connection", "wireplumber", "clock#date", "clock#time"],
     "clock#date": {
@@ -28,10 +28,11 @@
         "interval": 5,
         "format": "{text}°"
     },
-    "memory": {
+    "custom/memory": {
         "tooltip": false,
         "interval": 5,
-        "format": "{used}GiB {total}GiB",
+        "exec": "awk '/MemTotal:/ {total=$2/1000000} /MemAvailable:/ {avail=$2/1000000} END {used=total-avail; printf \"%.1fGB %.0f%%\", used, (used/total)*100}' /proc/meminfo",
+        "format": "{}",
         "on-click": "resources -d -t processes"
     },
 	"custom/gpu-usage": {
@@ -48,8 +49,10 @@
 	    "format": "{text}°",
 	    "on-click": "resources -d -t processes"
 	},
-    "disk": {
-        "format": "{used} {percentage_used}%"
+    "custom/disk": {
+        "interval": 30,
+        "exec": "df -B1 / | awk 'NR==2 {printf \"%.0fGB %d%%\", $3/1000000000, ($3/$2)*100}'",
+        "format": "{}"
     },
     "network#speeds": {
         "interval": 3,
