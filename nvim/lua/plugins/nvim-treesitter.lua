@@ -42,6 +42,7 @@ return {
                 "toml",
                 "tsx",
                 "typescript",
+                "typst",
                 "vue",
                 "xml",
                 "yaml",
