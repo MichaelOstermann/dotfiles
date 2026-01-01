@@ -77,17 +77,17 @@ map("n", "<c-p>", lazy_call("illuminate", "goto_prev_reference"))
 
 -- Close terminals with q
 au("FileType", function(args)
-	vim.keymap.set("n", "q", require("FTerm").close, { buffer = args.buf })
+    vim.keymap.set("n", "q", require("FTerm").close, { buffer = args.buf })
 end, { pattern = "FTerm" })
 
 -- Frequently used stuff
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
 map("n", leader("R"), lazy_call("grug-far", "open"), desc("Search & Replace"))
 map("n", leader("h"), function()
-	vim.lsp.buf.hover({
-		border = "rounded",
-		silent = true,
-	})
+    vim.lsp.buf.hover({
+        border = "rounded",
+        silent = true,
+    })
 end, desc("Hover"))
 map("n", leader("s"), lazy_call("utils.buffer", "format_and_save"), desc("Format & Save"))
 map("n", leader("j"), lazy_call("treesj", "toggle"), desc("Split/Join"))
@@ -95,7 +95,7 @@ map("n", leader("t"), lazy_call("FTerm", "open"), desc("Terminal"))
 map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
 map("v", leader("R"), lazy_call("grug-far", "with_visual_selection"), desc("Search & Replace"))
 map("n", leader("y"), function()
-	vim.fn.setreg("+", vim.fn.expand("%:p:."))
+    vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
 
 -- Flash
@@ -123,10 +123,10 @@ map("n", leader("v"), cmd("vsplit"), desc("Vertical Split"))
 map("n", leader("="), "<c-w>=", desc("Equalize Size"))
 map("n", leader("+"), cmd("vertical resize +1"), desc("Increase Size"))
 map("n", leader("-"), cmd("vertical resize -1"), desc("Decrease Size"))
-map("n", leader("<left>"), "<c-w>h", desc("Go Left"))
-map("n", leader("<down>"), "<c-w>j", desc("Go Down"))
-map("n", leader("<up>"), "<c-w>k", desc("Go Up"))
-map("n", leader("<right>"), "<c-w>l", desc("Go Right"))
+map("n", leader("w<left>"), "<c-w>h", desc("Go Left"))
+map("n", leader("w<down>"), "<c-w>j", desc("Go Down"))
+map("n", leader("w<up>"), "<c-w>k", desc("Go Up"))
+map("n", leader("w<right>"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
 map("n", leader("fg"), lazy_call("custom.pickers.ripgrep", "open"), desc("Grep"))
@@ -136,6 +136,7 @@ map("n", leader("ff"), lazy_call("custom.pickers.files", "open"), desc("Files"))
 map("n", leader("fi"), lazy_call("custom.pickers.implementations", "open"), desc("Implementations"))
 map("n", leader("fd"), lazy_call("custom.pickers.definitions", "open"), desc("Definitions"))
 map("n", leader("fr"), lazy_call("custom.pickers.references", "open"), desc("References"))
+map("n", leader("fm"), lazy_call("custom.pickers.mru", "open"), desc("MRU"))
 
 -- Multicursor
 map("v", "I", lazy_call("multicursor-nvim", "insertVisual"))
@@ -152,11 +153,11 @@ map("v", "<leader>ms", lazy_call("multicursor-nvim", "splitCursors"), desc("Spli
 map("v", "<leader>mm", lazy_call("multicursor-nvim", "matchCursors"), desc("Match"))
 
 vim.keymap.set("n", "<esc>", function()
-	local mc = require("multicursor-nvim")
+    local mc = require("multicursor-nvim")
 
-	if not mc.cursorsEnabled() then
-		mc.enableCursors()
-	elseif mc.hasCursors() then
-		mc.clearCursors()
-	end
+    if not mc.cursorsEnabled() then
+        mc.enableCursors()
+    elseif mc.hasCursors() then
+        mc.clearCursors()
+    end
 end)
