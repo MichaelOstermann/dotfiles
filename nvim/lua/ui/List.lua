@@ -11,10 +11,14 @@ function M.create(options)
 
     float.data = signal({})
 
+    float.content = computed(function()
+        return options.filter and options.filter(float.data:get()) or float.data:get()
+    end)
+
     float.scroll_top = signal(1)
 
     float.count = computed(function()
-        return #float.data:get()
+        return #float.content:get()
     end)
 
     float.empty_lines = computed(function()
@@ -26,7 +30,7 @@ function M.create(options)
     end)
 
     float.selected = computed(function()
-        local data = float.data:get()
+        local data = float.content:get()
         local row = float.row:get()
         return data[row]
     end)
@@ -39,7 +43,7 @@ function M.create(options)
         end)
 
         effect(function()
-            local data = float.data:get()
+            local data = float.content:get()
             local count = float.count:get()
 
             float:set_modifiable(true)

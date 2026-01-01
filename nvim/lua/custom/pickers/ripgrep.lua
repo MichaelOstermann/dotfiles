@@ -196,11 +196,6 @@ tab:on_mount(function()
     include:open()
     results:open()
     preview:open()
-    vim.cmd("startinsert!")
-
-    prompt:on_focus(function()
-        vim.cmd("startinsert!")
-    end)
 
     include:on_focus(function()
         vim.cmd("startinsert!")
