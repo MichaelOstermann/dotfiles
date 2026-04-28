@@ -1,6 +1,6 @@
 format = """
 $directory\
-${custom.git_status_simplified}\
+$git_status\
 $fill\
 $time\
 $line_break\
@@ -24,8 +24,14 @@ style = 'white'
 success_symbol = "[](bright-white)"
 error_symbol = "[](bright-red)"
 
-[custom.git_status_simplified]
-when = 'test -n "$(git status --porcelain -u)"'
-shell = ["bash", "--norc", "--noprofile"]
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
 style = 'yellow'
-format = '[*]($style)'
+ahead = '[ ](green)'
+behind = '[ ](red)'
+diverged = '[ ](red)'
+modified = ' '
+renamed = ' '
+deleted = ' '
+untracked = ' '
+staged = ' '

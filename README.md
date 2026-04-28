@@ -18,4 +18,5 @@ ln -s $HOME/Development/dotfiles/mimeapps.list $HOME/.config
 ln -s $HOME/Development/dotfiles/applications $HOME/.local/share
 ln -s $HOME/Development/dotfiles/starship/starship.toml $HOME/.config
 ln -s $HOME/Development/dotfiles/git/$(uname -s)/.gitconfig $HOME/.config
+ln -s $HOME/Development/dotfiles/opencode/opencode.json $HOME/.config/opencode
 ```

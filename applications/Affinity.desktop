@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Affinity
+Comment=A powerful affinity software.
+Icon=/home/michael/.local/share/icons/Affinity.svg
+Path=/home/michael/.AffinityLinux
+Exec=sh -c 'env WINEPREFIX=/home/michael/.AffinityLinux DXVK_ASYNC=0 DXVK_CONFIG="d3d9.deferSurfaceCreation = True; d3d9.shaderModel = 1" /home/michael/.AffinityLinux/ElementalWarriorWine/bin/wine "/home/michael/.AffinityLinux/drive_c/Program Files/Affinity/Affinity/Affinity.exe"'
+Terminal=false
+Type=Application
+Categories=Graphics;
+StartupNotify=true
+StartupWMClass=affinity.exe

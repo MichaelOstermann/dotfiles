@@ -26,8 +26,8 @@ map("c", "<m-bs>", "<c-w>")
 map("c", "<c-bs>", "<c-w>")
 
 -- Horizontal Scrolling
-map({ "n", "i", "v" }, "<S-ScrollWheelLeft>", "6zh")
-map({ "n", "i", "v" }, "<S-ScrollWheelRight>", "6zl")
+map({ "n", "i", "v" }, "<S-ScrollWheelUp>", "6zh")
+map({ "n", "i", "v" }, "<S-ScrollWheelDown>", "6zl")
 
 -- Vertical Scrolling
 map("n", "<c-e>", "6<c-e>")

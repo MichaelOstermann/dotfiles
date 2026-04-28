@@ -31,9 +31,19 @@ return {
         }
 
         vim.lsp.config("html", opts)
-        vim.lsp.config("tailwindcss", opts)
         vim.lsp.config("tinymist", opts)
         vim.lsp.config("zls", opts)
+
+        vim.lsp.config("tailwindcss", {
+            capabilities = capabilities,
+            before_init = before_init,
+            on_init = on_init,
+            settings = {
+                tailwindCSS = {
+                    colorDecorators = false,
+                },
+            },
+        })
 
         vim.lsp.config("vtsls", {
             capabilities = capabilities,

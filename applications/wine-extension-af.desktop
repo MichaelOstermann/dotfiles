@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Affinity
+MimeType=application/af;
+Exec=env WINEPREFIX="/home/michael/.AffinityLinux" wine start /ProgIDOpen Affinity.Affinity %f
+NoDisplay=true
+StartupNotify=true
+Icon=14A8_Affinity.0
