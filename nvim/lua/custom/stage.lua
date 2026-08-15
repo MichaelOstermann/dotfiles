@@ -1,6 +1,3 @@
-local Buf = require("utils.Buf")
-local git = require("custom.git")
-
 local M = {}
 
 function M.run()
@@ -11,7 +8,6 @@ function M.run()
             if result.stderr then
                 vim.notify(vim.trim(result.stderr), vim.log.levels.ERROR)
             end
-            git.refresh()
         end)
     )
 end

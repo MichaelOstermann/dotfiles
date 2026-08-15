@@ -1,9 +1,23 @@
 {
     "layer": "top",
     "height": 38,
-    "modules-left": ["cpu", "custom/temperature", "custom/gpu-usage", "custom/gpu-temp", "custom/memory", "custom/disk", "network#speeds"],
-    "modules-center": ["wlr/taskbar"],
-    "modules-right": ["custom/updates", "network#connection", "wireplumber", "clock#date", "clock#time"],
+    "modules-left": [
+        "cpu",
+        "custom/memory",
+        "custom/disk",
+        "custom/claude-usage"
+    ],
+    "modules-center": [
+        "wlr/taskbar"
+    ],
+    "modules-right": [
+        "custom/notifications",
+        "custom/pacman",
+        "custom/weather",
+        "wireplumber",
+        "clock#date",
+        "clock#time"
+    ],
     "clock#date": {
         "interval": 60,
         "tooltip": false,
@@ -22,7 +36,7 @@
         "tooltip": false,
         "on-click": "resources -d -t applications"
     },
-    "custom/temperature": {
+    "custom/cpu-temp": {
         "tooltip": false,
         "exec": "sensors | awk '/Tctl:|Tdie:/ {printf \"%d\", $2; exit}'",
         "interval": 5,
@@ -80,14 +94,36 @@
         "on-click": "activate",
         "ignore-list": ["Picture-in-Picture"]
     },
-    "custom/updates": {
-        "format": "{icon}{text}",
+    "custom/pacman": {
+        "format": "{icon}",
         "return-type": "json",
         "format-icons": {
-            "has-updates": "󰮯 ",
+            "has-updates": "󰮯",
             "updated": ""
         },
-        "exec-if": "which waybar-module-pacman-updates",
-        "exec": "waybar-module-pacman-updates --no-zero-output"
+        "interval": 1800,
+        "exec": "~/Development/dotfiles/scripts/waybar-pacman-updates.sh",
+        "on-click": "ghostty -e paru -Syu"
+    },
+    "custom/notifications": {
+        "format": "{text}",
+        "return-type": "json",
+        "hide-empty-text": true,
+        "interval": 5,
+        "exec": "~/Development/dotfiles/scripts/waybar-notifications.sh",
+        "on-click": "~/Development/dotfiles/scripts/waybar-notifications-clear.sh",
+        "on-click-right": "~/Development/dotfiles/scripts/waybar-notifications-clear.sh --dismiss"
+    },
+    "custom/weather": {
+        "format": "{text}",
+        "return-type": "json",
+        "interval": 1800,
+        "exec": "~/Development/dotfiles/scripts/waybar-weather.ts"
+    },
+    "custom/claude-usage": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/Development/dotfiles/scripts/waybar-claude-usage.ts"
     }
 }

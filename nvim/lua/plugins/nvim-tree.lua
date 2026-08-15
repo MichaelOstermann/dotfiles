@@ -57,8 +57,6 @@ return {
             },
             on_attach = function(bufnr)
                 local api = require("nvim-tree.api")
-                local git = require("utils.git")
-                local n = require("nvim-tree.api").events
 
                 local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
@@ -95,15 +93,6 @@ return {
                 vim.keymap.set("n", "m", api.marks.toggle, opts)
                 vim.keymap.set("n", "bd", api.marks.bulk.trash, opts)
                 vim.keymap.set("n", "bm", api.marks.bulk.move, opts)
-
-                -- Refresh statusbars when I do stuff in nvimtree
-                for _, event in ipairs({
-                    n.Event.NodeRenamed,
-                    n.Event.FileCreated,
-                    n.Event.FileRemoved,
-                }) do
-                    n.subscribe(event, git.refresh)
-                end
             end,
         },
     },

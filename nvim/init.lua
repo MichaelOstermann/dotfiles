@@ -11,7 +11,6 @@ require("core.settings")
 
 require("custom.autounload")
 require("custom.diagnostics")
-require("custom.git")
 require("custom.mru")
 require("custom.signature")
 require("custom.statusline")

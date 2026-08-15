@@ -15,5 +15,7 @@ end
 set -gx EDITOR nvim
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Ctrl+Backspace deletes up to the previous "/" instead of the whole path,
+    # matching Ctrl+W's default behaviour.
+    bind ctrl-backspace backward-kill-path-component
 end

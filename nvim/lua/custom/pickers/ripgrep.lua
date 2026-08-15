@@ -108,6 +108,7 @@ local ripgrep = function(manual)
         table.insert(cmd, "{" .. include .. "}")
     end
 
+    table.insert(cmd, "--")
     table.insert(cmd, prompt)
 
     job = vim.system(cmd, {

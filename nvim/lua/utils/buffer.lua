@@ -4,10 +4,12 @@ local M = {}
 M.format_and_save = function()
     local bufnr = vim.api.nvim_get_current_buf()
 
-    if not vim.tbl_isempty(vim.lsp.get_clients({
-        bufnr = bufnr,
-        name = "eslint",
-    })) then
+    if
+        not vim.tbl_isempty(vim.lsp.get_clients({
+            bufnr = bufnr,
+            name = "eslint",
+        }))
+    then
         vim.cmd("LspEslintFixAll")
         vim.cmd("w")
         return

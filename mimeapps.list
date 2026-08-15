@@ -14,8 +14,11 @@ text/vnd.trolltech.linguist=dev.zed.Zed.desktop
 application/json=dev.zed.Zed.desktop
 application/x-tiled-tsx=dev.zed.Zed.desktop
 application/pdf=org.gnome.Papers.desktop
-x-scheme-handler/slack=Slack.desktop
+x-scheme-handler/slack=slack.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+image/gif=org.gnome.Loupe.desktop
+image/webp=org.gnome.Loupe.desktop
+image/jpeg=org.gnome.Loupe.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;zen.desktop;
@@ -33,3 +36,7 @@ text/vnd.trolltech.linguist=dev.zed.Zed.desktop;
 application/json=dev.zed.Zed.desktop;
 application/x-tiled-tsx=dev.zed.Zed.desktop;
 application/pdf=org.gnome.Papers.desktop;
+image/gif=org.gnome.Loupe.desktop;
+image/webp=org.gnome.Loupe.desktop;
+video/mpeg=dev.zed.Zed.desktop;
+image/jpeg=org.gnome.Loupe.desktop;

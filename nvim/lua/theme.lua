@@ -273,10 +273,6 @@ hl("@variable.parameter", { fg = yellow })
 js("@constructor", { link = "Function" })
 js("@tag", { link = "Function" })
 
--- Flash
-hl("FlashMatch", { fg = fg, bg = fg_50 })
-hl("FlashCurrent", { fg = fg, bg = fg_50 })
-
 -- Mason
 hl("MasonError", { fg = red })
 hl("MasonHeader", { fg = fg })

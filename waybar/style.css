@@ -23,10 +23,11 @@ label.module {
     border-radius: 4px;
 }
 
+.modules-left label.module,
 .modules-right label.module {
-    padding: 0 4px;
-    margin: 0 3px;
+    padding: 0 12px;
     border-radius: 4px;
+    background-color: #1F2029;
 }
 
 #taskbar button {
@@ -39,34 +40,29 @@ label.module {
     border: 0;
 }
 
-#custom-updates {
+#custom-pacman {
     color: #b05669;
-    margin-right: 6px;
+    padding-right: 16px;
 }
 
-#network.connection {
-    margin-right: 14px;
+#custom-notifications.unread {
+    color: #b05669;
 }
 
-#wireplumber {
-    margin-left: 0;
+#custom-claude-usage.warning {
+    color: #907149;
 }
 
-#cpu, #custom-gpu-usage {
-    margin-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+#custom-claude-usage.critical {
+    color: #b05669;
 }
 
-#custom-temperature, #custom-gpu-temp {
-    margin-left: 0;
-    padding-left: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+#custom-weather {
+    padding-right: 6px;
 }
 
-#custom-temperature, #custom-gpu-temp {
-    padding-right: 4px;
+#custom-notifications {
+    padding-right: 16px;
 }
 
 tooltip {
@@ -83,8 +79,4 @@ tooltip label {
     font-family: "Iosevka NF";
     font-size: 17px;
     font-weight: 500;
-}
-
-button:hover {
-    background: #2f3346;
 }

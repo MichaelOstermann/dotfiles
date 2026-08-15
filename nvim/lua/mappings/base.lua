@@ -98,9 +98,6 @@ map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
 end, desc("Copy Path"))
 
--- Flash
-map("n", "j", lazy_call("flash", "jump"))
-
 -- NvimTree
 map("n", leader("e"), cmd("NvimTreeOpen"), desc("Focus Explorer"))
 map("n", leader("E"), cmd("NvimTreeFindFile"), desc("Focus File"))

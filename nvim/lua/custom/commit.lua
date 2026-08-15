@@ -1,5 +1,4 @@
 local Buf = require("utils.Buf")
-local git = require("custom.git")
 local map = require("utils.mappings").map
 
 local M = {}
@@ -50,7 +49,6 @@ function M.run()
                         local lvl = result.stderr and vim.log.levels.ERROR or vim.log.levels.INFO
                         vim.notify(msg, lvl)
                         vim.cmd("tabclose")
-                        git.refresh()
                     end)
                 )
             end, { buffer = true })

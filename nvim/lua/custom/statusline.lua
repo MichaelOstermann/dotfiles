@@ -2,31 +2,6 @@ local effect = require("signals.effect")
 local computed = require("signals.computed")
 local signals = require("utils.signals")
 local statusline = require("utils.statusline")
-local git = require("custom.git")
-
-local git_branch = statusline.component(function()
-    local branch = git.branch:get()
-    if branch == "" then
-        return
-    end
-    return { " ", { branch, { WarningMsg = git.is_dirty:get() } } }
-end)
-
-local git_ahead = statusline.component(function()
-    local ahead = git.ahead:get()
-    if ahead == 0 then
-        return
-    end
-    return { " ", { "+" .. git.ahead:get(), "String" } }
-end)
-
-local git_behind = statusline.component(function()
-    local behind = git.behind:get()
-    if behind == 0 then
-        return
-    end
-    return { " ", { "-" .. git.behind:get(), "ErrorMsg" } }
-end)
 
 local pos = statusline.component(function()
     return { " ", signals.row:get(), ":", signals.col:get() + 1 }
@@ -37,9 +12,6 @@ local lines = statusline.component(function()
 end)
 
 local right = statusline.components({
-    git_branch,
-    git_ahead,
-    git_behind,
     pos,
     lines,
 })

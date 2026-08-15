@@ -1,0 +1,5 @@
+# One app name per line (exact match, case-sensitive).
+# Notifications from these apps won't be counted or logged.
+# Lines starting with # are ignored.
+niri
+notify-send

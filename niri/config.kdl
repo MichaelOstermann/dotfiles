@@ -272,6 +272,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+spawn-at-startup "/home/michael/Development/dotfiles/scripts/mako-unread-watch.ts"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/gsd-rfkill"
 spawn-sh-at-startup "wlsunset -l 48 -L 16 -T 4200 -t 2700"
@@ -604,7 +605,7 @@ binds {
     Mod+Shift+1 { spawn-sh "hyprpicker -a"; }
     Mod+Shift+2 { spawn-sh "hyprpicker -f rgb -a"; }
     Mod+Shift+4 { screenshot; }
-    Mod+Shift+5 { spawn-sh "grim \"$HOME/Pictures/Screenshots/Screenshot from $(date +%Y-%m-%d) $(date +%H-%M-%S).png\" && flatpak run be.alexandervanhee.gradia"; }
+    Mod+Shift+5 { spawn "/home/michael/Development/dotfiles/scripts/toggle-recording.sh"; }
     // Ctrl+Print { screenshot-screen; }
     // Alt+Print { screenshot-window; }
 
