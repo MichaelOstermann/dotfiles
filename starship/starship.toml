@@ -1,5 +1,6 @@
 format = """
 $directory\
+${custom.git_dirty}\
 $git_status\
 $fill\
 $time\
@@ -25,13 +26,13 @@ success_symbol = "[](bright-white)"
 error_symbol = "[](bright-red)"
 
 [git_status]
-format = '([$all_status$ahead_behind]($style) )'
-style = 'yellow'
+format = '([$ahead_behind]($style) )'
 ahead = '[ ](green)'
 behind = '[ ](red)'
 diverged = '[ ](red)'
-modified = ' '
-renamed = ' '
-deleted = ' '
-untracked = ' '
-staged = ' '
+
+[custom.git_dirty]
+require_repo = true
+shell = ['sh']
+when = 'test -n "$(git status --porcelain)"'
+format = '[ ](yellow)'
