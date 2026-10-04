@@ -17,9 +17,6 @@ return {
                 { mode = "n", keys = "<Leader>g", desc = "+git" },
                 { mode = "n", keys = "<Leader>m", desc = "+multicursor" },
                 { mode = "n", keys = "<Leader>d", desc = "+diagnostic" },
-
-                { mode = "n", keys = "<Leader>+", postkeys = "<Leader>" },
-                { mode = "n", keys = "<Leader>-", postkeys = "<Leader>" },
             },
         })
     end,

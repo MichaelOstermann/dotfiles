@@ -117,13 +117,6 @@ map("n", leader("gP"), lazy_call("custom.push", "run"), desc("Push"))
 -- Window
 map("n", leader("c"), "<c-w>c", desc("Close Window"))
 map("n", leader("v"), cmd("vsplit"), desc("Vertical Split"))
-map("n", leader("="), "<c-w>=", desc("Equalize Size"))
-map("n", leader("+"), cmd("vertical resize +1"), desc("Increase Size"))
-map("n", leader("-"), cmd("vertical resize -1"), desc("Decrease Size"))
-map("n", leader("w<left>"), "<c-w>h", desc("Go Left"))
-map("n", leader("w<down>"), "<c-w>j", desc("Go Down"))
-map("n", leader("w<up>"), "<c-w>k", desc("Go Up"))
-map("n", leader("w<right>"), "<c-w>l", desc("Go Right"))
 
 -- Telescope
 map("n", leader("fg"), lazy_call("custom.pickers.ripgrep", "open"), desc("Grep"))
