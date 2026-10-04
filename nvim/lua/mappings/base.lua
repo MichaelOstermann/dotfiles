@@ -92,7 +92,20 @@ end, desc("Hover"))
 map("n", leader("s"), lazy_call("utils.buffer", "format_and_save"), desc("Format & Save"))
 map("n", leader("j"), lazy_call("treesj", "toggle"), desc("Split/Join"))
 map("n", leader("t"), lazy_call("FTerm", "open"), desc("Terminal"))
-map("v", leader("r"), cmd("SearchReplaceSingleBufferVisualSelection"), desc("Replace"))
+map("v", leader("r"), function()
+    -- Prefill :%s/<selection>//gcI with the cursor on the replacement
+    local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+    local pattern = table.concat(
+        vim.tbl_map(function(line)
+            return vim.fn.escape(line, "/\\")
+        end, lines),
+        "\\n"
+    )
+    local keys = vim.api.nvim_replace_termcodes("<esc>:%s/\\V", true, false, true)
+        .. pattern
+        .. vim.api.nvim_replace_termcodes("//gcI<left><left><left><left>", true, false, true)
+    vim.api.nvim_feedkeys(keys, "in", false)
+end, desc("Replace"))
 map("v", leader("R"), lazy_call("grug-far", "with_visual_selection"), desc("Search & Replace"))
 map("n", leader("y"), function()
     vim.fn.setreg("+", vim.fn.expand("%:p:."))
