@@ -203,33 +203,35 @@ au("FileType", function()
     end
 end)
 
--- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/javascript.lua
--- map("i", "t", function()
---     vim.api.nvim_paste("t", false, -1)
---
---     if should_skip() then
---         return
---     end
---
---     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
---     local line = vim.api.nvim_get_current_line()
---     local text_before = line:sub(col - 4, col)
---
---     if text_before ~= "await" then
---         return
---     end
---
---     local function_node =
---         b.find_node_ancestor({ "arrow_function", "function_declaration", "function" })
---     if not function_node then
---         return
---     end
---
---     local function_text = vim.treesitter.get_node_text(function_node, 0)
---     if vim.startswith(function_text, "async ") then
---         return
---     end
---
---     local start_row, start_col = function_node:start()
---     vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { "async " })
--- end)
+-- Toggle async on the nearest parent function
+map("n", "<leader>a", function()
+    local parser = vim.treesitter.get_parser(0, nil, { error = false })
+    if not parser then
+        return
+    end
+    parser:parse()
+
+    local node = b.find_node_ancestor({
+        "arrow_function",
+        "function_declaration",
+        "function_expression",
+        "method_definition",
+    })
+    if not node then
+        return
+    end
+
+    for child in node:iter_children() do
+        if child:type() == "async" then
+            local start_row, start_col = child:start()
+            local end_row, end_col = child:next_sibling():start()
+            vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, {})
+            return
+        end
+    end
+
+    -- Methods: after modifiers like `static`, before the name
+    local target = node:type() == "method_definition" and node:field("name")[1] or node
+    local start_row, start_col = target:start()
+    vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { "async " })
+end, { desc = "Toggle Async" })
