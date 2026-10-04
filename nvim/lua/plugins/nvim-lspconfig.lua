@@ -45,22 +45,35 @@ return {
             },
         })
 
-        vim.lsp.config("vtsls", {
-            capabilities = capabilities,
+        -- TypeScript 7, installed globally (`bun i -g typescript@7`).
+        vim.lsp.config("tsc", {
+            -- tsc relies on the client to watch files, which nvim disables on Linux by default.
+            -- Without this, diagnostics in other files go stale after a save (needs `inotify-tools`).
+            capabilities = vim.tbl_deep_extend("force", capabilities, {
+                workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+                -- Makes tsc report whether a hover can expand further (ts-expand-hover.nvim).
+                experimental = { hoverVerbosityLevel = true },
+            }),
             before_init = before_init,
-            on_init = on_init,
-            settings = {
-                typescript = {
-                    updateImportsOnFileMove = { enabled = "never" },
-                },
-                javascript = {
-                    updateImportsOnFileMove = { enabled = "never" },
-                },
-                vtsls = {
-                    autoUseWorkspaceTsdk = true,
-                },
-            },
+            cmd = { "tsc", "--lsp", "--stdio" },
+            on_init = function(client)
+                on_init(client)
+                if client.server_capabilities.workspace then
+                    client.server_capabilities.workspace.fileOperations = nil
+                end
+            end,
         })
+        vim.lsp.enable("tsc")
+
+        -- inotifywait complains on stderr when a watched directory is deleted (the kernel already
+        -- dropped the watch), and nvim surfaces all of its stderr as an error. It's harmless.
+        local notify = vim.notify
+        vim.notify = function(msg, ...)
+            if type(msg) == "string" and msg:find("^inotify: ") and msg:find("remov%a+ watch on") then
+                return
+            end
+            return notify(msg, ...)
+        end
 
         vim.lsp.config("rust_analyzer", {
             capabilities = capabilities,
@@ -174,7 +187,6 @@ return {
                 "jsonls",
                 "rust_analyzer",
                 "tailwindcss",
-                "vtsls",
                 "zls",
             },
         })

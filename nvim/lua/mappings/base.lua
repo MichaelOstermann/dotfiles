@@ -84,6 +84,10 @@ end, { pattern = "FTerm" })
 map("n", leader("r"), vim.lsp.buf.rename, desc("Rename"))
 map("n", leader("R"), lazy_call("grug-far", "open"), desc("Search & Replace"))
 map("n", leader("h"), function()
+    -- Expandable hover (+/- inside the float) where TypeScript 7 is attached
+    if #vim.lsp.get_clients({ bufnr = 0, name = "tsc" }) > 0 then
+        return require("ts_expand_hover").hover()
+    end
     vim.lsp.buf.hover({
         border = "rounded",
         silent = true,
