@@ -2,22 +2,16 @@ return {
     "saghen/blink.cmp",
     version = "1.*",
     dependencies = {
-        { "L3MON4D3/LuaSnip", version = "v2.*" },
         "disrupted/blink-cmp-conventional-commits",
     },
     event = { "InsertEnter" },
     config = function()
         local au = require("utils.autocommand")
 
-        require("luasnip.loaders.from_vscode").lazy_load({
-            paths = { "./snippets" },
-        })
-
         au("User", lazy_call("illuminate", "pause"), { pattern = "BlinkCmpMenuOpen" })
         au("User", lazy_call("illuminate", "resume"), { pattern = "BlinkCmpMenuClose" })
 
         require("blink.cmp").setup({
-            snippets = { preset = "luasnip" },
             completion = {
                 list = {
                     selection = {
