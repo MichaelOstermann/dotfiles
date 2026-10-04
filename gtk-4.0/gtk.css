@@ -80,6 +80,10 @@
 @define-color sidebar_fg_color @window_fg_color;
 @define-color sidebar_border_color @window_bg_color;
 @define-color sidebar_backdrop_color @window_bg_color;
+@define-color secondary_sidebar_bg_color @window_bg_color;
+@define-color secondary_sidebar_fg_color @window_fg_color;
+@define-color secondary_sidebar_border_color @window_bg_color;
+@define-color secondary_sidebar_backdrop_color @window_bg_color;
 
 window {
     border-radius: 8px;
