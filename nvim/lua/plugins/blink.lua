@@ -90,11 +90,6 @@ return {
                     "fallback",
                 },
                 ["<CR>"] = { "accept", "fallback" },
-                ["<C-a>"] = {
-                    function()
-                        require("minuet.virtualtext").action.next()
-                    end,
-                },
                 ["<Tab>"] = { "fallback" },
                 ["<S-Tab>"] = { "fallback" },
             },
