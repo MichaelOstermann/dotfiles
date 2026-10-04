@@ -10,9 +10,6 @@ return {
         opts = {
             hijack_cursor = true,
             auto_reload_on_write = false,
-            system_open = {
-                cmd = "nautilus",
-            },
             view = {
                 width = 35,
                 signcolumn = "auto",
@@ -78,7 +75,12 @@ return {
                 vim.keymap.set("n", "K", api.node.navigate.sibling.prev, opts)
 
                 vim.keymap.set("n", "W", api.tree.collapse_all, opts)
-                vim.keymap.set("n", "s", api.node.run.system, opts)
+                vim.keymap.set("n", "s", function()
+                    local node = api.tree.get_node_under_cursor()
+                    if node and node.absolute_path then
+                        vim.system({ "nautilus", node.absolute_path }, { detach = true })
+                    end
+                end, opts)
 
                 vim.keymap.set("n", "a", api.fs.create, opts)
                 vim.keymap.set("n", "d", api.fs.trash, opts)
