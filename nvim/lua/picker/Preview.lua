@@ -1,6 +1,6 @@
-local Float = require("ui.Float")
-local Buf = require("utils.Buf")
-local Path = require("utils.Path")
+local Float = require("picker.Float")
+local Buf = require("picker.Buf")
+local Path = require("picker.Path")
 local signal = require("signals.signal")
 
 local M = {}

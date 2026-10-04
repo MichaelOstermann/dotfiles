@@ -1,4 +1,4 @@
-local Float = require("ui.Float")
+local Float = require("picker.Float")
 local signal = require("signals.signal")
 
 local M = {}

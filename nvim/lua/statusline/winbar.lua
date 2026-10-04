@@ -1,8 +1,8 @@
 local au = require("utils.autocommand")
-local signals = require("utils.signals")
+local signals = require("statusline.signals")
 local signal = require("signals.signal")
 local effect = require("signals.effect")
-local statusline = require("utils.statusline")
+local statusline = require("statusline.components")
 
 local wins = {}
 

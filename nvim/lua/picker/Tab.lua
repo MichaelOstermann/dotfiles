@@ -1,5 +1,5 @@
-local Win = require("utils.Win")
-local Path = require("utils.Path")
+local Win = require("picker.Win")
+local Path = require("picker.Path")
 local signal = require("signals.signal")
 
 local M = {}

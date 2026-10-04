@@ -1,4 +1,4 @@
-local Range = require("utils.Range")
+local Range = require("picker.Range")
 
 local M = {}
 

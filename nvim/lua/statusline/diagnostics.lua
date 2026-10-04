@@ -1,5 +1,5 @@
 local au = require("utils.autocommand")
-local signals = require("utils.signals")
+local signals = require("statusline.signals")
 
 local M = {}
 

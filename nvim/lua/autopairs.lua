@@ -1,7 +1,9 @@
-local expr = require("utils.mappings").expr
-local map = require("utils.mappings").map
 local b = require("utils.buffer")
 local au = require("utils.autocommand")
+
+local function expr(mode, lhs, rhs)
+    vim.keymap.set(mode, lhs, rhs, { expr = true })
+end
 
 local function should_skip()
     return b.is_special() or require("multicursor-nvim").hasCursors()
@@ -88,24 +90,16 @@ expr("n", "cc", function()
 end)
 
 -- Indent after inserting a new line
-expr("n", "o", function()
-    if is_jsdoc() then
-        return "o"
-    end
-    local row = vim.api.nvim_win_get_cursor(0)[1]
-    local level = b.get_indentation_level(row)
-    return "o" .. b.get_indentation_string(level)
-end)
-
--- Indent after inserting a new line
-expr("n", "O", function()
-    if is_jsdoc() then
-        return "O"
-    end
-    local row = vim.api.nvim_win_get_cursor(0)[1]
-    local level = b.get_indentation_level(row)
-    return "O" .. b.get_indentation_string(level)
-end)
+for _, key in ipairs({ "o", "O" }) do
+    expr("n", key, function()
+        if is_jsdoc() then
+            return key
+        end
+        local row = vim.api.nvim_win_get_cursor(0)[1]
+        local level = b.get_indentation_level(row)
+        return key .. b.get_indentation_string(level)
+    end)
+end
 
 -- Delete pairs/spaces on backspace if applicable
 expr("i", "<bs>", function()
@@ -202,36 +196,3 @@ au("FileType", function()
         })
     end
 end)
-
--- Toggle async on the nearest parent function
-map("n", "<leader>a", function()
-    local parser = vim.treesitter.get_parser(0, nil, { error = false })
-    if not parser then
-        return
-    end
-    parser:parse()
-
-    local node = b.find_node_ancestor({
-        "arrow_function",
-        "function_declaration",
-        "function_expression",
-        "method_definition",
-    })
-    if not node then
-        return
-    end
-
-    for child in node:iter_children() do
-        if child:type() == "async" then
-            local start_row, start_col = child:start()
-            local end_row, end_col = child:next_sibling():start()
-            vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, {})
-            return
-        end
-    end
-
-    -- Methods: after modifiers like `static`, before the name
-    local target = node:type() == "method_definition" and node:field("name")[1] or node
-    local start_row, start_col = target:start()
-    vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { "async " })
-end, { desc = "Toggle Async" })

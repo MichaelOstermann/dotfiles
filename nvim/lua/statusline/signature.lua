@@ -1,4 +1,4 @@
-local signals = require("utils.signals")
+local signals = require("statusline.signals")
 local au = require("utils.autocommand")
 
 local function get_signature(result)

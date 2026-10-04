@@ -1,11 +1,11 @@
-local Lsp = require("utils.lsp")
+local Lsp = require("picker.lsp")
 local batch = require("signals.batch")
-local dual_pane = require("custom.pickers.dual_pane")
+local dual_pane = require("picker.dual_pane")
 
 local win, buf, job
 
 local pane = dual_pane({
-    title = "Definitions",
+    title = "Implementations",
     render = function(line, data)
         if data.type == "directory" then
             line:add(""):add(data.path, "Directory")
@@ -23,7 +23,7 @@ local pane = dual_pane({
             job.cancel()
         end
 
-        job = Lsp.request_locations(win, buf, "textDocument/definition", {}, function(list)
+        job = Lsp.request_locations(win, buf, "textDocument/implementation", {}, function(list)
             job = nil
             local result = {}
             local last_path

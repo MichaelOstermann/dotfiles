@@ -1,4 +1,4 @@
-local Buf = require("utils.Buf")
+local Buf = require("picker.Buf")
 local au = require("utils.autocommand")
 
 local M = {}

@@ -1,5 +1,5 @@
-local Win = require("utils.Win")
-local Buf = require("utils.Buf")
+local Win = require("picker.Win")
+local Buf = require("picker.Buf")
 local au = require("utils.autocommand")
 local signal = require("signals.signal")
 local effect = require("signals.effect")

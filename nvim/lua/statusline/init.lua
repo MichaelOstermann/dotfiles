@@ -1,7 +1,7 @@
 local effect = require("signals.effect")
 local computed = require("signals.computed")
-local signals = require("utils.signals")
-local statusline = require("utils.statusline")
+local signals = require("statusline.signals")
+local statusline = require("statusline.components")
 
 local pos = statusline.component(function()
     return { " ", signals.row:get(), ":", signals.col:get() + 1 }

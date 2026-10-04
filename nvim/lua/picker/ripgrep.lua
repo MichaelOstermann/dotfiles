@@ -1,10 +1,9 @@
-local Tab = require("ui.Tab")
-local Input = require("ui.Input")
-local List = require("ui.List")
-local Float = require("ui.Float")
-local Preview = require("ui.Preview")
-local String = require("utils.String")
-local Range = require("utils.Range")
+local Tab = require("picker.Tab")
+local Input = require("picker.Input")
+local List = require("picker.List")
+local Float = require("picker.Float")
+local Preview = require("picker.Preview")
+local Range = require("picker.Range")
 local batch = require("signals.batch")
 local effect = require("signals.effect")
 local fzy = require("fzy")
@@ -19,6 +18,58 @@ end
 
 local function trim_trailing(str)
     return (string.gsub(str, "%s+$", ""))
+end
+
+local function trim_to(max, parts)
+    local left, right = unpack(parts)
+    local len_l, len_r = #left, #right
+
+    local excess = len_l + len_r - max
+
+    if excess <= 0 then
+        return left, right
+    end
+
+    local remove_from_left = 0
+    local remove_from_right = 0
+
+    if len_l > len_r then
+        local diff = len_l - len_r
+        local to_remove = math.min(excess, diff)
+        remove_from_left = to_remove
+        excess = excess - to_remove
+    elseif len_r > len_l then
+        local diff = len_r - len_l
+        local to_remove = math.min(excess, diff)
+        remove_from_right = to_remove
+        excess = excess - to_remove
+    end
+
+    if excess > 0 then
+        local from_each = math.floor(excess / 2)
+        remove_from_left = remove_from_left + from_each
+        remove_from_right = remove_from_right + from_each + (excess % 2)
+    end
+
+    if remove_from_left > 0 then
+        remove_from_left = remove_from_left + 1
+    end
+
+    if remove_from_right > 0 then
+        remove_from_right = remove_from_right + 1
+    end
+
+    remove_from_left = math.min(remove_from_left, len_l)
+    remove_from_right = math.min(remove_from_right, len_r)
+
+    local final_left = remove_from_left > 0 and "…" .. string.sub(left, remove_from_left + 1)
+        or left
+
+    local final_right = remove_from_right > 0
+            and string.sub(right, 1, len_r - remove_from_right) .. "…"
+        or right
+
+    return final_left, final_right
 end
 
 local prompt = Input.create({
@@ -55,7 +106,7 @@ local results = List.create({
             local max = float.width:get() - #data.match - line.length
 
             -- Trim the context around the match, so everything fits on screen.
-            local left, right = String.trim_to(max, {
+            local left, right = trim_to(max, {
                 trim_leading(string.sub(data.line, 1, data.range:get_col_start())),
                 trim_trailing(string.sub(data.line, data.range:get_col_end() + 1, -1)),
             })

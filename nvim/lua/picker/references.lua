@@ -1,6 +1,6 @@
-local Lsp = require("utils.lsp")
+local Lsp = require("picker.lsp")
 local batch = require("signals.batch")
-local dual_pane = require("custom.pickers.dual_pane")
+local dual_pane = require("picker.dual_pane")
 
 local win, buf, job
 

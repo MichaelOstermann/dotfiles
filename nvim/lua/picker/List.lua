@@ -1,5 +1,5 @@
-local Float = require("ui.Float")
-local Line = require("ui.Line")
+local Float = require("picker.Float")
+local Line = require("picker.Line")
 local signal = require("signals.signal")
 local computed = require("signals.computed")
 local effect = require("signals.effect")

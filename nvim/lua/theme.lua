@@ -404,3 +404,20 @@ hl("RenderMarkdownQuote", { fg = fg_400 })
 -- VisualNOS = { bg = c.bg_visual }, -- Visual mode selection when vim is "Not Owning the Selection".
 -- Whitespace = { fg = c.fg_gutter }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
 -- WildMenu = { bg = c.bg_visual }, -- current match in 'wildmenu' completion
+
+-- Watch this file for changes and reload
+if not vim.g.theme_watched then
+    vim.g.theme_watched = true
+    local handle = vim.uv.new_fs_event()
+    vim.uv.fs_event_start(
+        handle,
+        vim.env.HOME .. "/.config/nvim/lua/theme.lua",
+        {},
+        vim.schedule_wrap(function(err)
+            if not err then
+                package.loaded["theme"] = nil
+                require("theme")
+            end
+        end)
+    )
+end

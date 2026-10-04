@@ -1,6 +1,6 @@
-local Float = require("ui.Float")
-local Spinner = require("ui.Spinner")
-local Line = require("ui.Line")
+local Float = require("picker.Float")
+local Spinner = require("picker.Spinner")
+local Line = require("picker.Line")
 local signal = require("signals.signal")
 local effect = require("signals.effect")
 
