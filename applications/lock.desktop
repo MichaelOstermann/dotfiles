@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=Lock Screen
 Comment=Lock the screen using swaylock
-Exec=hyprlock
+Exec=qs ipc call lock lock
 Icon=system-lock-screen
 Terminal=false
 Type=Application

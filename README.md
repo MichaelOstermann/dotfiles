@@ -2,6 +2,7 @@
 
 ```sh
 ln -s $HOME/Development/dotfiles/.icons $HOME
+ln -s $HOME/Development/dotfiles/quickshell $HOME/.config
 ln -s $HOME/Development/dotfiles/fish $HOME/.config
 ln -s $HOME/Development/dotfiles/niri $HOME/.config
 ln -s $HOME/Development/dotfiles/hypr $HOME/.config

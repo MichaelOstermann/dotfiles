@@ -3,3 +3,4 @@
 # Lines starting with # are ignored.
 niri
 notify-send
+NetworkManager Applet
