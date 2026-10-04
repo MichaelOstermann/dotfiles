@@ -1,5 +1,3 @@
-local Path = require("plenary.path")
-
 local M = {}
 M.__index = M
 
@@ -26,9 +24,17 @@ function M:read(cb)
     if self:is_empty() then
         cb("")
     else
-        Path:new(self.path):_read_async(vim.schedule_wrap(function(contents)
-            cb(contents)
-        end))
+        local path = self.path
+        vim.uv.fs_open(path, "r", 438, function(_, fd)
+            local stat = fd and vim.uv.fs_fstat(fd)
+            local contents = stat and vim.uv.fs_read(fd, stat.size, 0)
+            if fd then
+                vim.uv.fs_close(fd)
+            end
+            vim.schedule(function()
+                cb(contents or "")
+            end)
+        end)
     end
 end
 
