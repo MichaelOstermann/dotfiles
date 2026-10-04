@@ -68,11 +68,6 @@ function M:set_focus_col(col)
     return self
 end
 
-function M:shift_anchor_col(shift)
-    self.anchor[2] = self.anchor[2] + shift
-    return self
-end
-
 function M:shift_focus_col(shift)
     self.focus[2] = self.focus[2] + shift
     return self

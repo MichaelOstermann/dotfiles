@@ -18,10 +18,6 @@ function M.current()
     return M.of(vim.api.nvim_get_current_win())
 end
 
-function M:is_current()
-    return self.id == vim.api.nvim_get_current_win()
-end
-
 function M:buf()
     return Buf.of(vim.api.nvim_win_get_buf(self.id))
 end
@@ -128,11 +124,6 @@ end
 
 function M:set_cursorline(enabled)
     vim.api.nvim_set_option_value("cursorline", enabled, { win = self.id })
-    return self
-end
-
-function M:set_title(title)
-    vim.api.nvim_win_set_config(self.id, { title = title })
     return self
 end
 
