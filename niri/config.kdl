@@ -270,14 +270,12 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
-spawn-at-startup "/home/michael/Development/dotfiles/scripts/mako-unread-watch.ts"
+// The bar, panels, launcher and notifications: quickshell.
+spawn-at-startup "qs"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/gsd-rfkill"
 spawn-sh-at-startup "wlsunset -l 48 -L 16 -T 4200 -t 2700"
 spawn-sh-at-startup "swaybg -c \"#181921\""
-spawn-sh-at-startup "swayidle -w timeout 600 'hyprlock'"
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -380,8 +378,11 @@ binds {
     // Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Return { spawn "ghostty"; }
+    Mod+Space { spawn "qs" "ipc" "call" "launcher" "toggle"; }
+    // Panic key: restarts quickshell and locks. It works while locked, so a
+    // frozen lock screen can be replaced by a fresh one without a TTY.
+    Mod+Shift+Escape allow-when-locked=true { spawn-sh "pkill -x qs; sleep 1; pkill -9 -x qs; setsid qs >/dev/null 2>&1 & sleep 3; qs ipc call lock lock"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -602,10 +603,11 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Mod+Shift+1 { spawn-sh "hyprpicker -a"; }
-    Mod+Shift+2 { spawn-sh "hyprpicker -f rgb -a"; }
-    Mod+Shift+4 { screenshot; }
-    Mod+Shift+5 { spawn "/home/michael/Development/dotfiles/scripts/toggle-recording.sh"; }
+    Mod+Shift+1 { spawn "qs" "ipc" "call" "picker" "pick"; }
+    Mod+Shift+3 { screenshot-screen; }
+    Mod+Shift+4 { spawn "qs" "ipc" "call" "capture" "screenshot"; }
+    Mod+Shift+5 { spawn "qs" "ipc" "call" "capture" "record"; }
+    Mod+Shift+6 { screenshot-window; }
     // Ctrl+Print { screenshot-screen; }
     // Alt+Print { screenshot-window; }
 
