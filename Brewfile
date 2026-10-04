@@ -44,7 +44,6 @@ brew "starship"
 brew "streamrip"
 brew "tcl-tk"
 brew "trash", link: true
-brew "yazi"
 brew "zlib"
 brew "zoxide"
 brew "qmk/qmk/qmk"
