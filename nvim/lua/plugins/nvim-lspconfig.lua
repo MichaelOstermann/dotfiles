@@ -8,63 +8,22 @@ return {
         "mason-org/mason-lspconfig.nvim",
     },
     config = function()
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            require("blink.cmp").get_lsp_capabilities(),
-            require("lsp-file-operations").default_capabilities()
-        )
-
-        local before_init = function(_, config)
-            local codesettings = require("codesettings")
-            config = codesettings.with_local_settings(config.name, config)
-        end
-
-        local on_init = function(client)
-            if client and client.server_capabilities then
-                client.server_capabilities.semanticTokensProvider = nil
-            end
-        end
-
-        local opts = {
-            capabilities = capabilities,
-            before_init = before_init,
-            on_init = on_init,
-        }
-
-        vim.lsp.config("html", opts)
-        vim.lsp.config("tinymist", opts)
-        vim.lsp.config("zls", opts)
-
-        vim.lsp.config("tailwindcss", {
-            capabilities = capabilities,
-            before_init = before_init,
-            on_init = on_init,
-            settings = {
-                tailwindCSS = {
-                    colorDecorators = false,
-                },
-            },
-        })
-
-        -- TypeScript 7, installed globally (`bun i -g typescript@7`).
-        vim.lsp.config("tsc", {
-            -- tsc relies on the client to watch files, which nvim disables on Linux by default.
-            -- Without this, diagnostics in other files go stale after a save (needs `inotify-tools`).
-            capabilities = vim.tbl_deep_extend("force", capabilities, {
-                workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
-                -- Makes tsc report whether a hover can expand further (ts-expand-hover.nvim).
-                experimental = { hoverVerbosityLevel = true },
-            }),
-            before_init = before_init,
-            cmd = { "tsc", "--lsp", "--stdio" },
+        -- Every server, merged under lspconfig's `lsp/<server>.lua` and our `after/lsp/<server>.lua`. A server whose
+        -- file sets `before_init` or `on_init` replaces these.
+        vim.lsp.config("*", {
+            capabilities = vim.tbl_deep_extend(
+                "force",
+                require("blink.cmp").get_lsp_capabilities(),
+                require("lsp-file-operations").default_capabilities()
+            ),
+            before_init = function(_, config)
+                require("codesettings").with_local_settings(config.name, config)
+            end,
             on_init = function(client)
-                on_init(client)
-                if client.server_capabilities.workspace then
-                    client.server_capabilities.workspace.fileOperations = nil
-                end
+                client.server_capabilities.semanticTokensProvider = nil
             end,
         })
-        vim.lsp.enable("tsc")
+        vim.lsp.enable({ "tsc", "oxlint", "dprint" })
 
         -- nvim's inotifywait watcher only skips `.git`, so it recursively watches `node_modules`,
         -- cargo's `target`, etc. (thousands of watches per registration). Skip what git ignores.
@@ -106,165 +65,6 @@ return {
             end
             return notify(msg, ...)
         end
-
-        vim.lsp.config("rust_analyzer", {
-            capabilities = capabilities,
-            before_init = before_init,
-            on_init = on_init,
-            settings = {
-                ["rust-analyzer"] = {
-                    cargo = {
-                        targetDir = true,
-                    },
-                    completion = {
-                        postfix = {
-                            enable = false,
-                        },
-                        callable = {
-                            snippets = "none",
-                        },
-                    },
-                },
-            },
-        })
-
-        vim.lsp.config("jsonls", {
-            capabilities = capabilities,
-            -- The schema catalog is large, only load it once the server actually starts
-            before_init = function(_, config)
-                config.settings.json.schemas = require("schemastore").json.schemas()
-            end,
-            settings = {
-                json = {
-                    validate = { enable = true },
-                    format = { enable = false },
-                },
-            },
-        })
-
-        vim.lsp.config("eslint", {
-            capabilities = capabilities,
-            filetypes = {
-                "javascript",
-                "javascriptreact",
-                "javascript.jsx",
-                "typescript",
-                "typescriptreact",
-                "typescript.tsx",
-                "vue",
-                "html",
-                "markdown",
-                "json",
-                "jsonc",
-                "yaml",
-                "toml",
-                "xml",
-                "gql",
-                "graphql",
-                "astro",
-                "svelte",
-                "css",
-                "less",
-                "scss",
-                "pcss",
-                "postcss",
-            },
-            settings = {
-                -- Silent stylistic rules, but still auto fix them
-                rulesCustomizations = {
-                    { rule = "@stylistic/*", severity = "off", fixable = true },
-                    { rule = "perfectionist/*", severity = "off", fixable = true },
-                    { rule = "format/*", severity = "off", fixable = true },
-                    { rule = "*-indent", severity = "off", fixable = true },
-                    { rule = "*-spacing", severity = "off", fixable = true },
-                    { rule = "*-spaces", severity = "off", fixable = true },
-                    { rule = "*-order", severity = "off", fixable = true },
-                    { rule = "*-dangle", severity = "off", fixable = true },
-                    { rule = "*-newline", severity = "off", fixable = true },
-                    { rule = "*quotes", severity = "off", fixable = true },
-                    { rule = "*semi", severity = "off", fixable = true },
-                },
-            },
-        })
-
-        -- Projects on @monstermann/stdlib-style: oxlint lints and dprint formats, both with the binaries
-        -- the project installed. Each only starts where its config is, so ESLint keeps the projects
-        -- that still have one.
-        -- Silent stylistic rules, the fixes on save still apply them. Codes are `plugin(rule)`,
-        -- these match the rule. Formatting itself is dprint's, it reports nothing. Not `import/first`:
-        -- oxlint cannot fix it.
-        local silent_oxlint_rules = {
-            "^no%-duplicates$",
-            "newline",
-            "order",
-            "sort",
-            "specifier%-style$",
-            "^prefer%-arrow%-callback$",
-        }
-
-        local function is_loud(diagnostic)
-            local rule = type(diagnostic.code) == "string" and diagnostic.code:match("%((.-)%)$")
-            if not rule then
-                return true
-            end
-            for _, pattern in ipairs(silent_oxlint_rules) do
-                if rule:find(pattern) then
-                    return false
-                end
-            end
-            return true
-        end
-
-        vim.lsp.config("oxlint", {
-            capabilities = capabilities,
-            -- Without its config there is no root, and nvim would start it for the file alone.
-            workspace_required = true,
-            settings = {
-                -- lspconfig only turns this on when a `.oxlintrc.json` mentions TypeScript, ours is `oxlint.config.ts`.
-                typeAware = true,
-            },
-            handlers = {
-                ["textDocument/publishDiagnostics"] = function(err, result, ctx)
-                    if result then
-                        result.diagnostics = vim.tbl_filter(is_loud, result.diagnostics)
-                    end
-                    return vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
-                end,
-                ["textDocument/diagnostic"] = function(err, result, ctx)
-                    if result and result.items then
-                        result.items = vim.tbl_filter(is_loud, result.items)
-                    end
-                    return vim.lsp.diagnostic.on_diagnostic(err, result, ctx)
-                end,
-            },
-        })
-        vim.lsp.config("dprint", {
-            capabilities = capabilities,
-            workspace_required = true,
-            cmd = function(dispatchers, config)
-                local cmd = "dprint"
-                if config and config.root_dir then
-                    local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin/dprint")
-                    if vim.fn.executable(local_cmd) == 1 then
-                        cmd = local_cmd
-                    end
-                end
-                return vim.lsp.rpc.start({ cmd, "lsp" }, dispatchers)
-            end,
-            filetypes = {
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-                "json",
-                "jsonc",
-                "markdown",
-                "css",
-                "scss",
-                "html",
-            },
-        })
-        vim.lsp.enable({ "oxlint", "dprint" })
 
         vim.fn.sign_define("DiagnosticSignError", { numhl = "DiagnosticSignError", priority = 10 })
         vim.fn.sign_define("DiagnosticSignWarn", { numhl = "DiagnosticSignWarn", priority = 10 })
