@@ -26,7 +26,9 @@ function M.create(options)
         effect(function()
             float:set_modifiable(true)
             local line = Line.create(1)
-            line:add(options.content, "Keyword")
+            -- A signal for a title that changes, like the linter the lint picker runs.
+            local content = type(options.content) == "table" and options.content:get() or options.content
+            line:add(content, "Keyword")
             local spin_text, spin_hi = unpack(spinner_content:get())
             if spin_text then
                 line:add(" "):add(spin_text, spin_hi)

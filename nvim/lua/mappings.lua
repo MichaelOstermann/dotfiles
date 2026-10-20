@@ -173,7 +173,7 @@ map("n", "<leader>v", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 
 -- Telescope
 map("n", "<leader>fg", lazy_call("picker.ripgrep", "open"), { desc = "Grep" })
-map("n", "<leader>fe", lazy_call("picker.eslint", "open"), { desc = "ESLint" })
+map("n", "<leader>fe", lazy_call("picker.lint", "open"), { desc = "Lint" })
 map("n", "<leader>ft", lazy_call("picker.tsc", "open"), { desc = "TSC" })
 map("n", "<leader>ff", lazy_call("picker.files", "open"), { desc = "Files" })
 map("n", "<leader>fi", lazy_call("picker.implementations", "open"), { desc = "Implementations" })
