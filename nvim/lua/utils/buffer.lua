@@ -15,6 +15,22 @@ M.format_and_save = function()
         return
     end
 
+    -- stdlib-style: oxlint's fixes first, then dprint formats what they left. Waits for the fixes,
+    -- `LspOxlintFixAll` does not.
+    local oxlint = vim.lsp.get_clients({ bufnr = bufnr, name = "oxlint" })[1]
+    if oxlint then
+        oxlint:request_sync("workspace/executeCommand", {
+            command = "oxc.fixAll",
+            arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+        }, nil, bufnr)
+    end
+
+    if not vim.tbl_isempty(vim.lsp.get_clients({ bufnr = bufnr, name = "dprint" })) then
+        vim.lsp.buf.format({ bufnr = bufnr, name = "dprint" })
+        vim.cmd("w")
+        return
+    end
+
     require("conform").format({ bufnr = bufnr })
     vim.cmd("w")
 end

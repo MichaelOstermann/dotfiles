@@ -187,6 +187,85 @@ return {
             },
         })
 
+        -- Projects on @monstermann/stdlib-style: oxlint lints and dprint formats, both with the binaries
+        -- the project installed. Each only starts where its config is, so ESLint keeps the projects
+        -- that still have one.
+        -- Silent stylistic rules, the fixes on save still apply them. Codes are `plugin(rule)`,
+        -- these match the rule. Formatting itself is dprint's, it reports nothing. Not `import/first`:
+        -- oxlint cannot fix it.
+        local silent_oxlint_rules = {
+            "^no%-duplicates$",
+            "newline",
+            "order",
+            "sort",
+            "specifier%-style$",
+            "^prefer%-arrow%-callback$",
+        }
+
+        local function is_loud(diagnostic)
+            local rule = type(diagnostic.code) == "string" and diagnostic.code:match("%((.-)%)$")
+            if not rule then
+                return true
+            end
+            for _, pattern in ipairs(silent_oxlint_rules) do
+                if rule:find(pattern) then
+                    return false
+                end
+            end
+            return true
+        end
+
+        vim.lsp.config("oxlint", {
+            capabilities = capabilities,
+            -- Without its config there is no root, and nvim would start it for the file alone.
+            workspace_required = true,
+            settings = {
+                -- lspconfig only turns this on when a `.oxlintrc.json` mentions TypeScript, ours is `oxlint.config.ts`.
+                typeAware = true,
+            },
+            handlers = {
+                ["textDocument/publishDiagnostics"] = function(err, result, ctx)
+                    if result then
+                        result.diagnostics = vim.tbl_filter(is_loud, result.diagnostics)
+                    end
+                    return vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
+                end,
+                ["textDocument/diagnostic"] = function(err, result, ctx)
+                    if result and result.items then
+                        result.items = vim.tbl_filter(is_loud, result.items)
+                    end
+                    return vim.lsp.diagnostic.on_diagnostic(err, result, ctx)
+                end,
+            },
+        })
+        vim.lsp.config("dprint", {
+            capabilities = capabilities,
+            workspace_required = true,
+            cmd = function(dispatchers, config)
+                local cmd = "dprint"
+                if config and config.root_dir then
+                    local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin/dprint")
+                    if vim.fn.executable(local_cmd) == 1 then
+                        cmd = local_cmd
+                    end
+                end
+                return vim.lsp.rpc.start({ cmd, "lsp" }, dispatchers)
+            end,
+            filetypes = {
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact",
+                "json",
+                "jsonc",
+                "markdown",
+                "css",
+                "scss",
+                "html",
+            },
+        })
+        vim.lsp.enable({ "oxlint", "dprint" })
+
         vim.fn.sign_define("DiagnosticSignError", { numhl = "DiagnosticSignError", priority = 10 })
         vim.fn.sign_define("DiagnosticSignWarn", { numhl = "DiagnosticSignWarn", priority = 10 })
         vim.fn.sign_define("DiagnosticSignHint", { numhl = "DiagnosticSignHint", priority = 10 })
