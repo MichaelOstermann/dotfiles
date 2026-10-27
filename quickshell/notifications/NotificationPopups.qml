@@ -4,17 +4,24 @@ import Quickshell
 import Quickshell.Wayland
 import qs
 
-// Incoming notifications, stacked in the top right corner, or beside a panel
+// Incoming notifications, stacked in the top right corner, or below a panel
 // that is open there. Click one to act on it, right-click to dismiss it.
 PanelWindow {
     id: root
 
-    visible: Notifications.popups.length > 0
+    readonly property var panel: Panels.current?.anchors.right ? Panels.current : null
+    // The notifications panel lists them already; only those it never keeps
+    // (blacklisted apps) still pop up beside it.
+    readonly property var popups: panel?.panelName === "notifications"
+        ? Notifications.popups.filter(p => !Notifications.history.some(n => n.id === p.id))
+        : Notifications.popups
+
+    visible: popups.length > 0
     color: "transparent"
     anchors { top: true; right: true }
     margins {
-        top: 8
-        right: Panels.current?.anchors.right ? Panels.current.width + 16 : 8
+        top: panel ? panel.height + 16 : 8
+        right: 8
     }
     exclusionMode: ExclusionMode.Normal
     implicitWidth: 380
@@ -28,7 +35,7 @@ PanelWindow {
         spacing: 8
 
         Repeater {
-            model: Notifications.popups
+            model: root.popups
 
             Rectangle {
                 id: card
