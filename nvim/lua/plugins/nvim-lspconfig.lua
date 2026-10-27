@@ -11,11 +11,7 @@ return {
         -- Every server, merged under lspconfig's `lsp/<server>.lua` and our `after/lsp/<server>.lua`. A server whose
         -- file sets `before_init` or `on_init` replaces these.
         vim.lsp.config("*", {
-            capabilities = vim.tbl_deep_extend(
-                "force",
-                require("blink.cmp").get_lsp_capabilities(),
-                require("lsp-file-operations").default_capabilities()
-            ),
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
             before_init = function(_, config)
                 require("codesettings").with_local_settings(config.name, config)
             end,

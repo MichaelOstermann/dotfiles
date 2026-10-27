@@ -19,7 +19,6 @@
   "mini.diff": { "branch": "main", "commit": "0743d26bd858ebe32efcf5c86a91a422a000f273" },
   "multicursor.nvim": { "branch": "1.0", "commit": "704b99f10a72cc05d370cfeb294ff83412a8ab55" },
   "nvim-gomove": { "branch": "main", "commit": "2b44ae7ac0804f4e3959228122f7c85bef1964e3" },
-  "nvim-lsp-file-operations": { "branch": "master", "commit": "57a446f3ada9f8e994aaeebcb5c1dc5f5c037a81" },
   "nvim-lspconfig": { "branch": "master", "commit": "3e8d598d3b5f8338a41699c436e5fa11d2666cf0" },
   "nvim-recorder": { "branch": "main", "commit": "0ef1a24293323b3db2f56edca196f662b6551b1b" },
   "nvim-signals": { "branch": "main", "commit": "55c56e7f451b2e3794431b787fc685bf68481e15" },

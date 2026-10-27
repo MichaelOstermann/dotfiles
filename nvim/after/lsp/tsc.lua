@@ -8,10 +8,4 @@ return {
         -- Makes tsc report whether a hover can expand further (ts-expand-hover.nvim).
         experimental = { hoverVerbosityLevel = true },
     },
-    on_init = function(client)
-        client.server_capabilities.semanticTokensProvider = nil
-        if client.server_capabilities.workspace then
-            client.server_capabilities.workspace.fileOperations = nil
-        end
-    end,
 }
