@@ -13,7 +13,7 @@ Singleton {
     // { "2026-10-04": { "13": { "firefox": seconds, ... }, ... }, ... }
     // — day, then hour of the day, then what had the focus. That is an app
     // id, or "nvim<TAB>project" for nvim in a terminal, so that the time in
-    // it divides by what was being worked on.
+    // it divides by what was being worked on, or "claude" for Claude Code.
     property var days: ({})
     readonly property int version: 2    // of the stored file; others are dropped
     readonly property var terminals: ["com.mitchellh.ghostty"]
@@ -46,6 +46,12 @@ Singleton {
         return /^[~\/]/.test(dir) ? "" : dir.split("/")[0]
     }
 
+    // Whether a terminal is running Claude Code, which heads its title with a
+    // status glyph: "✳ topic" when waiting, a spinner like "◐ topic" at work.
+    function claude(title: string): bool {
+        return /^[^\x00-\x7F] /.test(title)
+    }
+
     // Away for two minutes: stop counting. Video players inhibit idling, so
     // watching something still counts.
     IdleMonitor {
@@ -64,8 +70,9 @@ Singleton {
             const now = new Date()
             const day = root.days[root.key(now)] ?? (root.days[root.key(now)] = {})
             const hour = day[now.getHours()] ?? (day[now.getHours()] = {})
-            const project = root.terminals.includes(app) ? root.project(Niri.focused.title ?? "") : ""
-            const what = project ? "nvim\t" + project : app
+            const title = root.terminals.includes(app) ? Niri.focused.title ?? "" : ""
+            const project = root.project(title)
+            const what = project ? "nvim\t" + project : root.claude(title) ? "claude" : app
             hour[what] = (hour[what] ?? 0) + root.tick
             root.daysChanged()
         }
