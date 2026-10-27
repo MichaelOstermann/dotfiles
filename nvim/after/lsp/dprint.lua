@@ -19,6 +19,7 @@ return {
         "json",
         "jsonc",
         "markdown",
+        "mdx",
         "css",
         "scss",
         "html",
