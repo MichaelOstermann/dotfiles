@@ -11,6 +11,10 @@ Panel {
     // dragged in (haskell-*, lib*) follow, dimmed.
     readonly property var pending: u.pending.slice()
         .sort((a, b) => b.explicit - a.explicit || a.name.localeCompare(b.name))
+    // This week's Arch news only: that is where manual interventions and
+    // security warnings are announced, and older headlines that stay listed
+    // every day teach you to skip the section.
+    readonly property var news: u.news.filter(n => Date.now() - new Date(n.date).getTime() < 7 * 86400000)
 
     readonly property int rowHeight: 20
     readonly property int rowGap: 10
@@ -96,30 +100,28 @@ Panel {
     }
 
     Rectangle {
-        visible: list.visible && u.news.length > 0
+        visible: list.visible && root.news.length > 0
         implicitHeight: 1
         color: Theme.border
         Layout.fillWidth: true
     }
 
-    // That is where manual interventions are announced. This week's are lit.
     ColumnLayout {
-        visible: u.news.length > 0
+        visible: root.news.length > 0
         spacing: 10
 
         Section { text: "ARCH NEWS" }
         Repeater {
-            model: u.news
+            model: root.news
             ColumnLayout {
                 id: item
                 required property var modelData
-                readonly property bool recent: Date.now() - new Date(modelData.date).getTime() < 7 * 86400000
                 spacing: 2
 
                 StyledText {
                     text: item.modelData.title
                     textFormat: Text.PlainText
-                    color: item.recent || newsMouse.containsMouse ? Theme.fg : Theme.dim
+                    font.underline: newsMouse.containsMouse
                     wrapMode: Text.Wrap
                     Layout.fillWidth: true
 
